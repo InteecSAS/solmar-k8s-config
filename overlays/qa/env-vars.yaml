@@ -13,7 +13,7 @@ spec:
         - name: auth-service
           env:
             - name: ConnectionStrings__DefaultConnection
-              value: "Server=192.168.126.129\\APPSOLMAR;Database=KINICH_QA;User Id=app_solmar;Password=4ppS0lm4r#2025*;TrustServerCertificate=True;"
+              value: "Server=SERVER_QA;Database=BBDD_QA;User Id=USER_QA;Password=PASSWORD_QA;TrustServerCertificate=True;"
             - name: Logging__LogLevel__Default
               value: "Debug" # Nivel de log más verboso para QA
             # Añade aquí cualquier otra variable de entorno específica de AuthService para QA
@@ -29,7 +29,7 @@ spec:
         - name: reservas-service
           env:
             - name: ConnectionStrings__DefaultConnection
-              value: "Server=192.168.126.129\\APPSOLMAR;Database=KINICH_QA;User Id=app_solmar;Password=4ppS0lm4r#2025*;TrustServerCertificate=True;"
+              value: "Server=SERVER_QA;Database=BBDD_QA;User Id=USER_QA;Password=PASSWORD_QA;TrustServerCertificate=True;"
             - name: SomeOtherSetting__ReservasQA
               value: "QA_Value_for_Reservas"
             # Añade aquí cualquier otra variable de entorno específica de ReservasService para QA
@@ -45,7 +45,7 @@ spec:
         - name: finanzas-service
           env:
             - name: ConnectionStrings__DefaultConnection
-              value: "Server=192.168.126.129\\APPSOLMAR;Database=KINICH_QA;User Id=app_solmar;Password=4ppS0lm4r#2025*;TrustServerCertificate=True;"
+              value: "Server=SERVER_QA;Database=BBDD_QA;User Id=USER_QA;Password=PASSWORD_QA;TrustServerCertificate=True;"
             # Añade aquí cualquier otra variable de entorno específica de FinanzasService para QA
 ---
 apiVersion: apps/v1
@@ -59,7 +59,7 @@ spec:
         - name: notifications-service
           env:
             - name: ConnectionStrings__DefaultConnection
-              value: "Server=192.168.126.129\\APPSOLMAR;Database=KINICH_QA;User Id=app_solmar;Password=4ppS0lm4r#2025*;TrustServerCertificate=True;"
+              value: "Server=SERVER_QA;Database=BBDD_QA;User Id=USER_QA;Password=PASSWORD_QA;TrustServerCertificate=True;"
             # Añade aquí cualquier otra variable de entorno específica de NotificationsService para QA
 ---
 apiVersion: apps/v1

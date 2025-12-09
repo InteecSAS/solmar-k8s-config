@@ -9,9 +9,9 @@ Instrucciones para la Otra Persona
         cd solmar-k8s-config
    2.  **(Paso único) Crea el Secreto de Kubernetes en tu clúster:**
         Necesitas crear un "secreto" que le permita a Kubernetes iniciar sesión en mi Docker Hub.
-        Ejecuta el siguiente comando, reemplazando `<EL_TOKEN_QUE_TE_DI>` con el token de acceso que te he proporcionado abajo.
+        Ejecuta el siguiente comando, reemplazando `<TU_TOKEN_AQUI>` con el token de acceso que te he proporcionado abajo.
    
-        kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=diurvan --docker-password=<EL_TOKEN_QUE_TE_DI> --docker-email=tu@email.com
+        kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=diurvan --docker-password=<TU_TOKEN_AQUI> --docker-email=tu@email.com
     
         *(Nota: El email no es crítico, puedes usar cualquiera)*.
     3.  **Despliega la aplicación:**
@@ -19,3 +19,7 @@ Instrucciones para la Otra Persona
         kubectl apply -k k8s/overlays/dev
    
    !Eso es todo! Kubernetes ahora usará el secreto `regcred` para autenticarse con Docker Hub y descargar las imágenes privadas. La aplicación estará disponible en `http://localhost:30577`
+
+   *********************************************
+   docker login -u diurvan
+   dckr_pat_Vc5b9K2IjOHqV8bybLU7IO53WEI
