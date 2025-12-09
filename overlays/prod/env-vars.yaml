@@ -1,0 +1,77 @@
+# k8s/overlays/prod/env-vars.yaml
+# Este archivo contiene las variables de entorno específicas para el entorno de PRO.
+# DEBES REEMPLAZAR LOS VALORES DE EJEMPLO CON TUS VALORES REALES DE PRO.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service # Parche para AuthService
+spec:
+  template:
+    spec:
+      containers:
+        - name: auth-service
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=your_prod_auth_db_server;Database=AuthDb_PROD;User Id=sa;Password=your_prod_auth_password;"
+            - name: Logging__LogLevel__Default
+              value: "Information" # Nivel de log para producción
+            # Añade aquí cualquier otra variable de entorno específica de AuthService para PRO
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservas-service # Parche para ReservasService
+spec:
+  template:
+    spec:
+      containers:
+        - name: reservas-service
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=your_prod_reservas_db_server;Database=ReservasDb_PROD;User Id=sa;Password=your_prod_reservas_password;"
+            - name: SomeOtherSetting__Prod
+              value: "PROD_Value_for_Reservas"
+            # Añade aquí cualquier otra variable de entorno específica de ReservasService para PRO
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finanzas-service # Parche para FinanzasService
+spec:
+  template:
+    spec:
+      containers:
+        - name: finanzas-service
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=your_prod_finanzas_db_server;Database=FinanzasDb_PROD;User Id=sa;Password=your_prod_finanzas_password;"
+            # Añade aquí cualquier otra variable de entorno específica de FinanzasService para PRO
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifications-service # Parche para NotificationsService
+spec:
+  template:
+    spec:
+      containers:
+        - name: notifications-service
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=your_prod_notifications_db_server;Database=NotificationsDb_PROD;User Id=sa;Password=your_prod_notifications_password;"
+            # Añade aquí cualquier otra variable de entorno específica de NotificationsService para PRO
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yarp-proxy # Parche para YarpProxy
+spec:
+  template:
+    spec:
+      containers:
+        - name: yarp-proxy
+          env:
+            - name: Yarp__Clusters__auth-cluster__Destinations__auth-destination__Address
+              value: "http://auth-service" # Ejemplo, si YARP necesita saber la URL interna de AuthService
+            # Añade aquí cualquier otra variable de entorno específica de YarpProxy para PRO

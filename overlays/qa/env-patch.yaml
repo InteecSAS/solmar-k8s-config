@@ -1,0 +1,66 @@
+# k8s/overlays/qa/env-patch.yaml
+# Este parche inyecta las variables de entorno en cada Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yarp-proxy
+spec:
+  template:
+    spec:
+      containers:
+      - name: yarp-proxy
+        envFrom:
+        - configMapRef:
+            name: solmar-env-vars
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: auth-service
+        envFrom:
+        - configMapRef:
+            name: solmar-env-vars
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservas-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: reservas-service
+        envFrom:
+        - configMapRef:
+            name: solmar-env-vars
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finanzas-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: finanzas-service
+        envFrom:
+        - configMapRef:
+            name: solmar-env-vars
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifications-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: notifications-service
+        envFrom:
+        - configMapRef:
+            name: solmar-env-vars

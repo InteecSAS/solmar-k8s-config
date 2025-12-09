@@ -1,0 +1,36 @@
+# k8s/overlays/qa/replicas.yaml
+# Aumentamos el número de réplicas para el entorno de QA
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yarp-proxy
+spec:
+  replicas: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+spec:
+  replicas: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservas-service
+spec:
+  replicas: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finanzas-service
+spec:
+  replicas: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifications-service
+spec:
+  replicas: 2

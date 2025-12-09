@@ -1,0 +1,15 @@
+# k8s/overlays/prod/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+- ../../base
+
+configMapGenerator:
+- name: solmar-env-vars
+  files:
+  - env-vars.properties
+
+patchesStrategicMerge:
+- image-tags.yaml
+- replicas.yaml
+- env-patch.yaml

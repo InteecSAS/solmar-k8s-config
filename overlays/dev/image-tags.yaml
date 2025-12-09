@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yarp-proxy
+spec:
+  template:
+    spec:
+      containers:
+      - name: yarp-proxy
+        image: diurvan/solmar-backend:yarp-proxy-latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: auth-service
+        image: diurvan/solmar-backend:auth-service-latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservas-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: reservas-service
+        image: diurvan/solmar-backend:reservas-service-latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finanzas-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: finanzas-service
+        image: diurvan/solmar-backend:finanzas-service-latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifications-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: notifications-service
+        image: diurvan/solmar-backend:notifications-service-latest

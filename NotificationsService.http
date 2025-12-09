@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:30577
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiYWRtaW5Ac29sbWFyLmNvbSIsInN1YiI6IjZmYzY4MmY1LWJlNGQtNDc3Zi1hYmRhLTczZGZhM2Q2OWU5MyIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsIm5iZiI6MTc2NDU0NTIzMCwiZXhwIjoxNzY1MTUwMDMwLCJpYXQiOjE3NjQ1NDUyMzAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.SIoTadGvZ-J969lcilCYOLCLhCsDw-LY7Xrc2V137VumgG3njZi0NJaQUm4ooUvLXGJzPs0wKIhEEqYOmzsaoQ
+@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNsaWVudGVAc29sbWFyLmNvbSIsImdpdmVuX25hbWUiOiJjbGllbnRlQHNvbG1hci5jb20iLCJzdWIiOiJlZjJhZTNiYS02OWY1LTQ3YmQtODM0MC1kN2IxYzU2MjE0OWIiLCJyb2xlIjoiQ2xpZW50ZSIsIm5iZiI6MTc2NDU0NTI1MywiZXhwIjoxNzY1MTUwMDUzLCJpYXQiOjE3NjQ1NDUyNTMsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.Z8DXSQp34HoCVJs5e6AL2WEBe17uJic0V2Ft-OFMQXQtlgkwn85T5UZ-QvwAKhEVVy9wkTccqZjpRKTgnuJtOg
+@notificationId = AQUÍ_VA_UN_ID_DE_NOTIFICACION
+
+###
+# =====================================================
+# Notifications Controller (/notifications)
+# =====================================================
+
+# @name getMyNotifications
+# Obtiene las notificaciones del usuario autenticado.
+GET {{baseUrl}}/notifications/me
+Authorization: {{cliente_jwt}}
+
+###
+
+# @name getMyUnreadNotifications
+# Obtiene las notificaciones no leídas del usuario.
+GET {{baseUrl}}/notifications/me/unread
+Authorization: {{cliente_jwt}}
+
+###
+
+# @name markAsRead
+# Marca una notificación como leída.
+POST {{baseUrl}}/notifications/{{notificationId}}/mark-as-read
+Authorization: {{cliente_jwt}}
+
+###
+
+# @name sendNotification
+# Envía una notificación a un usuario.
+# Roles permitidos: AdministradorSistema, GerenteHotel
+POST {{baseUrl}}/notifications/send
+Content-Type: application/json
+Authorization: {{admin_jwt}}
+
+{
+  "usuarioId": "AQUÍ_VA_EL_USER_ID_DESTINO",
+  "mensaje": "Tu reserva ha sido confirmada.",
+  "tipo": "ConfirmacionReserva"
+}
+
+
+
+# Archivo de peticiones para NotificationsService a través del YARP Proxy
+# =================================================================
+# La ruta del controlador ha sido modificada para coincidir con la
+# ruta que el YARP Proxy está enviando al servicio (sin el prefijo /api/).
+#
+# Estructura de la URL:
+# {{baseUrl}}/notifications/{endpoint}
+# =================================================================
+

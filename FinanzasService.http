@@ -1,0 +1,33 @@
+# Archivo de peticiones para FinanzasService a través del YARP Proxy
+# =================================================================
+# Todas las peticiones apuntan al YARP Proxy.
+#
+# Estructura de la URL:
+# {{baseUrl}}/finanzas/api/{controller}/{endpoint}
+#
+# Ejemplo:
+# {{baseUrl}}/finanzas/api/reportes/ventas -> (YARP) -> FinanzasService/api/reportes/ventas
+# =================================================================
+
+@baseUrl = http://localhost:7000
+@gerente_jwt = Bearer AQUÍ_VA_TU_TOKEN_DE_GERENTE_O_ADMIN
+
+###
+# =====================================================
+# Reportes Controller (/finanzas/api/reportes)
+# Nota: Requiere un token JWT con roles específicos.
+# =====================================================
+
+# @name getVentasReport
+# Obtiene el reporte de ventas.
+# Roles permitidos: GerenteHotel, AdministradorSistema
+GET {{baseUrl}}/finanzas/api/reportes/ventas
+Authorization: {{gerente_jwt}}
+
+###
+
+# @name getOcupacionReport
+# Obtiene el reporte de ocupación.
+# Roles permitidos: GerenteHotel, AdministradorSistema, Recepcionista
+GET {{baseUrl}}/finanzas/api/reportes/ocupacion
+Authorization: {{gerente_jwt}}

@@ -1,0 +1,34 @@
+@baseUrl = http://localhost:30577
+
+###
+# =====================================================
+# Reservas Controller (/reservas)
+# =====================================================
+
+# @name getAllIndicadores
+# Obtiene todos los indicadores de todos los hoteles.
+GET {{baseUrl}}/reservas/indicadores
+
+###
+
+# @name getAllIndicadoresPeriod
+# Obtiene los indicadores para un hotel y mes específicos.
+GET {{baseUrl}}/reservas/indicators/H1/11
+
+###
+
+# @name getIndicadores
+# Obtiene los indicadores para un hotel específico.
+GET {{baseUrl}}/reservas/indicadores/H1
+
+
+# Archivo de peticiones para ReservasService a través del YARP Proxy
+# =================================================================
+# Todas las peticiones apuntan al YARP Proxy.
+#
+# Estructura de la URL:
+# {{baseUrl}}/reservas/{endpoint}
+#
+# Ejemplo:
+# {{baseUrl}}/reservas/indicadores -> (YARP) -> ReservasService/indicadores
+# =================================================================

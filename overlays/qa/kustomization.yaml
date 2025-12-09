@@ -1,0 +1,10 @@
+# k8s/overlays/qa/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+- ../../base
+
+patchesStrategicMerge:
+- image-tags.yaml
+- replicas.yaml
+- env-vars.yaml
