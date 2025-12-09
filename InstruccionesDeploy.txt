@@ -19,8 +19,3 @@ Instrucciones para la Otra Persona
         kubectl apply -k k8s/overlays/dev
    
    !Eso es todo! Kubernetes ahora usará el secreto `regcred` para autenticarse con Docker Hub y descargar las imágenes privadas. La aplicación estará disponible en `http://localhost:30577`
-
-
-*********************************************
-docker login -u diurvan
-dckr_pat_Vc5b9K2IjOHqV8bybLU7IO53WEI
