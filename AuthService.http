@@ -14,10 +14,14 @@ POST {{baseUrl}}/api/auth-service/auth/register
 Content-Type: application/json
 
 {
-  "firstName": "Admin",
-  "lastName": "Admin",
-  "email": "admin@solmar.com",
-  "password": "P@ssw0rd"
+  "firstName": "Iván",
+  "lastName": "Tapia",
+  "email": "ivan.tapia@solmar.com",
+  "password": "P@ssw0rd",
+  "birthDate" : "2025-12-04",
+  "nationality" : "Perú",
+  "gender" : "Masculino",
+  "phoneNumber" : "+51955478664"
 }
 
 ###
@@ -28,7 +32,7 @@ POST {{baseUrl}}/api/auth-service/auth/login
 Content-Type: application/json
 
 {
-  "email": "cliente@solmar.com",
+  "email": "ivan.tapia@solmar.com",
   "password": "P@ssw0rd"
 }
 
