@@ -26,13 +26,13 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reservas-service
+  name: reservations-service
 spec:
   template:
     spec:
       containers:
-      - name: reservas-service
-        image: diurvan/solmar-backend:reservas-service-latest
+      - name: reservations-service
+        image: diurvan/solmar-backend:reservations-service-latest
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -55,3 +55,14 @@ spec:
       containers:
       - name: notifications-service
         image: diurvan/solmar-backend:notifications-service-latest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: catalog-service
+        image: diurvan/solmar-backend:catalog-service-latest

@@ -69,21 +69,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reservas-service
+  name: reservations-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: reservas-service
+      app: reservations-service
   template:
     metadata:
       labels:
-        app: reservas-service
+        app: reservations-service
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: reservas-service
+      - name: reservations-service
         image: diurvan/solmar-backend # Tag will be added by Kustomize
         ports:
         - containerPort: 8080
@@ -91,10 +91,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: reservas-service
+  name: reservations-service
 spec:
   selector:
-    app: reservas-service
+    app: reservations-service
   ports:
   - port: 8080
     targetPort: 8080
@@ -161,6 +161,40 @@ metadata:
 spec:
   selector:
     app: notifications-service
+  ports:
+  - port: 8080
+    targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalog-service
+  template:
+    metadata:
+      labels:
+        app: catalog-service
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: catalog-service
+        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog-service
+spec:
+  selector:
+    app: catalog-service
   ports:
   - port: 8080
     targetPort: 8080

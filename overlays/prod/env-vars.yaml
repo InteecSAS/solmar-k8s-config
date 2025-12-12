@@ -21,18 +21,18 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reservas-service # Parche para ReservasService
+  name: reservations-service # Parche para ReservationsService
 spec:
   template:
     spec:
       containers:
-        - name: reservas-service
+        - name: reservations-service
           env:
             - name: ConnectionStrings__DefaultConnection
-              value: "Server=your_prod_reservas_db_server;Database=ReservasDb_PROD;User Id=sa;Password=your_prod_reservas_password;"
+              value: "Server=your_prod_reservations_db_server;Database=ReservationsDb_PROD;User Id=sa;Password=your_prod_reservations_password;"
             - name: SomeOtherSetting__Prod
-              value: "PROD_Value_for_Reservas"
-            # Añade aquí cualquier otra variable de entorno específica de ReservasService para PRO
+              value: "PROD_Value_for_Reservations"
+            # Añade aquí cualquier otra variable de entorno específica de ReservationsService para PRO
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -75,3 +75,17 @@ spec:
             - name: Yarp__Clusters__auth-cluster__Destinations__auth-destination__Address
               value: "http://auth-service" # Ejemplo, si YARP necesita saber la URL interna de AuthService
             # Añade aquí cualquier otra variable de entorno específica de YarpProxy para PRO
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-service # Parche para CatalogService
+spec:
+  template:
+    spec:
+      containers:
+        - name: catalog-service
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=your_prod_catalog_db_server;Database=CatalogDb_PROD;User Id=sa;Password=your_prod_catalog_password;"
+            # Añade aquí cualquier otra variable de entorno específica de NotificationsService para PRO

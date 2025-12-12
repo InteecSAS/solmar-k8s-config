@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:30577
+@cliente_jwt = Bearer 
+
+GET {{baseUrl}}/api/catalog-service/paises
+Authorization: {{cliente_jwt}}
+Accept: application/json
+
+###
+GET {{baseUrl}}/api/catalog-service/TerminosDeUso/latest
+Authorization: {{cliente_jwt}}
+Accept: application/json
+
+###
+GET {{baseUrl}}/api/catalog-service/Idiomas
+Authorization: {{cliente_jwt}}
+Accept: application/json

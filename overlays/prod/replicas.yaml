@@ -17,7 +17,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reservas-service
+  name: reservations-service
 spec:
   replicas: 3
 ---
@@ -32,5 +32,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notifications-service
+spec:
+  replicas: 3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-service
 spec:
   replicas: 3

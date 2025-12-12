@@ -1,0 +1,129 @@
+@baseUrl = http://localhost:30577
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1Iiwicm9sZSI6IkFkbWluaXN0cmFkb3JTaXN0ZW1hIiwicGVybWlzc2lvbiI6WyJyZXNlcnZhczpsZWVyIiwicmVzZXJ2YXM6Y3JlYXIiLCJyZXNlcnZhczpjYW5jZWxhciIsImZpbmFuemFzOnZlcl9yZXBvcnRlcyIsImFkbWluOmdlc3Rpb25hcl91c3VhcmlvcyIsImFkbWluOmdlc3Rpb25hcl9yb2xlcyJdLCJuYmYiOjE3NjU1NjAwMjUsImV4cCI6MTc2NjE2NDgyNSwiaWF0IjoxNzY1NTYwMDI1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.Kz88tlQBgRgVMJhBMHz6pMk3XE6ZvTabOA_i1GoYJtSKJmn88B-oUjKgIQVPUy8ChDUujiCQBZ4LrnFcLBnvTw
+###
+# =====================================================
+# Reservations Controller (/reservations)
+# =====================================================
+
+# @name getAllIndicadores
+# Obtiene todos los indicadores de todos los hoteles.
+GET {{baseUrl}}/reservations/indicadores
+
+###
+
+# @name getAllIndicadoresPeriod
+# Obtiene los indicadores para un hotel y mes específicos.
+GET {{baseUrl}}/reservations/indicators/HGSLE/01
+
+###
+
+# @name getIndicadores
+# Obtiene los indicadores para un hotel específico.
+GET {{baseUrl}}/reservations/indicadores/H1
+
+
+### Get All Restaurants
+GET {{baseUrl}}/reservations/api/Restaurants
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+###
+
+### Get Restaurant By Id
+GET {{baseUrl}}/reservations/api/Restaurants/1
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+### Create New Restaurant
+POST {{baseUrl}}/reservations/api/Restaurants
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "SiteId": 1,
+  "Name": "Anica",
+  "Email": "anica@solmar.com",
+  "PhoneNumber": "+526241234567",
+  "Address": "Av. Solmar",
+  "Capacity": 150,
+  "Status": 1,
+  "Media": [
+    {
+      "Url": "https://example.com/image1.jpg",
+      "Type": 1
+    }
+  ],
+  "TableInventories": [
+    {
+      "Name": "Mesa 1",
+      "Seats": 4,
+      "Status": 1
+    },
+    {
+      "Name": "Mesa 2",
+      "Seats": 2,
+      "Status": 1
+    }
+  ],
+  "Menus": [
+    {
+      "Name": "Main Menu",
+      "Description": "Our main menu",
+      "IsAlwaysActive": true,
+      "RestaurantId": 0,
+      "Items": [
+        {
+          "Name": "Grilled Salmon",
+          "Description": "Freshly grilled salmon with herbs",
+          "Price": 25.99,
+          "Calories": 600,
+          "Category": "Main Course",
+          "DietType": 5,
+          "Allergens": [
+            { "Allergen": "Allergen 1" },
+            { "Allergen": "Allergen 2" }
+          ],
+          "Media": [
+            {
+              "Url": "https://example.com/salmon.jpg",
+              "Type": 1
+            }
+          ]
+        },
+        {
+          "Name": "Caesar Salad",
+          "Description": "Crisp romaine lettuce with Caesar dressing",
+          "Price": 9.99,
+          "Calories": 350,
+          "Category": "Appetizer",
+          "DietType": 2,
+          "Allergens": [
+            { "Allergen": "Allergen 3" }
+          ],
+          "Media": [
+            {
+              "Url": "https://example.com/caesar_salad.jpg",
+              "Type": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+### Delete Restaurant
+DELETE {{baseUrl}}/reservations/api/Restaurants/1
+Authorization: {{admin_jwt}}
+accept: application/json
+
+
+# Archivo de peticiones para ReservationService a través del YARP Proxy
+# =================================================================
+# Todas las peticiones apuntan al YARP Proxy.
+#
+# Estructura de la URL:
+# {{baseUrl}}/reservation/{endpoint}
+#
+# Ejemplo:
+# {{baseUrl}}/reservation/indicadores -> (YARP) -> ReservationService/indicadores
+# =================================================================

@@ -21,18 +21,18 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reservas-service # Parche para ReservasService
+  name: reservations-service # Parche para ReservationsService
 spec:
   template:
     spec:
       containers:
-        - name: reservas-service
+        - name: reservations-service
           env:
             - name: ConnectionStrings__DefaultConnection
               value: "Server=SERVER_QA;Database=BBDD_QA;User Id=USER_QA;Password=PASSWORD_QA;TrustServerCertificate=True;"
-            - name: SomeOtherSetting__ReservasQA
-              value: "QA_Value_for_Reservas"
-            # Añade aquí cualquier otra variable de entorno específica de ReservasService para QA
+            - name: SomeOtherSetting__ReservationsQA
+              value: "QA_Value_for_Reservations"
+            # Añade aquí cualquier otra variable de entorno específica de ReservationsService para QA
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -65,6 +65,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: catalog-service # Parche para CatalogService
+spec:
+  template:
+    spec:
+      containers:
+        - name: catalog-service
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=SERVER_QA;Database=BBDD_QA;User Id=USER_QA;Password=PASSWORD_QA;TrustServerCertificate=True;"
+            # Añade aquí cualquier otra variable de entorno específica de CatalogService para QA
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: yarp-proxy # Parche para YarpProxy
 spec:
   template:
@@ -74,10 +88,12 @@ spec:
           env:
             - name: ReverseProxy__Clusters__auth-cluster__Destinations__auth-service__Address
               value: "http://auth-service.default.svc.cluster.local:8080/"
-            - name: ReverseProxy__Clusters__reservas-cluster__Destinations__reservas-service__Address
-              value: "http://reservas-service.default.svc.cluster.local:8080/"
+            - name: ReverseProxy__Clusters__reservations-cluster__Destinations__reservations-service__Address
+              value: "http://reservations-service.default.svc.cluster.local:8080/"
             - name: ReverseProxy__Clusters__finanzas-cluster__Destinations__finanzas-service__Address
               value: "http://finanzas-service.default.svc.cluster.local:8080/"
             - name: ReverseProxy__Clusters__notifications-cluster__Destinations__notifications-service__Address
               value: "http://notifications-service.default.svc.cluster.local:8080/"
+            - name: ReverseProxy__Clusters__catalog-cluster__Destinations__catalog-service__Address
+              value: "http://catalog-service.default.svc.cluster.local:8080/"
             # Añade aquí cualquier otra variable de entorno específica de YarpProxy para QA

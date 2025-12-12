@@ -1,7 +1,7 @@
 @baseUrl = http://localhost:30577
-@admin_jwt = Bearer 
-@cliente_jwt = Bearer 
-@userId = 
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1Iiwicm9sZSI6IkFkbWluaXN0cmFkb3JTaXN0ZW1hIiwicGVybWlzc2lvbiI6WyJyZXNlcnZhczpsZWVyIiwicmVzZXJ2YXM6Y3JlYXIiLCJyZXNlcnZhczpjYW5jZWxhciIsImZpbmFuemFzOnZlcl9yZXBvcnRlcyIsImFkbWluOmdlc3Rpb25hcl91c3VhcmlvcyIsImFkbWluOmdlc3Rpb25hcl9yb2xlcyJdLCJuYmYiOjE3NjU1NjAwMjUsImV4cCI6MTc2NjE2NDgyNSwiaWF0IjoxNzY1NTYwMDI1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.Kz88tlQBgRgVMJhBMHz6pMk3XE6ZvTabOA_i1GoYJtSKJmn88B-oUjKgIQVPUy8ChDUujiCQBZ4LrnFcLBnvTw
+@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1Iiwicm9sZSI6IkFkbWluaXN0cmFkb3JTaXN0ZW1hIiwicGVybWlzc2lvbiI6WyJyZXNlcnZhczpsZWVyIiwicmVzZXJ2YXM6Y3JlYXIiLCJyZXNlcnZhczpjYW5jZWxhciIsImZpbmFuemFzOnZlcl9yZXBvcnRlcyIsImFkbWluOmdlc3Rpb25hcl91c3VhcmlvcyIsImFkbWluOmdlc3Rpb25hcl9yb2xlcyJdLCJuYmYiOjE3NjU1NjAwMjUsImV4cCI6MTc2NjE2NDgyNSwiaWF0IjoxNzY1NTYwMDI1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.Kz88tlQBgRgVMJhBMHz6pMk3XE6ZvTabOA_i1GoYJtSKJmn88B-oUjKgIQVPUy8ChDUujiCQBZ4LrnFcLBnvTw
+@userId = ef2ae3ba-69f5-47bd-8340-d7b1c562149b
 
 ###
 # =====================================================
@@ -32,7 +32,7 @@ POST {{baseUrl}}/api/auth-service/auth/login
 Content-Type: application/json
 
 {
-  "email": "ivan.tapia@solmar.com",
+  "email": "admin@solmar.com",
   "password": "P@ssw0rd"
 }
 
