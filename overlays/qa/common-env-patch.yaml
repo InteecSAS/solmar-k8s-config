@@ -1,0 +1,15 @@
+# k8s/overlays/qa/common-env-patch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: not-important # Kustomize ignora esto y usa el nombre del recurso base
+spec:
+  template:
+    spec:
+      containers:
+      - name: not-important # Kustomize ignora esto y usa el nombre del contenedor base
+        envFrom:
+        - configMapRef:
+            name: solmar-config-qa # Nombre que le daremos a nuestro ConfigMap de QA
+        - secretRef:
+            name: solmar-secrets-qa # Nombre que le daremos a nuestro Secret de QA

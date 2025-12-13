@@ -5,11 +5,21 @@ bases:
 - ../../base
 
 configMapGenerator:
-- name: solmar-env-vars
+- name: solmar-config-prod
   files:
-  - env-vars.properties
+  - prod-config.properties
 
+# Define el Secret específico para PROD
+- resources: 
+  - prod-secrets.yaml
+
+# Aplica el parche de entorno para todos los Deployments
+patches:
+- path : common-env-patch.yaml
+  target:
+    kind: Deployment
+
+# Aplica los patches de imagen y réplicas
 patchesStrategicMerge:
 - image-tags.yaml
 - replicas.yaml
-- env-patch.yaml

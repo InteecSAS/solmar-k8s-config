@@ -4,7 +4,22 @@ kind: Kustomization
 bases:
 - ../../base
 
+configMapGenerator:
+- name: solmar-config-qa
+  files:
+  - qa-config.properties
+
+# Define el Secret específico para QA
+- resources: 
+  - qa-secrets.yaml
+
+# Aplica el parche de entorno para todos los Deployments
+patches:
+- path : common-env-patch.yaml
+  target:
+    kind: Deployment
+
+# Aplica los patches de imagen y réplicas
 patchesStrategicMerge:
 - image-tags.yaml
 - replicas.yaml
-- env-vars.yaml
