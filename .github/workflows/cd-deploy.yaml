@@ -14,7 +14,7 @@ jobs:
     steps:
     - name: Checkout K8s Config Repo
       uses: actions/checkout@v4
-        
+
     - name: Determine Overlay Path
       id: set_overlay_path
       run: |
