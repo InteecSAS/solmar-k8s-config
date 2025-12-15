@@ -4,21 +4,16 @@ kind: Kustomization
 bases:
 - ../../base
 
-resources: # <--- Bloque 'resources' añadido aquí
-- qa-secrets.yaml # <--- 'qa-secrets.yaml' listado como recurso
+resources:
+- qa-secrets.yaml # Ahora que el contenido es válido, lo podemos incluir como recurso
 
 configMapGenerator:
 - name: solmar-config-qa
   files:
   - qa-config.properties
 
-# Aplica el parche de entorno para todos los Deployments
-patches:
-- path : common-env-patch.yaml
-  target:
-    kind: Deployment
-
-# Aplica los patches de imagen y réplicas
+# Aplica los patches de forma correcta
 patchesStrategicMerge:
+- common-env-patch.yaml # Este parche añade las variables de entorno
 - image-tags.yaml
 - replicas.yaml
