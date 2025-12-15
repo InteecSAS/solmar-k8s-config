@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: diurvan/solmar-backend-authservice:49dc1ff
+        image: diurvan/solmar-backend-authservice:6af71f8
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: reservations-service
-        image: diurvan/solmar-backend-reservationsservice:49dc1ff
+        image: diurvan/solmar-backend-reservationsservice:6af71f8
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: finanzas-service
-        image: diurvan/solmar-backend-finanzasservice:49dc1ff
+        image: diurvan/solmar-backend-finanzasservice:6af71f8
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: notifications-service
-        image: diurvan/solmar-backend-notificationsservice:49dc1ff
+        image: diurvan/solmar-backend-notificationsservice:6af71f8
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,7 +51,7 @@ spec:
     spec:
       containers:
       - name: yarp-proxy
-        image: diurvan/solmar-backend-yarpproxy:49dc1ff
+        image: diurvan/solmar-backend-yarpproxy:6af71f8
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -62,5 +62,5 @@ spec:
     spec:
       containers:
       - name: catalog-service
-        image: diurvan/solmar-backend-catalogservice:49dc1ff
+        image: diurvan/solmar-backend-catalogservice:6af71f8
 ---
