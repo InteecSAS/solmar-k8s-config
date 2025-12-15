@@ -17,6 +17,7 @@ jobs:
 
     - name: Determine Overlay Path
       id: set_overlay_path
+      shell: bash # <-- AÑADIDO
       run: |
         if [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
           echo "overlay_path=k8s/overlays/qa" >> "$GITHUB_OUTPUT"
@@ -30,6 +31,7 @@ jobs:
         fi
 
     - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
+      shell: bash # <-- AÑADIDO
       run: |
         echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
         kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }}
