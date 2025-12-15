@@ -1,4 +1,4 @@
-# k8s/overlays/qa/kustomization.yaml
+# overlays/qa/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
@@ -9,17 +9,26 @@ configMapGenerator:
   files:
   - qa-config.properties
 
-# Define el Secret específico para QA
-- resources: 
-  - qa-secrets.yaml
-
-# Aplica el parche de entorno para todos los Deployments
-patches:
-- path : common-env-patch.yaml
-  target:
-    kind: Deployment
+# Genera el Secret leyendo el archivo .env (Kustomize lo codifica por ti)
+secretGenerator:
+- name: solmar-secrets-qa
+  envs:
+  - qa-secrets.env
 
 # Aplica los patches de imagen y réplicas
 patchesStrategicMerge:
 - image-tags.yaml
 - replicas.yaml
+
+# Aplica el parche de variables de entorno a TODOS los Deployments
+patches:
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/envFrom
+      value:
+        - configMapRef:
+            name: solmar-config-qa
+        - secretRef:
+            name: solmar-secrets-qa
+  target:
+    kind: Deployment

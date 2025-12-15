@@ -16,7 +16,7 @@ spec:
       - name: regcred
       containers:
       - name: yarp-proxy
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-yarpproxy # <-- CORREGIDO
         ports:
         - containerPort: 8080
 ---
@@ -51,7 +51,7 @@ spec:
       - name: regcred
       containers:
       - name: auth-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-authservice # <-- CORREGIDO
         ports:
         - containerPort: 8080
 ---
@@ -84,7 +84,7 @@ spec:
       - name: regcred
       containers:
       - name: reservations-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-reservationsservice # <-- CORREGIDO
         ports:
         - containerPort: 8080
 ---
@@ -117,7 +117,7 @@ spec:
       - name: regcred
       containers:
       - name: finanzas-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-finanzasservice # <-- CORREGIDO
         ports:
         - containerPort: 8080
 ---
@@ -150,7 +150,7 @@ spec:
       - name: regcred
       containers:
       - name: notifications-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-notificationsservice # <-- CORREGIDO
         ports:
         - containerPort: 8080
 ---
@@ -164,7 +164,6 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -184,7 +183,7 @@ spec:
       - name: regcred
       containers:
       - name: catalog-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-catalogservice # <-- CORREGIDO
         ports:
         - containerPort: 8080
 ---
