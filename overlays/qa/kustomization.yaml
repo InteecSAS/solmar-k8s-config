@@ -1,16 +1,18 @@
-# overlays/qa/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
 - ../../base
 
-resources:
-- qa-secrets.yaml
-
 configMapGenerator:
 - name: solmar-config-qa
   files:
   - qa-config.properties
+
+# Genera el Secret leyendo el archivo .env (Kustomize lo codifica por ti)
+secretGenerator:
+- name: solmar-secrets-qa
+  envs:
+  - qa-secrets.env
 
 # Aplica los patches de imagen y réplicas
 patchesStrategicMerge:
