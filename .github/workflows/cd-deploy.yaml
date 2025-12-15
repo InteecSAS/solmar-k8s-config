@@ -11,27 +11,34 @@ jobs:
   deploy:
     runs-on: self-hosted
 
-    steps:
-    - name: Checkout K8s Config Repo
-      uses: actions/checkout@v4
+  steps:
+   - name: Checkout K8s Config Repo
+     uses: actions/checkout@v4
 
-    - name: Determine Overlay Path
-      id: set_overlay_path
-      run: |
-        if ("${{ github.ref }}" -eq "refs/heads/develop") {
-          echo "overlay_path=k8s/overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-        }
-        elseif ("${{ github.ref }}" -eq "refs/heads/main") {
-          echo "overlay_path=k8s/overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-        }
-        else {
-          echo "No se pudo determinar el entorno de despliegue. Saliendo."
-          exit 1
-        }
+   # --- PASO DE DEPURACIÓN ---
+   # Este paso es CRÍTICO para que yo pueda ver la estructura de tus carpetas.
+   - name: 'DEBUG: List file structure'
+     run: |
+       echo "Listing all files in the checkout directory:"
+       Get-ChildItem -Recurse
 
-    - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
-      run: |
-        echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
-        kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }}
+   - name: Determine Overlay Path
+     id: set_overlay_path
+     run: |
+       if ("${{ github.ref }}" -eq "refs/heads/develop") {
+         echo "overlay_path=k8s/overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+         echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+       }
+       elseif ("${{ github.ref }}" -eq "refs/heads/main") {
+         echo "overlay_path=k8s/overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+         echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+       }
+       else {
+         echo "No se pudo determinar el entorno de despliegue. Saliendo."
+         exit 1
+       }
+
+   - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
+     run: |
+       echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
+       kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }}
