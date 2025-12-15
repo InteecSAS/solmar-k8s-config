@@ -14,23 +14,16 @@ jobs:
     steps:
     - name: Checkout K8s Config Repo
       uses: actions/checkout@v4
-
-    # --- PASO DE DEPURACIÓN ---
-    # Este paso es CRÍTICO para que yo pueda ver la estructura de tus carpetas.
-    - name: 'DEBUG: List file structure'
-      run: |
-        echo "Listing all files in the checkout directory:"
-        Get-ChildItem -Recurse
         
     - name: Determine Overlay Path
       id: set_overlay_path
       run: |
         if ("${{ github.ref }}" -eq "refs/heads/develop") {
-          echo "overlay_path=k8s/overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "overlay_path=overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         }
         elseif ("${{ github.ref }}" -eq "refs/heads/main") {
-          echo "overlay_path=k8s/overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "overlay_path=overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         }
         else {
