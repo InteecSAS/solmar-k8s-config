@@ -1,17 +1,16 @@
-# k8s/overlays/qa/kustomization.yaml
+# overlays/qa/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
 - ../../base
 
+resources: # <--- Bloque 'resources' añadido aquí
+- qa-secrets.yaml # <--- 'qa-secrets.yaml' listado como recurso
+
 configMapGenerator:
 - name: solmar-config-qa
   files:
   - qa-config.properties
-
-# Define el Secret específico para QA
-- resources: 
-  - qa-secrets.yaml
 
 # Aplica el parche de entorno para todos los Deployments
 patches:
