@@ -1,3 +1,4 @@
+# overlays/qa/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
@@ -8,11 +9,12 @@ configMapGenerator:
   files:
   - qa-config.properties
 
-# Genera el Secret leyendo el archivo .env (Kustomize lo codifica por ti)
+# Genera el Secret a partir de texto plano (SIN comillas extra)
 secretGenerator:
 - name: solmar-secrets-qa
-  envs:
-  - qa-secrets.env
+  literals:
+  - ConnectionStrings__DefaultConnection=Server=192.168.126.129,1434;Database=KINICH_QA;User Id=app_solmar;Password=4ppS0lm4r#2025*;TrustServerCertificate=True;
+  - Jwt__Key=0{e^8Q=VE>A$A+yMgje%nWX&Idw*e&:wDC8q}u87U:PYlD:Oe]PXMk>b_HFciG/8)(v@L_,<XdS:rW:Im3aDV*
 
 # Aplica los patches de imagen y réplicas
 patchesStrategicMerge:
