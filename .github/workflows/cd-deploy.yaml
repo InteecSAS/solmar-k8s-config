@@ -19,11 +19,11 @@ jobs:
       id: set_overlay_path
       run: |
         if ("${{ github.ref }}" -eq "refs/heads/develop") {
-          echo "overlay_path=overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "overlay_path=k8s/overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         }
         elseif ("${{ github.ref }}" -eq "refs/heads/main") {
-          echo "overlay_path=overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "overlay_path=k8s/overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         }
         else {
