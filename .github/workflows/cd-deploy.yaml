@@ -3,13 +3,13 @@ name: CD - Deploy to Kubernetes
 on:
   push:
     branches:
-      - develop # Despliega a QA cuando se actualiza la rama develop del config repo
-      - main    # Despliega a PRO cuando se actualiza la rama main del config repo
-  workflow_dispatch: # Permite ejecutar el workflow manualmente desde GitHub UI
+      - develop
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: self-hosted # ¡IMPORTANTE! Esto le dice a GitHub que use tu runner auto-hospedado
+    runs-on: self-hosted
 
     steps:
     - name: Checkout K8s Config Repo
@@ -17,22 +17,21 @@ jobs:
 
     - name: Determine Overlay Path
       id: set_overlay_path
-      shell: bash # <-- AÑADIDO
       run: |
-        if [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
-          echo "overlay_path=k8s/overlays/qa" >> "$GITHUB_OUTPUT"
-          echo "environment_name=QA" >> "$GITHUB_OUTPUT"
-        elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-          echo "overlay_path=k8s/overlays/pro" >> "$GITHUB_OUTPUT"
-          echo "environment_name=PRO" >> "$GITHUB_OUTPUT"
-        else
+        if ("${{ github.ref }}" -eq "refs/heads/develop") {
+          echo "overlay_path=k8s/overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        }
+        elseif ("${{ github.ref }}" -eq "refs/heads/main") {
+          echo "overlay_path=k8s/overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        }
+        else {
           echo "No se pudo determinar el entorno de despliegue. Saliendo."
           exit 1
-        fi
+        }
 
     - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
-      shell: bash # <-- AÑADIDO
       run: |
         echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
         kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }}
-      # El kubectl aquí ya tiene acceso al clúster porque el runner está en la misma máquina
