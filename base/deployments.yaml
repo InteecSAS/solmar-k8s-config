@@ -15,6 +15,10 @@ spec:
       imagePullSecrets:
       - name: regcred
       containers:
+      - name: yarp-proxy
+        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        ports:
+        - containerPort: 8080
         imagePullPolicy: Always
 ---
 apiVersion: v1
