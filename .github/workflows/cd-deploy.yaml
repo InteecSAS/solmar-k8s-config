@@ -33,7 +33,7 @@ jobs:
 
     - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
       env:
-        KUBECONFIG: C:\Users\ivan.tapia\.kube\config
+        KUBECONFIG: D:\actions-runner\config
       run: |
         echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
         kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }} --validate=false
