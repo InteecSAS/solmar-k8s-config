@@ -1,13 +1,11 @@
 # overlays/qa/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-bases:
-- ../../base
 
 configMapGenerator:
-- name: solmar-config-qa
-  files:
+- files:
   - qa-config.properties
+  name: solmar-config-qa
 
 # Genera el Secret a partir de texto plano (SIN comillas extra)
 secretGenerator:
@@ -33,3 +31,24 @@ patches:
             name: solmar-secrets-qa
   target:
     kind: Deployment
+resources:
+- ../../base
+images:
+- name: diurvan/solmar-backend-authservice
+  newName: diurvan/solmar-backend-authservice
+  newTag: "3660273"
+- name: diurvan/solmar-backend-catalogservice
+  newName: diurvan/solmar-backend-catalogservice
+  newTag: "3660273"
+- name: diurvan/solmar-backend-finanzasservice
+  newName: diurvan/solmar-backend-finanzasservice
+  newTag: "3660273"
+- name: diurvan/solmar-backend-notificationsservice
+  newName: diurvan/solmar-backend-notificationsservice
+  newTag: "3660273"
+- name: diurvan/solmar-backend-reservationsservice
+  newName: diurvan/solmar-backend-reservationsservice
+  newTag: "3660273"
+- name: diurvan/solmar-backend-yarpproxy
+  newName: diurvan/solmar-backend-yarpproxy
+  newTag: "3660273"
