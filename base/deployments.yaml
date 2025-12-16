@@ -15,8 +15,7 @@ spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: yarp-proxy
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-yarpproxy:latest # Tag will be added by Kustomize
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -51,8 +50,7 @@ spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: auth-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-authservice:latest # Tag will be added by Kustomize
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -86,7 +84,7 @@ spec:
       - name: regcred
       containers:
       - name: reservations-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-reservationsservice:latest # Tag will be added by Kustomize
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -120,7 +118,7 @@ spec:
       - name: regcred
       containers:
       - name: finanzas-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-finanzasservice:latest # Tag will be added by Kustomize
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -154,7 +152,7 @@ spec:
       - name: regcred
       containers:
       - name: notifications-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-notificationsservice:latest # Tag will be added by Kustomize
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -189,7 +187,7 @@ spec:
       - name: regcred
       containers:
       - name: catalog-service
-        image: diurvan/solmar-backend # Tag will be added by Kustomize
+        image: diurvan/solmar-backend-catalogservice:latest # Tag will be added by Kustomize
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
