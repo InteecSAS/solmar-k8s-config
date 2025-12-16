@@ -17,7 +17,6 @@ secretGenerator:
 
 # Aplica los patches de imagen y réplicas
 patchesStrategicMerge:
-- image-tags.yaml
 - replicas.yaml
 
 # Aplica el parche de variables de entorno a TODOS los Deployments
