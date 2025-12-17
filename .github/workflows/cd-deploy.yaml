@@ -1,35 +1,37 @@
 name: CD - Deploy to Kubernetes
 
-on: 
+on:
   push:
-    branches: 
+    branches:
       - develop
       - main
   workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on:  self-hosted
+    runs-on: self-hosted
 
     steps:
-    - name:  Checkout K8s Config Repo
+    - name: Checkout K8s Config Repo
       uses: actions/checkout@v4
-
-    - name:  Determine Overlay Path
+        
+    - name: Determine Overlay Path
       id: set_overlay_path
       run: |
         if ("${{ github.ref }}" -eq "refs/heads/develop") {
-          echo "overlay_path=overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "overlay_path=overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
         }
         elseif ("${{ github.ref }}" -eq "refs/heads/main") {
-          echo "overlay_path=overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "overlay_path=overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
         }
         else {
-          echo "No se pudo determinar el entorno de despliegue.  Saliendo."
+          echo "No se pudo determinar el entorno de despliegue. Saliendo."
           exit 1
         }
+
+
 
     - name: Setup kubeconfig
       run: |
@@ -46,7 +48,11 @@ jobs:
         kubectl cluster-info
         kubectl config current-context
 
+
+
+
+
     - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
       run: |
-        Write-Host "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
+        echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
         kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }} --validate=false
