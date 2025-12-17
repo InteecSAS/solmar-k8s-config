@@ -35,15 +35,6 @@ jobs:
       run: |
         Write-Output "Directorio actual: $(Get-Location)"
 
-    - name: Setup kubeconfig
-      run: |
-        $kubeDir = "$env:USERPROFILE\.kube"
-        if (-not (Test-Path $kubeDir)) {
-          New-Item -ItemType Directory -Path $kubeDir -Force
-        }
-        Copy-Item -Path "D:\actions-runner\config" -Destination "$kubeDir\config" -Force
-        echo "kubeconfig setup completado"
-
     - name:  Verify kubectl connection
       run: |
         echo "Verificando configuración de kubectl..."
@@ -55,6 +46,8 @@ jobs:
 
 
     - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
+      env:
+        KUBECONFIG: D:\actions-runner\config
       run: |
         echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
         kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }} --validate=false
