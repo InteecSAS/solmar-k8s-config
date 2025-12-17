@@ -24,7 +24,7 @@ jobs:
         }
         elseif ("${{ github.ref }}" -eq "refs/heads/main") {
           echo "overlay_path=overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          echo "environment_name=PRO" | Out-File -FilePath $env: GITHUB_OUTPUT -Append
+          echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         }
         else {
           echo "No se pudo determinar el entorno de despliegue.  Saliendo."
@@ -33,7 +33,7 @@ jobs:
 
     - name: Setup kubeconfig
       run: |
-        $kubeDir = "$env: USERPROFILE\.kube"
+        $kubeDir = "$env:USERPROFILE\.kube"
         if (-not (Test-Path $kubeDir)) {
           New-Item -ItemType Directory -Path $kubeDir -Force
         }
