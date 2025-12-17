@@ -31,7 +31,9 @@ jobs:
           exit 1
         }
 
-
+    - name: Imprimir directorio de trabajo
+      run: |
+        Write-Output "Directorio actual: $(Get-Location)"
 
     - name: Setup kubeconfig
       run: |
