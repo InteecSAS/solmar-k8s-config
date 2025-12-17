@@ -40,11 +40,11 @@ jobs:
           New-Item -ItemType Directory -Path $kubeDir -Force
         }
         Copy-Item -Path "D:\actions-runner\config" -Destination "$kubeDir\config" -Force
-        Write-Host "✓ kubeconfig setup completado"
+        echo "✓ kubeconfig setup completado"
 
     - name:  Verify kubectl connection
       run: |
-        Write-Host "Verificando configuración de kubectl..."
+        echo "Verificando configuración de kubectl..."
         kubectl cluster-info
         kubectl config current-context
 
