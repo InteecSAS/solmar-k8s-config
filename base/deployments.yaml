@@ -90,11 +90,7 @@ spec:
       - name: regcred
       containers:
       - name: reservations-service
-<<<<<<< HEAD
-        image: diurvan/solmar-backend-reservationsservice # <-- CORREGIDO
-=======
         image: diurvan/solmar-backend-reservationsservice # Tag will be added by Kustomize
->>>>>>> 8536fada8f3ebae4f8227b2a17dc8b059cb73774
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -128,11 +124,7 @@ spec:
       - name: regcred
       containers:
       - name: finanzas-service
-<<<<<<< HEAD
-        image: diurvan/solmar-backend-finanzasservice # <-- CORREGIDO
-=======
         image: diurvan/solmar-backend-finanzasservice # Tag will be added by Kustomize
->>>>>>> 8536fada8f3ebae4f8227b2a17dc8b059cb73774
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -166,11 +158,7 @@ spec:
       - name: regcred
       containers:
       - name: notifications-service
-<<<<<<< HEAD
-        image: diurvan/solmar-backend-notificationsservice # <-- CORREGIDO
-=======
         image: diurvan/solmar-backend-notificationsservice # Tag will be added by Kustomize
->>>>>>> 8536fada8f3ebae4f8227b2a17dc8b059cb73774
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -204,11 +192,7 @@ spec:
       - name: regcred
       containers:
       - name: catalog-service
-<<<<<<< HEAD
-        image: diurvan/solmar-backend-catalogservice # <-- CORREGIDO
-=======
         image: diurvan/solmar-backend-catalogservice # Tag will be added by Kustomize
->>>>>>> 8536fada8f3ebae4f8227b2a17dc8b059cb73774
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
