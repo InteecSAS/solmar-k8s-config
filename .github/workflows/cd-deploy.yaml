@@ -48,8 +48,6 @@ jobs:
 
 
     - name: Verify kubectl connection
-      env:
-        KUBECONFIG:  ${{ env.USERPROFILE }}\.kube\config
       run: |
         echo "Verificando configuración de kubectl..."
         kubectl config get-contexts
