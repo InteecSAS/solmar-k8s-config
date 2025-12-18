@@ -16,11 +16,7 @@ spec:
       - name: regcred
       containers:
       - name: yarp-proxy
-<<<<<<< HEAD
-        image: diurvan/solmar-backend-yarpproxy # <-- CORREGIDO
-=======
         image: diurvan/solmar-backend-yarpproxy # Tag will be added by Kustomize
->>>>>>> 8536fada8f3ebae4f8227b2a17dc8b059cb73774
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
