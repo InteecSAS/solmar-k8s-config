@@ -37,9 +37,14 @@ jobs:
 
     - name: Get available contexts
       run: |
+        $kubeConfigPath = "$env:USERPROFILE\.kube\config"
+        echo "Kubeconfig path: $kubeConfigPath"
+        echo "File exists: $(Test-Path $kubeConfigPath)"
+        # Guardar la ruta para los próximos steps
+        echo "KUBECONFIG=$kubeConfigPath" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+        # Ahora listar los contextos con la variable de entorno configurada
+        $env:KUBECONFIG = $kubeConfigPath
         kubectl config get-contexts
-        $context = kubectl config current-context
-        echo "current_context=$context" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
 
 
     - name: Verify kubectl connection
