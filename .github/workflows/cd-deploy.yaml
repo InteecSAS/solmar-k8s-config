@@ -23,7 +23,7 @@ jobs:
           echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
         }
         elseif ("${{ github.ref }}" -eq "refs/heads/main") {
-          echo "overlay_path=overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "overlay_path=overlays/prod" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
           echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
         }
         else {
