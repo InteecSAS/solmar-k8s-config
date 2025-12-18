@@ -1,25 +1,54 @@
 # k8s/overlays/prod/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-bases:
-- ../../base
 
 configMapGenerator:
-- name: solmar-config-prod
-  files:
+- files:
   - prod-config.properties
+  name: solmar-config-prod
 
-# Define el Secret específico para PROD
-- resources: 
-  - prod-secrets.yaml
-
-# Aplica el parche de entorno para todos los Deployments
-patches:
-- path : common-env-patch.yaml
-  target:
-    kind: Deployment
+# Genera el Secret leyendo el archivo .env (Kustomize lo codifica por ti)
+secretGenerator:
+- literals:
+  - ConnectionStrings__DefaultConnection=Server=192.168.126.129,1434;Database=KINICH;User
+    Id=app_solmar;Password=4ppS0lm4r#2025*;TrustServerCertificate=True;
+  - Jwt__Key=NeNl3gs6H1xrwXbJgfTgiHFC262GpDiLp63JSLkZlNdstv3C3TjRqEmUyY1qiTeIR4i7fzl58I2yLS3B8QyjXw
+  name: solmar-secrets-prod
 
 # Aplica los patches de imagen y réplicas
 patchesStrategicMerge:
-- image-tags.yaml
 - replicas.yaml
+
+# Aplica el parche de variables de entorno a TODOS los Deployments
+patches:
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/envFrom
+      value:
+        - configMapRef:
+            name: solmar-config-prod
+        - secretRef:
+            name: solmar-secrets-prod
+  target:
+    kind: Deployment
+resources:
+- ../../base
+images:
+- name: diurvan/solmar-backend-authservice
+  newName: diurvan/solmar-backend-authservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-catalogservice
+  newName: diurvan/solmar-backend-catalogservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-finanzasservice
+  newName: diurvan/solmar-backend-finanzasservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-notificationsservice
+  newName: diurvan/solmar-backend-notificationsservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-reservationsservice
+  newName: diurvan/solmar-backend-reservationsservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-yarpproxy
+  newName: diurvan/solmar-backend-yarpproxy
+  newTag: eee155e

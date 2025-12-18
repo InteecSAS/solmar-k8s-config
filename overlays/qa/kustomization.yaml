@@ -1,23 +1,22 @@
 # overlays/qa/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-bases:
-- ../../base
 
 configMapGenerator:
-- name: solmar-config-qa
-  files:
+- files:
   - qa-config.properties
+  name: solmar-config-qa
 
 # Genera el Secret leyendo el archivo .env (Kustomize lo codifica por ti)
 secretGenerator:
-- name: solmar-secrets-qa
-  envs:
-  - qa-secrets.env
+- literals:
+  - ConnectionStrings__DefaultConnection=Server=192.168.126.129,1434;Database=KINICH_QA;User
+    Id=app_solmar;Password=4ppS0lm4r#2025*;TrustServerCertificate=True;
+  - Jwt__Key=NeNl3gs6H1xrwXbJgfTgiHFC262GpDiLp63JSLkZlNdstv3C3TjRqEmUyY1qiTeIR4i7fzl58I2yLS3B8QyjXw
+  name: solmar-secrets-qa
 
 # Aplica los patches de imagen y réplicas
 patchesStrategicMerge:
-- image-tags.yaml
 - replicas.yaml
 
 # Aplica el parche de variables de entorno a TODOS los Deployments
@@ -32,3 +31,24 @@ patches:
             name: solmar-secrets-qa
   target:
     kind: Deployment
+resources:
+- ../../base
+images:
+- name: diurvan/solmar-backend-authservice
+  newName: diurvan/solmar-backend-authservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-catalogservice
+  newName: diurvan/solmar-backend-catalogservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-finanzasservice
+  newName: diurvan/solmar-backend-finanzasservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-notificationsservice
+  newName: diurvan/solmar-backend-notificationsservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-reservationsservice
+  newName: diurvan/solmar-backend-reservationsservice
+  newTag: eee155e
+- name: diurvan/solmar-backend-yarpproxy
+  newName: diurvan/solmar-backend-yarpproxy
+  newTag: eee155e

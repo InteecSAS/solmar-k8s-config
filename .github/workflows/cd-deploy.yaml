@@ -19,19 +19,35 @@ jobs:
       id: set_overlay_path
       run: |
         if ("${{ github.ref }}" -eq "refs/heads/develop") {
-          echo "overlay_path=overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "overlay_path=overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
         }
         elseif ("${{ github.ref }}" -eq "refs/heads/main") {
-          echo "overlay_path=overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          echo "overlay_path=overlays/pro" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
         }
         else {
           echo "No se pudo determinar el entorno de despliegue. Saliendo."
           exit 1
         }
 
+    - name: Imprimir directorio de trabajo
+      run: |
+        Write-Output "Directorio actual: $(Get-Location)"
+
+    - name:  Verify kubectl connection
+      run: |
+        echo "Verificando configuración de kubectl..."
+        kubectl cluster-info
+        kubectl config current-context
+
+
+
+
+
     - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
+      env:
+        KUBECONFIG: D:\actions-runner\config
       run: |
         echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
-        kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }} --validate=false # <-- Añadido
+        kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }} --validate=false
