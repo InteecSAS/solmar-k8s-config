@@ -38,7 +38,6 @@ jobs:
     - name:  Verify kubectl connection
       run: |
         echo "Verificando configuración de kubectl..."
-        kubectl cluster-info
         kubectl config current-context
 
 
