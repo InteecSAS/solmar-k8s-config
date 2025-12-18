@@ -35,6 +35,13 @@ jobs:
       run: |
         Write-Output "Directorio actual: $(Get-Location)"
 
+    - name: Get available contexts
+      run: |
+        kubectl config get-contexts
+        $context = kubectl config current-context
+        echo "current_context=$context" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+
+
     - name: Verify kubectl connection
       env:
         KUBECONFIG:  ${{ env.USERPROFILE }}\.kube\config
