@@ -59,6 +59,21 @@ jobs:
 
 
 
+    - name: Copy Secrets From Server
+      run: |
+        if ("${{ github.ref }}" -eq "refs/heads/develop") {
+          $sourcePath = "D:\solmar-k8s-secrets\qa-secrets.env"
+          $destinationPath = "${{ github.workspace }}\overlays\qa\qa-secrets.env"
+          Copy-Item -Path $sourcePath -Destination $destinationPath -Force
+          echo "Copiado qa-secrets.env para el despliegue de QA."
+        }
+        elseif ("${{ github.ref }}" -eq "refs/heads/main") {
+          $sourcePath = "D:\solmar-k8s-secrets\prod-secrets.env"
+          $destinationPath = "${{ github.workspace }}\overlays\prod\prod-secrets.env"
+          Copy-Item -Path $sourcePath -Destination $destinationPath -Force
+          echo "Copiado prod-secrets.env para el despliegue de Producción."
+        }
+
     - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
       run: |
         echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"

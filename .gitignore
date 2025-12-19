@@ -1,0 +1,2 @@
+# Excluir archivos de secretos específicos de cada entorno
+*-secrets.env
