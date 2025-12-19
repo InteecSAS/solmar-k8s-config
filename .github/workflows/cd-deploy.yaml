@@ -8,91 +8,60 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    runs-on: self-hosted
-
+  deploy-qa:
+    if: github.ref == 'refs/heads/develop'
+    runs-on: self-hosted-qa # <-- USA EL RUNNER DE QA
+    name: Deploy to QA
     steps:
-    - name: Checkout K8s Config Repo
-      uses: actions/checkout@v4
+      - name: Checkout K8s Config Repo
+        uses: actions/checkout@v4
 
-    - name: Determine Overlay Path
-      id: set_overlay_path
-      run: |
-        if ("${{ github.ref }}" -eq "refs/heads/develop") {
-          echo "overlay_path=overlays/qa" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "environment_name=QA" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-        }
-        elseif ("${{ github.ref }}" -eq "refs/heads/main") {
-          echo "overlay_path=overlays/prod" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "environment_name=PRO" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-        }
-        else {
-          echo "No se pudo determinar el entorno de despliegue. Saliendo."
-          exit 1
-        }
-
-    - name: Imprimir directorio de trabajo
-      run: |
-        Write-Output "Directorio actual: $(Get-Location)"
-
-    - name: Get available contexts
-      run: |
-        $kubeConfigPath = "$env:USERPROFILE\.kube\config"
-        echo "Kubeconfig path: $kubeConfigPath"
-        echo "File exists: $(Test-Path $kubeConfigPath)"
-        # Guardar la ruta para los próximos steps
-        echo "KUBECONFIG=$kubeConfigPath" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
-        # Ahora listar los contextos con la variable de entorno configurada
-        $env:KUBECONFIG = $kubeConfigPath
-        kubectl config get-contexts
-
-
-    - name: Verify kubectl connection
-      run: |
-        echo "Verificando configuración de kubectl..."
-        kubectl config get-contexts
-        kubectl config use-context docker-desktop
-        kubectl cluster-info
-        kubectl config current-context
-
-
-
-
-
-    - name: DEBUG - Copy Secrets From Server
-      run: |
-        echo "--- Iniciando Debug ---"
-        echo "Referencia de Git: ${{ github.ref }}"
-        echo "Usuario actual del runner: $(whoami)"
-        
-        echo "--- Listando contenido de D:\ ---"
-        Get-ChildItem -Path D:\ -ErrorAction SilentlyContinue
-        
-        echo "--- Listando contenido de D:\solmar-k8s-secrets ---"
-        Get-ChildItem -Path D:\solmar-k8s-secrets -ErrorAction SilentlyContinue
-        
-        echo "--- Probando rutas con Test-Path ---"
-        $qaPath = "D:\solmar-k8s-secrets\qa-secrets.env"
-        $prodPath = "D:\solmar-k8s-secrets\prod-secrets.env"
-        echo "Ruta QA ('$qaPath') existe?: $(Test-Path -Path $qaPath)"
-        echo "Ruta Prod ('$prodPath') existe?: $(Test-Path -Path $prodPath)"
-        echo "--- Fin del Debug ---"
-
-        # Script original para copiar
-        if ("${{ github.ref }}" -eq "refs/heads/develop") {
+      - name: DEBUG - Copy Secrets and Deploy
+        run: |
+          echo "--- Iniciando Despliegue a QA ---"
+          echo "Servidor (Hostname): $(hostname)"
+          echo "Usuario actual del runner: $(whoami)"
+          
           $sourcePath = "D:\solmar-k8s-secrets\qa-secrets.env"
           $destinationPath = "${{ github.workspace }}\overlays\qa\qa-secrets.env"
-          Copy-Item -Path $sourcePath -Destination $destinationPath -Force
-          echo "Copiado qa-secrets.env para el despliegue de QA."
-        }
-        elseif ("${{ github.ref }}" -eq "refs/heads/main") {
+          
+          echo "Verificando si existe el archivo de secretos de QA: $sourcePath"
+          if (Test-Path -Path $sourcePath) {
+            echo "Archivo encontrado. Copiando..."
+            Copy-Item -Path $sourcePath -Destination $destinationPath -Force
+          } else {
+            echo "ERROR: No se encontró el archivo de secretos en $sourcePath"
+            exit 1
+          }
+          
+          echo "Desplegando a QA usando overlays/qa"
+          kubectl apply -k overlays/qa --validate=false
+
+  deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    runs-on: self-hosted-prod # <-- USA EL RUNNER DE PRODUCCIÓN
+    name: Deploy to Production
+    steps:
+      - name: Checkout K8s Config Repo
+        uses: actions/checkout@v4
+
+      - name: DEBUG - Copy Secrets and Deploy
+        run: |
+          echo "--- Iniciando Despliegue a Producción ---"
+          echo "Servidor (Hostname): $(hostname)"
+          echo "Usuario actual del runner: $(whoami)"
+          
           $sourcePath = "D:\solmar-k8s-secrets\prod-secrets.env"
           $destinationPath = "${{ github.workspace }}\overlays\prod\prod-secrets.env"
-          Copy-Item -Path $sourcePath -Destination $destinationPath -Force
-          echo "Copiado prod-secrets.env para el despliegue de Producción."
-        }
-
-    - name: Deploy to ${{ steps.set_overlay_path.outputs.environment_name }}
-      run: |
-        echo "Desplegando a ${{ steps.set_overlay_path.outputs.environment_name }} usando ${{ steps.set_overlay_path.outputs.overlay_path }}"
-        kubectl apply -k ${{ steps.set_overlay_path.outputs.overlay_path }} --validate=false
+          
+          echo "Verificando si existe el archivo de secretos de PROD: $sourcePath"
+          if (Test-Path -Path $sourcePath) {
+            echo "Archivo encontrado. Copiando..."
+            Copy-Item -Path $sourcePath -Destination $destinationPath -Force
+          } else {
+            echo "ERROR: No se encontró el archivo de secretos en $sourcePath"
+            exit 1
+          }
+          
+          echo "Desplegando a Producción usando overlays/prod"
+          kubectl apply -k overlays/prod --validate=false
