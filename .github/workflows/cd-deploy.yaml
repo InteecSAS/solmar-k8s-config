@@ -59,8 +59,26 @@ jobs:
 
 
 
-    - name: Copy Secrets From Server
+    - name: DEBUG - Copy Secrets From Server
       run: |
+        echo "--- Iniciando Debug ---"
+        echo "Referencia de Git: ${{ github.ref }}"
+        echo "Usuario actual del runner: $(whoami)"
+        
+        echo "--- Listando contenido de D:\ ---"
+        Get-ChildItem -Path D:\ -ErrorAction SilentlyContinue
+        
+        echo "--- Listando contenido de D:\solmar-k8s-secrets ---"
+        Get-ChildItem -Path D:\solmar-k8s-secrets -ErrorAction SilentlyContinue
+        
+        echo "--- Probando rutas con Test-Path ---"
+        $qaPath = "D:\solmar-k8s-secrets\qa-secrets.env"
+        $prodPath = "D:\solmar-k8s-secrets\prod-secrets.env"
+        echo "Ruta QA ('$qaPath') existe?: $(Test-Path -Path $qaPath)"
+        echo "Ruta Prod ('$prodPath') existe?: $(Test-Path -Path $prodPath)"
+        echo "--- Fin del Debug ---"
+
+        # Script original para copiar
         if ("${{ github.ref }}" -eq "refs/heads/develop") {
           $sourcePath = "D:\solmar-k8s-secrets\qa-secrets.env"
           $destinationPath = "${{ github.workspace }}\overlays\qa\qa-secrets.env"
