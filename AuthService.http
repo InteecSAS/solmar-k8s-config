@@ -1,34 +1,45 @@
 @baseUrl = http://localhost:30577
-@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1Iiwicm9sZSI6IkFkbWluaXN0cmFkb3JTaXN0ZW1hIiwicGVybWlzc2lvbiI6WyJyZXNlcnZhczpsZWVyIiwicmVzZXJ2YXM6Y3JlYXIiLCJyZXNlcnZhczpjYW5jZWxhciIsImZpbmFuemFzOnZlcl9yZXBvcnRlcyIsImFkbWluOmdlc3Rpb25hcl91c3VhcmlvcyIsImFkbWluOmdlc3Rpb25hcl9yb2xlcyJdLCJuYmYiOjE3NjU1NjAwMjUsImV4cCI6MTc2NjE2NDgyNSwiaWF0IjoxNzY1NTYwMDI1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.Kz88tlQBgRgVMJhBMHz6pMk3XE6ZvTabOA_i1GoYJtSKJmn88B-oUjKgIQVPUy8ChDUujiCQBZ4LrnFcLBnvTw
-@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1Iiwicm9sZSI6IkFkbWluaXN0cmFkb3JTaXN0ZW1hIiwicGVybWlzc2lvbiI6WyJyZXNlcnZhczpsZWVyIiwicmVzZXJ2YXM6Y3JlYXIiLCJyZXNlcnZhczpjYW5jZWxhciIsImZpbmFuemFzOnZlcl9yZXBvcnRlcyIsImFkbWluOmdlc3Rpb25hcl91c3VhcmlvcyIsImFkbWluOmdlc3Rpb25hcl9yb2xlcyJdLCJuYmYiOjE3NjU1NjAwMjUsImV4cCI6MTc2NjE2NDgyNSwiaWF0IjoxNzY1NTYwMDI1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.Kz88tlQBgRgVMJhBMHz6pMk3XE6ZvTabOA_i1GoYJtSKJmn88B-oUjKgIQVPUy8ChDUujiCQBZ4LrnFcLBnvTw
+### @baseUrl = https://api.solmar.com
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1Iiwic2VjdXJpdHlfc3RhbXAiOiJCWkhTNVhZNVhGQ1dLTFNPTUNBUVdYSlJTN01ZQUhaWSIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsiYWRtaW46Z2VzdGlvbmFyX3VzdWFyaW9zIiwiYWRtaW46Z2VzdGlvbmFyX3JvbGVzIl0sIm5iZiI6MTc2NTU2MDAyNSwiZXhwIjoxNzY2MTY0ODI1LCJpYXQiOjE3NjU1NjAwMjUsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.some_signature
+@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJVWE1DTExFRkJENTJLRzdXSDM0R0IyRTVMUUlFUUxTSyIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsicmVzZXJ2YXM6bGVlciIsInJlc2VydmFzOmNyZWFyIiwicmVzZXJ2YXM6Y2FuY2VsYXIiLCJmaW5hbnphczp2ZXJfcmVwb3J0ZXMiLCJhZG1pbjpnZXN0aW9uYXJfdXN1YXJpb3MiLCJhZG1pbjpnZXN0aW9uYXJfcm9sZXMiXSwibmJmIjoxNzY2NDM3MjQ1LCJleHAiOjE3NjcwNDIwNDUsImlhdCI6MTc2NjQzNzI0NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.yzudlVgzm9mb03jyKNDUL-TgXmy3F7AUbxcGHn_ywTYC-5WhJwEbKfbvCDJGEEadEsfp6pHRXDKY8z1Ss3MZdQ
 @userId = ef2ae3ba-69f5-47bd-8340-d7b1c562149b
+@securityStamp = BZHS5XY5XFCWKLSOMCAQWXJRS7MYAHZY
 
 ###
 # =====================================================
-# Auth Controller (/api/auth-service/auth)
+# Auth Controller
+# Endpoints públicos para autenticación y registro.
 # =====================================================
 
 # @name register
 # Registra un nuevo usuario con el rol "Cliente" por defecto.
-POST {{baseUrl}}/api/auth-service/auth/register
+POST {{baseUrl}}/api/auth-service/register
 Content-Type: application/json
 
 {
-  "firstName": "Iván",
-  "lastName": "Tapia",
-  "email": "ivan.tapia@solmar.com",
+  "firstName": "Mauricio",
+  "lastName": "Salicrup",
+  "email": "mauricio.salicrup@solmar.com",
   "password": "P@ssw0rd",
-  "birthDate" : "2025-12-04",
-  "nationality" : "Perú",
+  "birthDate" : "1998-05-11",
+  "nationality" : "México",
   "gender" : "Masculino",
-  "phoneNumber" : "+51955478664"
+  "phoneNumber" : "+526242396691"
 }
-
 ###
+## RESPONSE EXAMPLE:
+## HTTP/1.1 200 OK
+## Content-Type: application/json; charset=utf-8
+##
+## {
+##   "message": "User created successfully!"
+## }
+
 
 # @name login
 # Inicia sesión y obtiene un token JWT.
-POST {{baseUrl}}/api/auth-service/auth/login
+# Guarda el token en la variable @admin_jwt o @cliente_jwt.
+POST {{baseUrl}}/api/auth-service/login
 Content-Type: application/json
 
 {
@@ -37,75 +48,189 @@ Content-Type: application/json
 }
 
 ###
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
+#
+# {
+#   "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9..."
+# }
+
+
+# @name forgotPassword
+# Inicia el proceso de reseteo de contraseña.
+POST {{baseUrl}}/api/auth-service/forgot-password
+Content-Type: application/json
+
+{
+  "email": "cliente@solmar.com"
+}
+
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
+#
+# {
+#   "token": "CfDJ8A...very...long...token...CfDJ8"
+# }
+
+###
+
+# @name resetPassword
+# Resetea la contraseña usando el token obtenido de "forgot-password".
+POST {{baseUrl}}/api/auth-service/reset-password
+Content-Type: application/json
+
+{
+  "email": "cliente@solmar.com",
+  "token": "CfDJ8A...very...long...token...CfDJ8",
+  "newPassword": "NewSecureP@ssw0rd"
+}
+
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
+#
+# {
+#   "message": "Password has been reset successfully."
+# }
+
+###
+
+# @name validateSecurityStamp
+# [USO INTERNO] Valida el security stamp de un usuario.
+# Usado por el API Gateway para verificar si un token sigue siendo válido.
+GET {{baseUrl}}/api/auth-service/internal/validate-security-stamp/{{userId}}/{{securityStamp}}
+
+# RESPONSE EXAMPLE (VALID):
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
+#
+# true
+
+# RESPONSE EXAMPLE (INVALID):
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
+#
+# false
+
+###
 # =====================================================
-# Admin Controller (/api/auth-service/admin)
-# Nota: Requiere un token JWT con el rol "AdministradorSistema".
+# Admin Controller
+# Requiere un token JWT con el rol "AdministradorSistema".
 # =====================================================
 
 # @name getUsers
-# Obtiene todos los usuarios.
-GET {{baseUrl}}/api/auth-service/admin/users
+# Obtiene una lista de todos los usuarios.
+GET {{baseUrl}}/api/auth-service/users
 Authorization: {{admin_jwt}}
+
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
+#
+# [
+#   {
+#     "firstName": "Admin",
+#     "lastName": "Solmar",
+#     ...
+#     "email": "admin@solmar.com",
+#     ...
+#   }
+# ]
 
 ###
 
 # @name getRoles
-# Obtiene todos los roles.
-GET {{baseUrl}}/api/auth-service/admin/roles
+# Obtiene una lista de todos los roles.
+GET {{baseUrl}}/api/auth-service/roles
 Authorization: {{admin_jwt}}
 
-###
-# =====================================================
-# Membresias Controller (/api/auth-service/membresias)
-# =====================================================
-
-# @name getMyMembership
-# Obtiene la membresía del usuario autenticado.
-GET {{baseUrl}}/api/auth-service/membresias/me
-Authorization: {{cliente_jwt}}
-
-###
-
-# @name getMembershipTypes
-# Obtiene los tipos de membresía disponibles (público).
-GET {{baseUrl}}/api/auth-service/membresias/tipos
-
-###
-# =====================================================
-# Preferencias Controller (/api/auth-service/preferencias)
-# =====================================================
-
-# @name getMyPreferences
-# Obtiene las preferencias del usuario autenticado.
-GET {{baseUrl}}/api/auth-service/preferencias/me
-Authorization: {{cliente_jwt}}
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
+#
+# [
+#   {
+#     "id": "a1b2c3d4-...",
+#     "name": "AdministradorSistema",
+#     "normalizedName": "ADMINISTRADORSISTEMA",
+#     "concurrencyStamp": "..."
+#   }
+# ]
 
 ###
 
-# @name updateMyPreferences
-# Actualiza las preferencias del usuario autenticado.
-PUT {{baseUrl}}/api/auth-service/preferencias/me
+# @name createRole
+# Crea un nuevo rol de seguridad.
+POST {{baseUrl}}/api/auth-service/roles
 Content-Type: application/json
-Authorization: {{cliente_jwt}}
+Authorization: {{admin_jwt}}
 
-{
-  "applicationUserId": "{{userId}}",
-  "idiomaPreferido": "es-MX",
-  "recibirNotificacionesEmail": true,
-  "permitirCookiesAnaliticas": true
-}
+"NuevoRol"
 
-
-
-
-
-# Archivo de peticiones para AuthService a través del YARP Proxy
-# =================================================================
-# Todas las peticiones apuntan al YARP Proxy, que las redirige a AuthService.
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: text/plain; charset=utf-8
 #
-# Estructura de la URL:
-# {{baseUrl}}/api/auth-service/{controller}/{endpoint}
+# Rol 'NuevoRol' creado exitosamente.
+
+###
+
+# @name getUserRoles
+# Obtiene los roles de un usuario específico.
+GET {{baseUrl}}/api/auth-service/users/{{userId}}/roles
+Authorization: {{admin_jwt}}
+
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
 #
-# Ejemplo:
-# {{baseUrl}}/api/auth-service/admin/users -> (YARP) -> AuthService/api/admin/users
-# =================================================================
+# [
+#   "Cliente"
+# ]
+
+###
+
+# @name addUserToRole
+# Asigna un rol a un usuario.
+POST {{baseUrl}}/api/auth-service/users/{{userId}}/roles
+Content-Type: application/json
+Authorization: {{admin_jwt}}
+
+"Cliente"
+
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: text/plain; charset=utf-8
+#
+# Usuario 'cliente@solmar.com' añadido al rol 'Cliente' exitosamente.
+
+###
+
+# @name removeUserFromRole
+# Remueve un rol de un usuario.
+DELETE {{baseUrl}}/api/auth-service/users/{{userId}}/roles
+Content-Type: application/json
+Authorization: {{admin_jwt}}
+
+"Cliente"
+
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: text/plain; charset=utf-8
+#
+# Usuario 'cliente@solmar.com' eliminado del rol 'Cliente' exitosamente.
+
+###
+
+# @name invalidateUserSessions
+# Invalida todas las sesiones de un usuario, forzándolo a iniciar sesión de nuevo.
+POST {{baseUrl}}/api/auth-service/users/{{userId}}/invalidate-sessions
+Authorization: {{admin_jwt}}
+
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: text/plain; charset=utf-8
+#
+# Todas las sesiones del usuario 'cliente@solmar.com' han sido invalidadas. Deberá volver a iniciar sesión.

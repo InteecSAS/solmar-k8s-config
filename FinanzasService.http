@@ -1,16 +1,5 @@
-# Archivo de peticiones para FinanzasService a través del YARP Proxy
-# =================================================================
-# Todas las peticiones apuntan al YARP Proxy.
-#
-# Estructura de la URL:
-# {{baseUrl}}/finanzas/api/{controller}/{endpoint}
-#
-# Ejemplo:
-# {{baseUrl}}/finanzas/api/reportes/ventas -> (YARP) -> FinanzasService/api/reportes/ventas
-# =================================================================
-
-@baseUrl = http://localhost:7000
-@gerente_jwt = Bearer AQUÍ_VA_TU_TOKEN_DE_GERENTE_O_ADMIN
+@baseUrl = http://localhost:30577
+@gerente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiMzZmZDAwN2ItMWQ0ZS00MWU1LWIwODItYTljN2NmNDYzMTg4IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJaNTNMNVlOUERWTjJPVVg1TEYzUlBWNEtHV0RNNDU1WSIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsicmVzZXJ2YXM6bGVlciIsInJlc2VydmFzOmNyZWFyIiwicmVzZXJ2YXM6Y2FuY2VsYXIiLCJmaW5hbnphczp2ZXJfcmVwb3J0ZXMiLCJhZG1pbjpnZXN0aW9uYXJfdXN1YXJpb3MiLCJhZG1pbjpnZXN0aW9uYXJfcm9sZXMiXSwibmJmIjoxNzY2NDg2ODU4LCJleHAiOjE3NjcwOTE2NTgsImlhdCI6MTc2NjQ4Njg1OCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.xX0v1sUOj5NYGRsLmLOi6N0L-SuZ5BvmKnC5RFOEt_g_D_NBTRi3xis3Auco8NA2R9V-cbF3LuRptOs5PcBJDA
 
 ###
 # =====================================================

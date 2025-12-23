@@ -1,0 +1,15 @@
+@baseUrl = http://localhost:30577
+###
+# =====================================================
+# Memberships (/memberships)
+# =====================================================
+
+## GetContractByContractNumber
+GET {{baseUrl}}/memberships/76349
+Accept: application/json
+
+
+
+### GetContractByEmailContractNumber
+GET {{baseUrl}}/memberships/verify/email@correo.com/76349
+Accept: application/json
