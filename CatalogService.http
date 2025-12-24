@@ -10,6 +10,13 @@ Accept: application/json
 GET {{baseUrl}}/api/catalog-service/TerminosDeUso/latest
 Authorization: {{cliente_jwt}}
 Accept: application/json
+Accept-Language: es-MX # o en-US, etc.
+
+###
+GET {{baseUrl}}/api/catalog-service/TerminosDeUso/latest
+Authorization: {{cliente_jwt}}
+Accept: application/json
+Accept-Language: en-US
 
 ###
 GET {{baseUrl}}/api/catalog-service/Idiomas

@@ -234,3 +234,79 @@ Authorization: {{admin_jwt}}
 # Content-Type: text/plain; charset=utf-8
 #
 # Todas las sesiones del usuario 'cliente@solmar.com' han sido invalidadas. Deberá volver a iniciar sesión.
+
+
+# =====================================================
+# Preferences Controller
+# Requiere un token JWT para la mayoría de los endpoints.
+# =====================================================
+
+# @name getMyPreferences
+# Obtiene las preferencias del usuario actual.
+GET {{baseUrl}}/api/auth-service/preferences/me
+Authorization: {{cliente_jwt}}
+
+###
+
+# @name updateMyPreferences
+# Actualiza las preferencias del usuario actual.
+PUT {{baseUrl}}/api/auth-service/preferences/me
+Authorization: {{cliente_jwt}}
+Content-Type: application/json
+
+{
+  "applicationUserId": "{{userId}}",
+  "receiveEmailNotifications": true,
+  "allowAnalyticsCookies": true,
+  "preferredLanguage": "es-MX"
+}
+
+###
+
+# @name getPreferenceCategories
+# Obtiene todas las categorías de preferencias disponibles con sus opciones, traducidas según el idioma solicitado.
+GET {{baseUrl}}/api/auth-service/preferences/categories
+Authorization: {{cliente_jwt}}
+Accept-Language: es-MX # o en-US, etc.
+
+###
+
+# @name getPreferenceCategories_en
+# Obtiene todas las categorías de preferencias disponibles con sus opciones, traducidas a inglés.
+GET {{baseUrl}}/api/auth-service/preferences/categories
+Authorization: {{cliente_jwt}}
+Accept-Language: en-US
+
+###
+
+# @name getMyPreferenceSelections
+# Obtiene las preferencias detalladas seleccionadas por el usuario actual.
+GET {{baseUrl}}/api/auth-service/preferences/me/selections
+Authorization: {{cliente_jwt}}
+
+###
+
+# @name updateMyPreferenceSelections
+# Actualiza las preferencias seleccionadas por el usuario actual.
+PUT {{baseUrl}}/api/auth-service/preferences/me/selections
+Authorization: {{cliente_jwt}}
+Content-Type: application/json
+
+{
+  "selectedPreferenceOptionIds": [
+    1,
+    3,
+    5
+  ]
+}
+
+# Archivo de peticiones para ReservationService a través del YARP Proxy
+# =================================================================
+# Todas las peticiones apuntan al YARP Proxy.
+#
+# Estructura de la URL:
+# {{baseUrl}}/reservation/{endpoint}
+#
+# Ejemplo:
+# {{baseUrl}}/reservation/indicadores -> (YARP) -> ReservationService/indicadores
+# =================================================================
