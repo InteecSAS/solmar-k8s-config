@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:30577
 # @baseUrl = https://apiqa.solmar.com
-@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiYWRtaW5Ac29sbWFyLmNvbSIsInN1YiI6IjZmYzY4MmY1LWJlNGQtNDc3Zi1hYmRhLTczZGZhM2Q2OWU5MyIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsIm5iZiI6MTc2NDU0NTIzMCwiZXhwIjoxNzY1MTUwMDMwLCJpYXQiOjE3NjQ1NDUyMzAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.SIoTadGvZ-J969lcilCYOLCLhCsDw-LY7Xrc2V137VumgG3njZi0NJaQUm4ooUvLXGJzPs0wKIhEEqYOmzsaoQ
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiICIsInN1YiI6IjM2ZmQwMDdiLTFkNGUtNDFlNS1iMDgyLWE5YzdjZjQ2MzE4OCIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiWjUzTDVZTlBEVk4yT1VYNUxGM1JQVjRLR1dETTQ1NVkiLCJyb2xlIjoiQWRtaW5pc3RyYWRvclNpc3RlbWEiLCJwZXJtaXNzaW9uIjpbInJlc2VydmFzOmxlZXIiLCJyZXNlcnZhczpjcmVhciIsInJlc2VydmFzOmNhbmNlbGFyIiwiZmluYW56YXM6dmVyX3JlcG9ydGVzIiwiYWRtaW46Z2VzdGlvbmFyX3VzdWFyaW9zIiwiYWRtaW46Z2VzdGlvbmFyX3JvbGVzIl0sIm5iZiI6MTc2Njc5MjM3MywiZXhwIjoxNzY3Mzk3MTczLCJpYXQiOjE3NjY3OTIzNzMsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.7US_nLbxUMsXIm8qYGhn78fJaLPLzNv-vMXhsLtNaO76OISxO0NgzwJmjH5JMcClJ10MxIGRLmK7sShzPz8deA
 @cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiMzZmZDAwN2ItMWQ0ZS00MWU1LWIwODItYTljN2NmNDYzMTg4IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJaNTNMNVlOUERWTjJPVVg1TEYzUlBWNEtHV0RNNDU1WSIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsicmVzZXJ2YXM6bGVlciIsInJlc2VydmFzOmNyZWFyIiwicmVzZXJ2YXM6Y2FuY2VsYXIiLCJmaW5hbnphczp2ZXJfcmVwb3J0ZXMiLCJhZG1pbjpnZXN0aW9uYXJfdXN1YXJpb3MiLCJhZG1pbjpnZXN0aW9uYXJfcm9sZXMiXSwibmJmIjoxNzY2NDg2ODU4LCJleHAiOjE3NjcwOTE2NTgsImlhdCI6MTc2NjQ4Njg1OCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.xX0v1sUOj5NYGRsLmLOi6N0L-SuZ5BvmKnC5RFOEt_g_D_NBTRi3xis3Auco8NA2R9V-cbF3LuRptOs5PcBJDA
 @notificationId = AQUÍ_VA_UN_ID_DE_NOTIFICACION
 
@@ -64,20 +64,19 @@ Authorization: {{admin_jwt}}
 # @name sendTemplatedEmail
 # Envía un correo electrónico utilizando una plantilla HTML.
 # Roles permitidos: AdministradorSistema, GerenteHotel
+#  // templateName: PaymentProcessed, Promotion
+# // subject: Opcional
 POST {{baseUrl}}/notifications/send-templated-email
 Content-Type: application/json
 Authorization: {{admin_jwt}}
 
 {
-  "toEmail": "destinatario@ejemplo.com",
-  "templateName": "ReservationConfirmed", // O PaymentProcessed, Promotion
-  "subject": "Confirmación de tu Reserva Solmar", // Opcional
+  "toEmail": "diurvan1@gmail.com",
+  "templateName": "CodeVerification",
+  "subject": "Confirmación de tu Reserva Solmar",
   "data": {
-    "UserName": "Juan Pérez",
-    "HotelName": "Hotel Solmar Playa",
-    "ReservationCode": "SM12345",
-    "CheckInDate": "2025-12-25",
-    "CheckOutDate": "2025-12-30"
+    "Email": "diurvan1@gmail.com",
+    "veryficationcode": "1234"
   }
 }
 

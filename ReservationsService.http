@@ -7,9 +7,18 @@
 # =====================================================
 
 ### Get Reservation By Id
-GET {{baseUrl}}/reservations/2
+GET {{baseUrl}}/reservations/1
 Authorization: {{admin_jwt}}
 Accept: application/json
+
+### Change Reservation Status
+POST {{baseUrl}}/reservations/change-status
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "reservationId": 1,
+  "status": "cancelled"
+}
 
 ### Get Hotel Reservation By ReservationNumber
 GET {{baseUrl}}/reservations/hotel/1280586
@@ -20,6 +29,28 @@ Accept: application/json
 GET {{baseUrl}}/reservations/verify/email@correo.com/1280586
 Accept: application/json
 
+### Get Reservations By Offer And DateRange
+POST {{baseUrl}}/reservations/search
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+
+{
+  "offerId": 1,
+  "startDate": "2025-12-01T00:00:00",
+  "endDate": "2025-12-19T23:59:59",
+  "viewType": 2
+}
+
+### Get Reservations By Person And DateRange
+POST {{baseUrl}}/reservations/search/me
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+
+{
+  "PersonId": "c2fb26cd-bb43-4237-bb1c-49928c5f261b",
+  "startDate": "2025-12-01T00:00:00",
+  "endDate": "2025-12-31T23:59:59"
+}
 
 ### Create Reservation
 POST {{baseUrl}}/reservations
@@ -27,19 +58,18 @@ Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
 {
-  "reservationDate": "2025-12-18",
+  "reservationDate": "2025-12-24",
   "personId": 1,
   "consumptionCenterId": 1,
   "offerId": 1,
   "createdBy": "Rick",
   "paxCount": 4,
   "notes": "Mesa cerca de la ventana",
-
   "availability": {
-    "date": "2025-12-18",
+    "date": "2025-12-24",
     "startTime": "16:00:00",
     "endTime": "17:00:00",
-    "inventoryId": 2
+    "inventoryId": 1
   }
 }
 
@@ -164,6 +194,15 @@ GET {{baseUrl}}/reservations/consumptioncenter/offer/1
 Authorization: {{admin_jwt}}
 Accept: application/json
 
+### Get Offers By Date Range
+POST {{baseUrl}}/reservations/consumptioncenter/offers
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "startDate": "2025-12-01",
+  "endDate": "2025-12-31"
+}
+
 ### Get Offers By Consumption Center Id
 GET {{baseUrl}}/reservations/consumptioncenter/offers/1
 
@@ -230,6 +269,35 @@ Content-Type: application/json
   ]
 }
 
+###
+# =====================================================
+# Reservation Media
+# =====================================================
+
+### Upload Reservation Media (with Base64)
+POST {{baseUrl}}/api/reservationdetails/1/reservationmedia
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+
+{
+  "base64File": "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+  "mediaType": "image",
+  "description": "Test image for reservation detail 1 (Base64)"
+}
+
+### Get Reservation Media By Id
+GET {{baseUrl}}/api/reservationdetails/1/reservationmedia/1
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+### Get All Reservation Media For Reservation Detail
+GET {{baseUrl}}/api/reservationdetails/1/reservationmedia
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+### Delete Reservation Media
+DELETE {{baseUrl}}/api/reservationdetails/1/reservationmedia/1
+Authorization: {{admin_jwt}}
 
 # Archivo de peticiones para ReservationService a través del YARP Proxy
 # =================================================================

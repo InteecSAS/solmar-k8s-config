@@ -11,21 +11,54 @@
 # Endpoints públicos para autenticación y registro.
 # =====================================================
 
+# @name initiateRegistration
+# Inicia el proceso de registro, validando códigos de reserva/membresía y enviando un código de verificación.
+# registrationType: "reservation", "membership", "direct
+# membershipCode: Required if registrationType is "membership"
+# reservationCode: Required if registrationType is "reservation"
+POST {{baseUrl}}/api/auth-service/initiate-registration
+Content-Type: application/json
+
+{
+  "email": "diurvan1@gmail.com",
+  "registrationType": "membership",
+  "membershipCode": "76349"
+}
+
+###
+
+# @name verifyRegistrationCode
+# Verifica el código de registro enviado al correo electrónico del usuario.
+# code: The 6-digit code received via email
+POST {{baseUrl}}/api/auth-service/verify-registration-code
+Content-Type: application/json
+
+{
+  "email": "diurvan1@gmail.com",
+  "code": "715402"
+}
+
+###
+
 # @name register
 # Registra un nuevo usuario con el rol "Cliente" por defecto.
+# Este endpoint debe ser llamado DESPUÉS de una verificación exitosa del correo electrónico (si aplica).
+# registrationType: "reservation", "membership", "direct" - debe coincidir con el tipo usado en initiate-registration
 POST {{baseUrl}}/api/auth-service/register
 Content-Type: application/json
 
 {
-  "firstName": "Mauricio",
-  "lastName": "Salicrup",
-  "email": "mauricio.salicrup@solmar.com",
+  "firstName": "Nuevo",
+  "lastName": "Usuario",
+  "email": "diurvan1@gmail.com",
   "password": "P@ssw0rd",
-  "birthDate" : "1998-05-11",
-  "nationality" : "México",
+  "birthDate" : "2025-12-01",
+  "nationality" : "Perú",
   "gender" : "Masculino",
-  "phoneNumber" : "+526242396691"
+  "phoneNumber" : "+51955478664",
+  "registrationType": "membership"
 }
+
 ###
 ## RESPONSE EXAMPLE:
 ## HTTP/1.1 200 OK
@@ -43,7 +76,7 @@ POST {{baseUrl}}/api/auth-service/login
 Content-Type: application/json
 
 {
-  "email": "admin@solmar.com",
+  "email": "diurvan1@gmail.com",
   "password": "P@ssw0rd"
 }
 
@@ -63,32 +96,25 @@ POST {{baseUrl}}/api/auth-service/forgot-password
 Content-Type: application/json
 
 {
-  "email": "cliente@solmar.com"
+  "email": "diurvan1@gmail.com"
 }
 
-# RESPONSE EXAMPLE:
-# HTTP/1.1 200 OK
-# Content-Type: application/json; charset=utf-8
-#
-# {
-#   "token": "CfDJ8A...very...long...token...CfDJ8"
-# }
-
 ###
-
 # @name resetPassword
 # Resetea la contraseña usando el token obtenido de "forgot-password".
 POST {{baseUrl}}/api/auth-service/reset-password
 Content-Type: application/json
 
 {
-  "email": "cliente@solmar.com",
-  "token": "CfDJ8A...very...long...token...CfDJ8",
-  "newPassword": "NewSecureP@ssw0rd"
+  "email": "diurvan1@gmail.com",
+  "code": "578855",
+  "newPassword": "P@ssw0rd"
 }
 
-# RESPONSE EXAMPLE:
-# HTTP/1.1 200 OK
+
+###
+### RESPONSE EXAMPLE:
+### HTTP/1.1 200 OK
 # Content-Type: application/json; charset=utf-8
 #
 # {
