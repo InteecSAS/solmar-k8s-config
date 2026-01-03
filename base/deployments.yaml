@@ -203,3 +203,37 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memberships-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memberships-service
+  template:
+    metadata:
+      labels:
+        app: memberships-service
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: memberships-service
+        image: diurvan/solmar-backend-membershipsservice # Tag will be added by Kustomize
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: memberships-service
+spec:
+  selector:
+    app: memberships-service
+  ports:
+  - port: 8080
+    targetPort: 8080
