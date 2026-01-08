@@ -1,5 +1,5 @@
-@baseUrl = http://localhost:30577
-### @baseUrl = https://api.solmar.com
+### @baseUrl = http://localhost:305773
+@baseUrl = https://apiqa.solmar.com
 @admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1Iiwic2VjdXJpdHlfc3RhbXAiOiJCWkhTNVhZNVhGQ1dLTFNPTUNBUVdYSlJTN01ZQUhaWSIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsiYWRtaW46Z2VzdGlvbmFyX3VzdWFyaW9zIiwiYWRtaW46Z2VzdGlvbmFyX3JvbGVzIl0sIm5iZiI6MTc2NTU2MDAyNSwiZXhwIjoxNzY2MTY0ODI1LCJpYXQiOjE3NjU1NjAwMjUsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.some_signature
 @cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJVWE1DTExFRkJENTJLRzdXSDM0R0IyRTVMUUlFUUxTSyIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsicmVzZXJ2YXM6bGVlciIsInJlc2VydmFzOmNyZWFyIiwicmVzZXJ2YXM6Y2FuY2VsYXIiLCJmaW5hbnphczp2ZXJfcmVwb3J0ZXMiLCJhZG1pbjpnZXN0aW9uYXJfdXN1YXJpb3MiLCJhZG1pbjpnZXN0aW9uYXJfcm9sZXMiXSwibmJmIjoxNzY2NDM3MjQ1LCJleHAiOjE3NjcwNDIwNDUsImlhdCI6MTc2NjQzNzI0NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.yzudlVgzm9mb03jyKNDUL-TgXmy3F7AUbxcGHn_ywTYC-5WhJwEbKfbvCDJGEEadEsfp6pHRXDKY8z1Ss3MZdQ
 @userId = ef2ae3ba-69f5-47bd-8340-d7b1c562149b
@@ -22,7 +22,7 @@ Content-Type: application/json
 {
   "email": "diurvan1@gmail.com",
   "registrationType": "membership",
-  "membershipCode": "76349"
+  "reservationCode": "1280474"
 }
 
 ###
@@ -35,7 +35,7 @@ Content-Type: application/json
 
 {
   "email": "diurvan1@gmail.com",
-  "code": "715402"
+  "code": "140408"
 }
 
 ###
@@ -44,19 +44,21 @@ Content-Type: application/json
 # Registra un nuevo usuario con el rol "Cliente" por defecto.
 # Este endpoint debe ser llamado DESPUÉS de una verificación exitosa del correo electrónico (si aplica).
 # registrationType: "reservation", "membership", "direct" - debe coincidir con el tipo usado en initiate-registration
+# deviceToken: Opcional. Token de registro del dispositivo para notificaciones push.
 POST {{baseUrl}}/api/auth-service/register
 Content-Type: application/json
 
 {
   "firstName": "Nuevo",
   "lastName": "Usuario",
-  "email": "diurvan1@gmail.com",
+  "email": "admin@solmar.com",
   "password": "P@ssw0rd",
   "birthDate" : "2025-12-01",
   "nationality" : "Perú",
   "gender" : "Masculino",
   "phoneNumber" : "+51955478664",
-  "registrationType": "membership"
+  "registrationType": "membership",
+  "deviceToken": "your_device_token_here_for_register"
 }
 
 ###
@@ -72,12 +74,14 @@ Content-Type: application/json
 # @name login
 # Inicia sesión y obtiene un token JWT.
 # Guarda el token en la variable @admin_jwt o @cliente_jwt.
+# deviceToken: Opcional. Token de registro del dispositivo para notificaciones push.
 POST {{baseUrl}}/api/auth-service/login
 Content-Type: application/json
 
 {
   "email": "diurvan1@gmail.com",
-  "password": "P@ssw0rd"
+  "password": "P@ssw0rd",
+  "deviceToken": "your_device_token_here_for_login"
 }
 
 ###
@@ -87,6 +91,28 @@ Content-Type: application/json
 #
 # {
 #   "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9..."
+# }
+
+
+# @name updateDeviceToken
+# [NUEVO] Registra o actualiza el token de un dispositivo para notificaciones push para el usuario autenticado.
+# Este endpoint debe ser llamado por la aplicación cliente cuando obtiene un nuevo token de dispositivo
+# o cuando el usuario inicia sesión/se registra.
+POST {{baseUrl}}/api/auth-service/device-token
+Content-Type: application/json
+Authorization: {{cliente_jwt}} # O el token del usuario autenticado
+
+{
+  "deviceToken": "your_new_or_updated_device_token_here"
+}
+
+###
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+# Content-Type: application/json; charset=utf-8
+#
+# {
+#   "message": "Device token actualizado exitosamente."
 # }
 
 

@@ -1,13 +1,13 @@
 ### @baseUrl = https://apiqa.solmar.com
 @baseUrl = http://localhost:30577
-@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiN2VlYzBiMjItMzllZi00NmIxLTg1YTktZmQxN2RmYTQ4NDlhIiwicm9sZSI6IkFkbWluaXN0cmFkb3JTaXN0ZW1hIiwicGVybWlzc2lvbiI6WyJyZXNlcnZhczpsZWVyIiwicmVzZXJ2YXM6Y3JlYXIiLCJyZXNlcnZhczpjYW5jZWxhciIsImZpbmFuemFzOnZlcl9yZXBvcnRlcyIsImFkbWluOmdlc3Rpb25hcl91c3VhcmlvcyIsImFkbWluOmdlc3Rpb25hcl9yb2xlcyJdLCJuYmYiOjE3NjY0NjMxMDgsImV4cCI6MTc2NzA2NzkwOCwiaWF0IjoxNzY2NDYzMTA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.8_Vs0QiQbuQLmgwNcu82LiiCYk4UqVDFAP0mm07iaUGX_cq-BVRbixSxbYLqDMGlGQ4bQY9lxaYt-buKxTFQlg
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJOdWV2byBVc3VhcmlvIiwic3ViIjoiY2Q2YjNhNjQtYTk1OC00NTMxLTkwMDgtYzMzMDI5N2M1OTZlIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJQQkRRQ09CVEdRNk40T05OSktJUjJVSEpCSE1SQzRPRiIsInJvbGUiOiJDbGllbnRlIiwibmJmIjoxNzY3NjM5NzU1LCJleHAiOjE3NjgyNDQ1NTUsImlhdCI6MTc2NzYzOTc1NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.xLS_xUqUWNGIIGEQvBH8SsiFKxoKANHllCsm7F8w2aQ9JWJUgZuDJcZrvlHqplswIyUjb9jDhON5NNOByxxOUw
 ###
 # =====================================================
 # Reservations (/reservations)
 # =====================================================
 
 ### Get Reservation By Id
-GET {{baseUrl}}/reservations/1
+GET {{baseUrl}}/reservations/reservation/10
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -16,40 +16,37 @@ POST {{baseUrl}}/reservations/change-status
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
-  "reservationId": 1,
-  "status": "cancelled"
+  "reservationId": 10,
+  "reservationNumber": "RSV-RZMCUQ",
+  "reservationStatus": "Confirmed"
 }
 
 ### Get Hotel Reservation By ReservationNumber
-GET {{baseUrl}}/reservations/hotel/1280586
+GET {{baseUrl}}/reservations/hotel/1280474
+### Get Hotel Reservation By Email and ReservationNumber diurvan1@gmail.com
+GET {{baseUrl}}/reservations/verify/diurvan1@gmail.com/1280474
 Authorization: {{admin_jwt}}
 Accept: application/json
 
-### Get Hotel Reservation By Email and ReservationNumber
-GET {{baseUrl}}/reservations/verify/email@correo.com/1280586
-Accept: application/json
 
-### Get Reservations By Offer And DateRange
-POST {{baseUrl}}/reservations/search
+### Get Reservations By Consumption Center And DateRange
+POST {{baseUrl}}/reservations/consumptioncenter/search
 Authorization: {{admin_jwt}}
 Content-Type: application/json
-
 {
-  "offerId": 1,
-  "startDate": "2025-12-01T00:00:00",
-  "endDate": "2025-12-19T23:59:59",
-  "viewType": 2
+  "consumptionCenterId": 2,
+  "startDate": "2026-01-02",
+  "endDate": "2026-01-02"
 }
 
 ### Get Reservations By Person And DateRange
 POST {{baseUrl}}/reservations/search/me
 Authorization: {{admin_jwt}}
 Content-Type: application/json
-
 {
   "PersonId": "c2fb26cd-bb43-4237-bb1c-49928c5f261b",
-  "startDate": "2025-12-01T00:00:00",
-  "endDate": "2025-12-31T23:59:59"
+  "startDate": "2025-12-01",
+  "endDate": "2025-12-31"
 }
 
 ### Create Reservation
@@ -58,30 +55,27 @@ Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
 {
-  "reservationDate": "2025-12-24",
-  "personId": 1,
-  "consumptionCenterId": 1,
-  "offerId": 1,
-  "createdBy": "Rick",
-  "paxCount": 4,
-  "notes": "Mesa cerca de la ventana",
-  "availability": {
-    "date": "2025-12-24",
-    "startTime": "16:00:00",
-    "endTime": "17:00:00",
-    "inventoryId": 1
+  "personId": "c2fb26cd-bb43-4237-bb1c-49928c5f261b",
+  "consumptionCenterId": 2,
+  "details": {
+    "serviceDate": "2026-01-02",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "capacity": 4,
+    "notes": "Mesa en la terraza, por favor.",
+    "createdBy": "Rick",
+    "availabilityId": 2
   }
 }
 
 ### Search Availability
-GET {{baseUrl}}/reservations/availability
+POST {{baseUrl}}/reservations/availability
 Content-Type: application/json
 Accept: application/json
 {
-  "offerId": 1,
-  "consumptionCenterId": 1,
-  "date": "2025-12-18",
-  "paxCount": 4
+  "consumptionCenterId": 2,
+  "capacity": 4,
+  "reservationDate": "2026-01-02"
 }
 
 ###
@@ -114,75 +108,182 @@ GET {{baseUrl}}/reservations/indicadores/H1
 GET {{baseUrl}}/reservations/consumptioncenter
 
 ### Get Consumption Center Detail By Id
-GET {{baseUrl}}/reservations/consumptioncenter/1
+GET {{baseUrl}}/reservations/consumptioncenter/detail/1
 
-### Get Consumption Centers By Site
-GET {{baseUrl}}/reservations/consumptioncenter/site/1
-
-### Get Consumption Centers By Type
-GET {{baseUrl}}/reservations/consumptioncenter/type/1
+### Get Consumption Centers Types
+GET {{baseUrl}}/reservations/consumptioncenter/types
 Authorization: {{admin_jwt}}
 
-### Get Consumption Center Types
-GET {{baseUrl}}/reservations/consumptioncenter/types
+### Get Consumption Centers Groups
+GET {{baseUrl}}/reservations/consumptioncenter/groups
+Authorization: {{admin_jwt}}
 
-### Get Consumption Center Inventory
-GET {{baseUrl}}/reservations/consumptioncenter/inventory/1
+### Get Consumption Center By Group External Id
+GET {{baseUrl}}/reservations/consumptioncenter/group/6
+Accept: application/json
+
+### Get Consumption Center By Type Id
+GET {{baseUrl}}/reservations/consumptioncenter/type/1
+Accept: application/json
+
+### Get Consumption Center Inventories
+GET {{baseUrl}}/reservations/consumptioncenter/2/inventories
 Authorization: {{admin_jwt}}
 Accept: application/json
 
-### Create Consumption Center
-POST {{baseUrl}}/reservations/consumptioncenter
-Authorization: {{admin_jwt}}
-Content-Type: application/json
-
-{
-  "SiteId": 1,
-  "name": "Bacari",
-  "email": "bacari@solmar.com",
-  "phoneNumber": "+526241234567",
-  "address": "Av Solmar",
-  "description": "Bacari Restaurant",
-  "pax": 120,
-  "consumptionCenterTypeId": 1
-}
-
-
-### Create Inventory
-POST {{baseUrl}}/reservations/consumptioncenter/inventory
-Authorization: {{admin_jwt}}
-Content-Type: application/json
-{
-  "name": "Mesa Terraza",
-  "price": 150.00,
-  "consumptionCenterId": 1,
-  "inventoryAttribute": {
-    "name": "Mesa 4 pax",
-    "description": "Mesa exterior",
-    "paxCount": 4,
-    "specialInformation": "Sombrilla incluida",
-    "mediaCreates": [
-      {
-        "url": "https://cdn.app/mesa1.jpg",
-        "type": 0
-      }
-    ]
-  },
-  "inventoryType": {
-    "name": "Mesa",
-    "description": "Mobiliario"
-  }
-}
-
-
-### Create Consumption Center Types
+### Create Consumption Center Type
 POST {{baseUrl}}/reservations/consumptioncenter/types
-Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
   "name": "Restaurant",
   "description": "Restaurant type"
 }
+
+### Create Consumption Center
+POST {{baseUrl}}/reservations/consumptioncenter
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "name": "Bacari",
+  "email": "bacari@solmar.com",
+  "phoneNumber": "+52 6241234567",
+  "latitude": 22.876556,
+  "longitude": -109.9035334,
+  "description": "Italian Restaurant",
+  "imagesUrls": [
+    "https://url.com/bacari1.jpg",
+    "https://url.com/bacari2.jpg"
+  ],
+  "capacity": 180,
+  "startTime": "12:00",
+  "endTime": "22:00",
+  "startDate": "2025-01-01",
+  "endDate": "2026-12-31",
+  "weekDays": "Thu,Fri,Sat,Sun",
+  "consumptionCenterTypeId": 1,
+  "consumptionCenterGroup": {
+    "externalId": 6,
+    "externalName": "Grand Solmar Pacific Dunes"
+  },
+  "attribute": {
+    "name": "Cuisine",
+    "tags": ["Italian","Seafood","Pasta"],
+    "attributeType":{
+      "name": "Cuisine"
+    }
+  }
+}
+
+### Create Consumption Center Group
+POST {{baseUrl}}/reservations/consumptioncenter/groups
+Content-Type: application/json
+{
+  "externalId": 1,
+  "externalName": "Solmar Hotels & Resorts",
+  "consumptionCenterId": 1
+}
+
+### Create Consumption Center Inventory
+POST {{baseUrl}}/reservations/consumptioncenter/inventory
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "consumptionCenterId": 2, 
+  "name": "Mesa Cinco",
+  "capacity": 6,
+  "minCapacity": 3,
+  "maxCapacity": 6,
+  "startTime": "12:00",
+  "endTime": "21:00",
+  "price": 0,
+  "imagesUrls": ["https://url.com/mesa1.jpg"],
+  "inventoryAttribute": {
+    "name": "Mesa Interior",
+    "description": "Mesa en area interior del restaurante",
+    "capacity": 6,
+    "specialInformation": "Cerca de la ventana",
+    "attribute": {
+      "name": "Interior",
+      "usageCount": 0,
+      "tags": ["Interior","Window"],
+      "attributeType": {
+        "name": "Location"
+      }
+    }
+  },
+  "inventoryType": {
+    "name": "Table",
+    "description": "Table Inventory Type"
+  }
+}
+
+### Create Consumption Center Offer
+POST {{baseUrl}}/reservations/consumptioncenter/offer
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "name": "Happy Hour 2x1 Bebidas",
+  "description": "Promoción válida en horario vespertino",
+  "isActive": true,
+  "startTime": "16:00:00",
+  "endTime": "19:00:00",
+  "startDate": "2025-01-01",
+  "endDate": "2025-12-31",
+  "weekDays": "Fri,Sat",
+  "consumptionCenterId": 1,
+  "offerItems": [
+    {
+      "name": "Cerveza Nacional",
+      "description": "Cerveza clara u oscura",
+      "price": 80.00,
+      "cost": 35.00,
+      "specialInformation": "Aplica solo marcas seleccionadas",
+      "imagesUrls": [
+        "https://cdn.solmar.com/offers/beer1.jpg",
+        "https://cdn.solmar.com/offers/beer2.jpg"
+      ],
+      "items": [
+        {
+          "name": "Cerveza Corona",
+          "description": "Botella 355 ml",
+          "quantity": 2,
+          "unitOfMeasure": "Bottle",
+          "specifications": "Servida fría",
+          "keyItem": true
+        }
+      ]
+    },
+    {
+      "name": "Margarita Clásica",
+      "description": "Margarita tradicional con limón",
+      "price": 150.00,
+      "cost": 60.00,
+      "specialInformation": "No aplica sabores premium",
+      "imagesUrls": [
+        "https://cdn.solmar.com/offers/margarita.jpg"
+      ],
+      "items": [
+        {
+          "name": "Tequila Blanco",
+          "description": "Tequila 100% agave",
+          "quantity": 60,
+          "unitOfMeasure": "ml",
+          "specifications": "Marca estándar",
+          "keyItem": true
+        },
+        {
+          "name": "Jugo de Limón",
+          "description": "Jugo natural",
+          "quantity": 30,
+          "unitOfMeasure": "ml",
+          "specifications": "Recién exprimido",
+          "keyItem": false
+        }
+      ]
+    }
+  ]
+}
+
 
 ###
 # =====================================================

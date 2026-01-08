@@ -1,4 +1,5 @@
-@baseUrl = http://localhost:30577
+###@baseUrl = http://localhost:30577
+@baseUrl = https://apiqa.solmar.com
 ###
 # =====================================================
 # Memberships (/memberships)
@@ -8,8 +9,6 @@
 GET {{baseUrl}}/memberships/76349
 Accept: application/json
 
-
-
 ### GetContractByEmailContractNumber
-GET {{baseUrl}}/memberships/verify/email@correo.com/76349
+GET {{baseUrl}}/memberships/verify/pavdaddy@neo.rr.com/76349
 Accept: application/json

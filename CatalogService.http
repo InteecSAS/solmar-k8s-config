@@ -2,26 +2,11 @@
 @baseUrl = http://localhost:30577
 @cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiZjMyNTVkZWEtZDJkMy00NWJiLWE3NGUtODUxNGI5ZjM2MzA2IiwibmJmIjoxNzY1NDg2NzI4LCJleHAiOjE3NjYwOTE1MjgsImlhdCI6MTc2NTQ4NjcyOCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.r04EMx_-ltpSumM3Hj4KPuRRfDYDYiGZi2DlZRhjL768jUObawXjoHqQD7v4yh2dzk8VH9QzFSQ0qXXhl76jkA
 
-GET {{baseUrl}}/api/catalog-service/paises
-Authorization: {{cliente_jwt}}
-Accept: application/json
-
-###
-GET {{baseUrl}}/api/catalog-service/TerminosDeUso/latest
-Authorization: {{cliente_jwt}}
-Accept: application/json
+### generos, paises, idiomas, terminosdeuso
+GET {{baseUrl}}/api/catalog-service/catalogs/generos
 Accept-Language: es-MX # o en-US, etc.
-
-###
-GET {{baseUrl}}/api/catalog-service/TerminosDeUso/latest
-Authorization: {{cliente_jwt}}
 Accept: application/json
-Accept-Language: en-US
 
-###
-GET {{baseUrl}}/api/catalog-service/Idiomas
-Authorization: {{cliente_jwt}}
-Accept: application/json
 
 ###
 GET {{baseUrl}}/api/catalog-service/hotels
