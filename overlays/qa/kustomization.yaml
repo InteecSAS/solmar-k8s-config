@@ -34,22 +34,22 @@ resources:
 images:
 - name: diurvan/solmar-backend-authservice
   newName: diurvan/solmar-backend-authservice
-  newTag: db433db
+  newTag: 8e27272
 - name: diurvan/solmar-backend-catalogservice
   newName: diurvan/solmar-backend-catalogservice
-  newTag: db433db
+  newTag: 8e27272
 - name: diurvan/solmar-backend-finanzasservice
   newName: diurvan/solmar-backend-finanzasservice
-  newTag: db433db
+  newTag: 8e27272
 - name: diurvan/solmar-backend-membershipsservice
   newName: diurvan/solmar-backend-membershipsservice
-  newTag: db433db
+  newTag: 8e27272
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: db433db
+  newTag: 8e27272
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
-  newTag: db433db
+  newTag: 8e27272
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
-  newTag: db433db
+  newTag: 8e27272
