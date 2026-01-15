@@ -1,7 +1,6 @@
-### @baseUrl = http://localhost:305773
-@baseUrl = https://apiqa.solmar.com
-@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1Iiwic2VjdXJpdHlfc3RhbXAiOiJCWkhTNVhZNVhGQ1dLTFNPTUNBUVdYSlJTN01ZQUhaWSIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsiYWRtaW46Z2VzdGlvbmFyX3VzdWFyaW9zIiwiYWRtaW46Z2VzdGlvbmFyX3JvbGVzIl0sIm5iZiI6MTc2NTU2MDAyNSwiZXhwIjoxNzY2MTY0ODI1LCJpYXQiOjE3NjU1NjAwMjUsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.some_signature
-@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiNGMxMDhmMzUtZGU3Ni00ODE1LWE1N2YtODQxMWYxZDJmM2U1IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJVWE1DTExFRkJENTJLRzdXSDM0R0IyRTVMUUlFUUxTSyIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsicmVzZXJ2YXM6bGVlciIsInJlc2VydmFzOmNyZWFyIiwicmVzZXJ2YXM6Y2FuY2VsYXIiLCJmaW5hbnphczp2ZXJfcmVwb3J0ZXMiLCJhZG1pbjpnZXN0aW9uYXJfdXN1YXJpb3MiLCJhZG1pbjpnZXN0aW9uYXJfcm9sZXMiXSwibmJmIjoxNzY2NDM3MjQ1LCJleHAiOjE3NjcwNDIwNDUsImlhdCI6MTc2NjQzNzI0NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.yzudlVgzm9mb03jyKNDUL-TgXmy3F7AUbxcGHn_ywTYC-5WhJwEbKfbvCDJGEEadEsfp6pHRXDKY8z1Ss3MZdQ
+@baseUrl = http://localhost:30577
+### @baseUrl = https://apiqa.solmar.com
+@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJOdWV2byBVc3VhcmlvIiwic3ViIjoiY2Q2YjNhNjQtYTk1OC00NTMxLTkwMDgtYzMzMDI5N2M1OTZlIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJQQkRRQ09CVEdRNk40T05OSktJUjJVSEpCSE1SQzRPRiIsInJvbGUiOiJDbGllbnRlIiwibmJmIjoxNzY4NDEwMzMwLCJleHAiOjE3NjkwMTUxMzAsImlhdCI6MTc2ODQxMDMzMCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.A8lO36opy5lp66uyc8fnFsVw6ugFLAZ_MjagamNQ6oCw6CrlZL9wJCvdUwkZVgZ6T_l0PztCqWQXZtsZSX7xfg
 @userId = ef2ae3ba-69f5-47bd-8340-d7b1c562149b
 @securityStamp = BZHS5XY5XFCWKLSOMCAQWXJRS7MYAHZY
 
@@ -40,7 +39,7 @@ Content-Type: application/json
 
 ###
 
-# @name register
+### @name register
 # Registra un nuevo usuario con el rol "Cliente" por defecto.
 # Este endpoint debe ser llamado DESPUÉS de una verificación exitosa del correo electrónico (si aplica).
 # registrationType: "reservation", "membership", "direct" - debe coincidir con el tipo usado en initiate-registration
@@ -49,16 +48,16 @@ POST {{baseUrl}}/api/auth-service/register
 Content-Type: application/json
 
 {
-  "firstName": "Nuevo",
-  "lastName": "Usuario",
-  "email": "admin@solmar.com",
+  "firstName": "Iván",
+  "lastName": "Tapia",
+  "email": "ivan.tapia@diurvanconsultores.com",
   "password": "P@ssw0rd",
   "birthDate" : "2025-12-01",
-  "nationality" : "Perú",
+  "nationality" : "Mexico",
   "gender" : "Masculino",
   "phoneNumber" : "+51955478664",
-  "registrationType": "membership",
-  "deviceToken": "your_device_token_here_for_register"
+  "registrationType": "direct",
+  "deviceToken": "1234567890abcdef"
 }
 
 ###
@@ -83,6 +82,14 @@ Content-Type: application/json
   "password": "P@ssw0rd",
   "deviceToken": "your_device_token_here_for_login"
 }
+
+
+###
+# @name login
+# Refresh token caducado
+POST {{baseUrl}}/api/auth-service/refresh-token
+Content-Type: application/json
+Authorization: {{cliente_jwt}}
 
 ###
 # RESPONSE EXAMPLE:
@@ -292,6 +299,7 @@ Authorization: {{admin_jwt}}
 # Preferences Controller
 # Requiere un token JWT para la mayoría de los endpoints.
 # =====================================================
+###
 
 # @name getMyPreferences
 # Obtiene las preferencias del usuario actual.

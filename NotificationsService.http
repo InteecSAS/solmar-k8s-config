@@ -2,48 +2,54 @@
 # @baseUrl = https://apiqa.solmar.com
 @admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiICIsInN1YiI6IjM2ZmQwMDdiLTFkNGUtNDFlNS1iMDgyLWE5YzdjZjQ2MzE4OCIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiWjUzTDVZTlBEVk4yT1VYNUxGM1JQVjRLR1dETTQ1NVkiLCJyb2xlIjoiQWRtaW5pc3RyYWRvclNpc3RlbWEiLCJwZXJtaXNzaW9uIjpbInJlc2VydmFzOmxlZXIiLCJyZXNlcnZhczpjcmVhciIsInJlc2VydmFzOmNhbmNlbGFyIiwiZmluYW56YXM6dmVyX3JlcG9ydGVzIiwiYWRtaW46Z2VzdGlvbmFyX3VzdWFyaW9zIiwiYWRtaW46Z2VzdGlvbmFyX3JvbGVzIl0sIm5iZiI6MTc2Njc5MjM3MywiZXhwIjoxNzY3Mzk3MTczLCJpYXQiOjE3NjY3OTIzNzMsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.7US_nLbxUMsXIm8qYGhn78fJaLPLzNv-vMXhsLtNaO76OISxO0NgzwJmjH5JMcClJ10MxIGRLmK7sShzPz8deA
 @cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiMzZmZDAwN2ItMWQ0ZS00MWU1LWIwODItYTljN2NmNDYzMTg4IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJaNTNMNVlOUERWTjJPVVg1TEYzUlBWNEtHV0RNNDU1WSIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsicmVzZXJ2YXM6bGVlciIsInJlc2VydmFzOmNyZWFyIiwicmVzZXJ2YXM6Y2FuY2VsYXIiLCJmaW5hbnphczp2ZXJfcmVwb3J0ZXMiLCJhZG1pbjpnZXN0aW9uYXJfdXN1YXJpb3MiLCJhZG1pbjpnZXN0aW9uYXJfcm9sZXMiXSwibmJmIjoxNzY2NDg2ODU4LCJleHAiOjE3NjcwOTE2NTgsImlhdCI6MTc2NjQ4Njg1OCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.xX0v1sUOj5NYGRsLmLOi6N0L-SuZ5BvmKnC5RFOEt_g_D_NBTRi3xis3Auco8NA2R9V-cbF3LuRptOs5PcBJDA
-@notificationId = AQUÍ_VA_UN_ID_DE_NOTIFICACION
+@notificationId = 1
+@userId = 36fd007b-1d4e-41e5-b082-a9c7cf463188
 
 ###
 # =====================================================
 # Notifications Controller (/notifications)
 # =====================================================
 
-# @name getMyNotifications
-# Obtiene las notificaciones del usuario autenticado.
-GET {{baseUrl}}/notifications/me
+# @name getCategories
+# Obtiene todas las categorías de notificaciones.
+GET {{baseUrl}}/notifications/categories
 Authorization: {{cliente_jwt}}
 
 ###
 
-# @name getMyUnreadNotifications
-# Obtiene las notificaciones no leídas del usuario.
-GET {{baseUrl}}/notifications/me/unread
+# @name getMyInAppNotifications
+# Obtiene las notificaciones In-App del usuario autenticado.
+GET {{baseUrl}}/notifications/me/in-app
+Authorization: {{cliente_jwt}}
+
+###
+
+# @name getMyInAppNotificationsByCategory
+# Obtiene las notificaciones In-App del usuario, filtradas por categoría.
+GET {{baseUrl}}/notifications/me/in-app?categoryId=1
 Authorization: {{cliente_jwt}}
 
 ###
 
 # @name markAsRead
-# Marca una notificación como leída.
+# Marca una notificación In-App como leída.
 POST {{baseUrl}}/notifications/{{notificationId}}/mark-as-read
 Authorization: {{cliente_jwt}}
 
 ###
 
-# @name sendNotification
-# Envía una notificación a un usuario.
-# Roles permitidos: AdministradorSistema, GerenteHotel
-POST {{baseUrl}}/notifications/send
+# @name createInAppNotification
+# Crea una notificación In-App para un usuario.
+# Roles permitidos: AdministradorSistema
+POST {{baseUrl}}/notifications/in-app
 Content-Type: application/json
 Authorization: {{admin_jwt}}
 
 {
-  "usuarioId": "AQUÍ_VA_EL_USER_ID_DESTINO",
-  "mensaje": "Tu reserva ha sido confirmada.",
-  "tipo": "ConfirmacionReserva"
+  "usuarioId": "{{userId}}",
+  "mensaje": "Este es un mensaje de prueba desde el nuevo endpoint.",
+  "notificationCategoryId": 1
 }
-
-
 
 # Archivo de peticiones para NotificationsService a través del YARP Proxy
 # =================================================================
@@ -94,7 +100,7 @@ Authorization: {{admin_jwt}}
 
 {
   "userId": "AQUÍ_VA_EL_USER_ID_DESTINO",
-  "category": "Transaccional",
+  "notificationCategoryId": 1,
   "type": "reservation_confirmed",
   "title": "Tu reserva ha sido confirmada!",
   "description": "Hemos confirmado tu reserva para el hotel X en la fecha Y.",
@@ -138,5 +144,23 @@ POST {{baseUrl}}/notifications/push/{{pushNotificationId}}/mark-as-pinned?pin=fa
 Authorization: {{cliente_jwt}}
 
 ###
+# =====================================================
+# Notification Dispatcher
+# =====================================================
 
+# @name dispatchNotification
+# Dispara un evento para que el sistema de notificaciones lo procese.
+# Este es el nuevo endpoint central.
+POST {{baseUrl}}/notifications/dispatch
+Content-Type: application/json
 
+{
+  "eventName": "PasswordResetCodeRequested",
+  "payload": {
+    "UserId": "36fd007b-1d4e-41e5-b082-a9c7cf463188",
+    "UserEmail": "diurvan1@gmail.com",
+    "UserName": "Diurvan"
+  }
+}
+
+###

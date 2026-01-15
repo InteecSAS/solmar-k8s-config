@@ -1,5 +1,5 @@
-### @baseUrl = https://apiqa.solmar.com
-@baseUrl = http://localhost:30577
+@baseUrl = https://apiqa.solmar.com
+### @baseUrl = http://localhost:30577
 @admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJOdWV2byBVc3VhcmlvIiwic3ViIjoiY2Q2YjNhNjQtYTk1OC00NTMxLTkwMDgtYzMzMDI5N2M1OTZlIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJQQkRRQ09CVEdRNk40T05OSktJUjJVSEpCSE1SQzRPRiIsInJvbGUiOiJDbGllbnRlIiwibmJmIjoxNzY3NjM5NzU1LCJleHAiOjE3NjgyNDQ1NTUsImlhdCI6MTc2NzYzOTc1NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.xLS_xUqUWNGIIGEQvBH8SsiFKxoKANHllCsm7F8w2aQ9JWJUgZuDJcZrvlHqplswIyUjb9jDhON5NNOByxxOUw
 ###
 # =====================================================
@@ -85,13 +85,13 @@ Accept: application/json
 
 # @name getAllIndicadores
 # Obtiene todos los indicadores de todos los hoteles.
-GET {{baseUrl}}/reservations/indicadores
+GET {{baseUrl}}/reservations/indicadores/2025
 
 ###
 
 # @name getAllIndicadoresPeriod
 # Obtiene los indicadores para un hotel y mes específicos.
-GET {{baseUrl}}/reservations/indicators/HGSLE/01
+GET {{baseUrl}}/reservations/indicators/HGSLE/01/2025
 
 ###
 
