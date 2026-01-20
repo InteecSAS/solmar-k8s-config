@@ -1,28 +1,66 @@
 @baseUrl = https://apiqa.solmar.com
 ### @baseUrl = http://localhost:30577
-@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJOdWV2byBVc3VhcmlvIiwic3ViIjoiY2Q2YjNhNjQtYTk1OC00NTMxLTkwMDgtYzMzMDI5N2M1OTZlIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJQQkRRQ09CVEdRNk40T05OSktJUjJVSEpCSE1SQzRPRiIsInJvbGUiOiJDbGllbnRlIiwibmJmIjoxNzY3NjM5NzU1LCJleHAiOjE3NjgyNDQ1NTUsImlhdCI6MTc2NzYzOTc1NSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.xLS_xUqUWNGIIGEQvBH8SsiFKxoKANHllCsm7F8w2aQ9JWJUgZuDJcZrvlHqplswIyUjb9jDhON5NNOByxxOUw
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI3YzI3Y2U2LTJhNmItNGFjYS1hMjg0LTg2YTM2YjUxYjk1MiIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiSlFHQjNNVFYySkFPRjVRSkxCTkRZSzRGNERMSVVJREEiLCJuYmYiOjE3Njg1NzU2MTUsImV4cCI6MTc2OTE4MDQxNSwiaWF0IjoxNzY4NTc1NjE1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.Os7Lgu46WJMzBZQhTmLDNMtd5oBYbhoFD3xvMyihM_bHFsl3I89cZmd4E6l-MYswfurvcc9EB2kHllt1EIyN-g
 ###
 # =====================================================
-# Reservations (/reservations)
+# Reservations (/api/reservations)
 # =====================================================
 
-### Get Reservation By Id
-GET {{baseUrl}}/reservations/reservation/10
+### Get Reservation Detail By Id
+GET {{baseUrl}}/api/reservations/reservation/12
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+### Get Reservation By Reservation Number
+GET {{baseUrl}}/api/reservations/reservation/lookup/RSV-9MD52H
 Authorization: {{admin_jwt}}
 Accept: application/json
 
 ### Change Reservation Status
-POST {{baseUrl}}/reservations/change-status
+POST {{baseUrl}}/api/reservations/change-status
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
   "reservationId": 10,
   "reservationNumber": "RSV-RZMCUQ",
-  "reservationStatus": "Confirmed"
+  "reservationStatus": "Confirmed",
+  "personsToConfirm" : 2
 }
 
+### Update Reservation
+PUT {{baseUrl}}/api/reservations/12
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "reservationId": 12,
+  "details": {
+    "serviceDate": "2026-01-03",
+    "availabilityId": 5,
+    "capacity": 6,
+    "notes": "Cambiar a mesa interior, por favor",
+    "cleaningTime": "00:15:00"
+  }
+}
+
+### Update Reservation Details (PATCH)
+PATCH {{baseUrl}}/api/reservations/6/details
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "serviceDate": "2026-01-04",
+  "startTime": "18:30",
+  "endTime": "20:00",
+  "capacity": 3,
+  "notes": "Actualización de fecha y hora, 3 personas."
+}
+
+
 ### Get Hotel Reservation By ReservationNumber
-GET {{baseUrl}}/reservations/hotel/1280474
+GET {{baseUrl}}/api/reservations/hotel/1280474
 ### Get Hotel Reservation By Email and ReservationNumber diurvan1@gmail.com
 GET {{baseUrl}}/reservations/verify/diurvan1@gmail.com/1280474
 Authorization: {{admin_jwt}}
@@ -35,8 +73,8 @@ Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
   "consumptionCenterId": 2,
-  "startDate": "2026-01-02",
-  "endDate": "2026-01-02"
+  "startDate": "2026-01-07",
+  "endDate": "2026-01-07"
 }
 
 ### Get Reservations By Person And DateRange
@@ -105,34 +143,40 @@ GET {{baseUrl}}/reservations/indicadores/H1
 # =====================================================
 
 ### Get All Consumption Centers
-GET {{baseUrl}}/reservations/consumptioncenter
+GET {{baseUrl}}/api/reservations/consumptioncenter
 
 ### Get Consumption Center Detail By Id
-GET {{baseUrl}}/reservations/consumptioncenter/detail/1
+GET {{baseUrl}}/api/reservations/consumptioncenter/detail/2
 
 ### Get Consumption Centers Types
-GET {{baseUrl}}/reservations/consumptioncenter/types
+GET {{baseUrl}}/api/reservations/consumptioncenter/types
 Authorization: {{admin_jwt}}
 
 ### Get Consumption Centers Groups
-GET {{baseUrl}}/reservations/consumptioncenter/groups
+GET {{baseUrl}}/api/reservations/consumptioncenter/groups
 Authorization: {{admin_jwt}}
 
 ### Get Consumption Center By Group External Id
-GET {{baseUrl}}/reservations/consumptioncenter/group/6
+GET {{baseUrl}}/api/reservations/consumptioncenter/group/6
 Accept: application/json
 
 ### Get Consumption Center By Type Id
-GET {{baseUrl}}/reservations/consumptioncenter/type/1
+GET {{baseUrl}}/api/api/reservations/consumptioncenter/type/1
 Accept: application/json
 
 ### Get Consumption Center Inventories
-GET {{baseUrl}}/reservations/consumptioncenter/2/inventories
+GET {{baseUrl}}/api/reservations/consumptioncenter/2/inventories
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+### Get Consumption Center By Hotel Group And Type
+### GroupId and TypeId
+GET {{baseUrl}}/api/reservations/consumptioncenter/grouptype/1/1
 Authorization: {{admin_jwt}}
 Accept: application/json
 
 ### Create Consumption Center Type
-POST {{baseUrl}}/reservations/consumptioncenter/types
+POST {{baseUrl}}/api/reservations/consumptioncenter/types
 Content-Type: application/json
 {
   "name": "Restaurant",
@@ -175,7 +219,7 @@ Content-Type: application/json
 }
 
 ### Create Consumption Center Group
-POST {{baseUrl}}/reservations/consumptioncenter/groups
+POST {{baseUrl}}/api/reservations/consumptioncenter/groups
 Content-Type: application/json
 {
   "externalId": 1,
@@ -183,42 +227,8 @@ Content-Type: application/json
   "consumptionCenterId": 1
 }
 
-### Create Consumption Center Inventory
-POST {{baseUrl}}/reservations/consumptioncenter/inventory
-Authorization: {{admin_jwt}}
-Content-Type: application/json
-{
-  "consumptionCenterId": 2, 
-  "name": "Mesa Cinco",
-  "capacity": 6,
-  "minCapacity": 3,
-  "maxCapacity": 6,
-  "startTime": "12:00",
-  "endTime": "21:00",
-  "price": 0,
-  "imagesUrls": ["https://url.com/mesa1.jpg"],
-  "inventoryAttribute": {
-    "name": "Mesa Interior",
-    "description": "Mesa en area interior del restaurante",
-    "capacity": 6,
-    "specialInformation": "Cerca de la ventana",
-    "attribute": {
-      "name": "Interior",
-      "usageCount": 0,
-      "tags": ["Interior","Window"],
-      "attributeType": {
-        "name": "Location"
-      }
-    }
-  },
-  "inventoryType": {
-    "name": "Table",
-    "description": "Table Inventory Type"
-  }
-}
-
 ### Create Consumption Center Offer
-POST {{baseUrl}}/reservations/consumptioncenter/offer
+POST {{baseUrl}}/api/reservations/consumptioncenter/offer
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
@@ -284,6 +294,54 @@ Content-Type: application/json
   ]
 }
 
+###
+# =====================================================
+# Inventories
+# =====================================================
+
+### Get Inventory Types
+GET {{baseUrl}}/api/reservations/inventory/types
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+### Get Inventory Attributes
+GET {{baseUrl}}/api/reservations/inventory/attributes
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+### Create Consumption Center Inventory
+POST {{baseUrl}}/api/reservations/consumptioncenter/inventory
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "consumptionCenterId": 2, 
+  "name": "Mesa Seis",
+  "capacity": 6,
+  "minCapacity": 3,
+  "maxCapacity": 6,
+  "startTime": "12:00",
+  "endTime": "21:00",
+  "price": 0,
+  "imagesUrls": ["https://url.com/mesa1.jpg"],
+  "inventoryAttribute": {
+    "name": "Mesa Interior",
+    "description": "Mesa en area interior del restaurante",
+    "capacity": 6,
+    "specialInformation": "Cerca de la ventana",
+    "attribute": {
+      "name": "Interior",
+      "usageCount": 0,
+      "tags": ["Interior","Window"],
+      "attributeType": {
+        "name": "Location"
+      }
+    }
+  },
+  "inventoryType": {
+    "name": "Table",
+    "description": "Table Inventory Type"
+  }
+}
 
 ###
 # =====================================================
@@ -291,7 +349,7 @@ Content-Type: application/json
 # =====================================================
 
 ### Get Offer By Id
-GET {{baseUrl}}/reservations/consumptioncenter/offer/1
+GET {{baseUrl}}/api/reservations/consumptioncenter/offer/1
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -325,7 +383,7 @@ Content-Type: application/json
 }
 
 ### Create Consumption Center OfferItem
-POST {{baseUrl}}/reservations/consumptioncenter/offer/items
+POST {{baseUrl}}/api/reservations/consumptioncenter/offer/items
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 
@@ -369,44 +427,28 @@ Content-Type: application/json
     }
   ]
 }
+###
+# =====================================================
+# Inventory Types
+GET {{baseUrl}}/api/reservations/inventory/types
+Authorization: {{admin_jwt}}
+Accept: application/json
 
 ###
 # =====================================================
-# Reservation Media
+# Consumption Centers
+# =====================================================
+GET {{baseUrl}}/api/reservations/consumptioncenter/
+Authorization: {{admin_jwt}}
+Accept: application/json
+
+
+###
+# =====================================================
+# Reservation Media (/api/reservationdetails/{id}/reservationmedia)
 # =====================================================
 
-### Upload Reservation Media (with Base64)
-POST {{baseUrl}}/api/reservationdetails/1/reservationmedia
-Authorization: {{admin_jwt}}
-Content-Type: application/json
+### Upload Reservation Media
+curl -X POST "http://localhost:30577/api/reservations/reservationmedia/1" -F "File=@C:\Users\diurv\Downloads\Logo1.jpg" -F "MediaType=Image" -F "Description=Logo de la empresa" -w "\nHTTP Status: %{http_code}\n"
 
-{
-  "base64File": "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
-  "mediaType": "image",
-  "description": "Test image for reservation detail 1 (Base64)"
-}
-
-### Get Reservation Media By Id
-GET {{baseUrl}}/api/reservationdetails/1/reservationmedia/1
-Authorization: {{admin_jwt}}
-Accept: application/json
-
-### Get All Reservation Media For Reservation Detail
-GET {{baseUrl}}/api/reservationdetails/1/reservationmedia
-Authorization: {{admin_jwt}}
-Accept: application/json
-
-### Delete Reservation Media
-DELETE {{baseUrl}}/api/reservationdetails/1/reservationmedia/1
-Authorization: {{admin_jwt}}
-
-# Archivo de peticiones para ReservationService a través del YARP Proxy
-# =================================================================
-# Todas las peticiones apuntan al YARP Proxy.
-#
-# Estructura de la URL:
-# {{baseUrl}}/reservation/{endpoint}
-#
-# Ejemplo:
-# {{baseUrl}}/reservation/indicadores -> (YARP) -> ReservationService/indicadores
-# =================================================================
+curl -X POST "http://localhost:30577/api/media/upload" -F "File=@C:\Users\diurv\Downloads\Logo1.jpg" -F "MediaType=Image" -F "resourceCatalog=ConsumptionCenter" -F "resourceCatalogId=1" -F "Description=Logo de la empresa" -w "\nHTTP Status: %{http_code}\n"

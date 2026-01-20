@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:30577
-@gerente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiQWRtaW4gU29sbWFyIiwic3ViIjoiMzZmZDAwN2ItMWQ0ZS00MWU1LWIwODItYTljN2NmNDYzMTg4IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJaNTNMNVlOUERWTjJPVVg1TEYzUlBWNEtHV0RNNDU1WSIsInJvbGUiOiJBZG1pbmlzdHJhZG9yU2lzdGVtYSIsInBlcm1pc3Npb24iOlsicmVzZXJ2YXM6bGVlciIsInJlc2VydmFzOmNyZWFyIiwicmVzZXJ2YXM6Y2FuY2VsYXIiLCJmaW5hbnphczp2ZXJfcmVwb3J0ZXMiLCJhZG1pbjpnZXN0aW9uYXJfdXN1YXJpb3MiLCJhZG1pbjpnZXN0aW9uYXJfcm9sZXMiXSwibmJmIjoxNzY2NDg2ODU4LCJleHAiOjE3NjcwOTE2NTgsImlhdCI6MTc2NjQ4Njg1OCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.xX0v1sUOj5NYGRsLmLOi6N0L-SuZ5BvmKnC5RFOEt_g_D_NBTRi3xis3Auco8NA2R9V-cbF3LuRptOs5PcBJDA
+@gerente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI3YzI3Y2U2LTJhNmItNGFjYS1hMjg0LTg2YTM2YjUxYjk1MiIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiSlFHQjNNVFYySkFPRjVRSkxCTkRZSzRGNERMSVVJREEiLCJuYmYiOjE3Njg5MjIyNDgsImV4cCI6MTc2OTUyNzA0OCwiaWF0IjoxNzY4OTIyMjQ4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.0hP2-7hP7DyGWl51PxrpomFZ6SasCtpSla4seLM4TVBtg4I0JmL2IBljtOqdkcbu7IJg1KUw5BOUl2wu5hECkw
 
 ###
 # =====================================================
@@ -10,7 +10,7 @@
 # @name getVentasReport
 # Obtiene el reporte de ventas.
 # Roles permitidos: GerenteHotel, AdministradorSistema
-GET {{baseUrl}}/finanzas/api/reportes/ventas
+GET {{baseUrl}}/api/finanzas/api/reportes/ventas
 Authorization: {{gerente_jwt}}
 
 ###
@@ -18,5 +18,5 @@ Authorization: {{gerente_jwt}}
 # @name getOcupacionReport
 # Obtiene el reporte de ocupación.
 # Roles permitidos: GerenteHotel, AdministradorSistema, Recepcionista
-GET {{baseUrl}}/finanzas/api/reportes/ocupacion
+GET {{baseUrl}}/api/finanzas/api/reportes/ocupacion
 Authorization: {{gerente_jwt}}
