@@ -34,25 +34,25 @@ resources:
 images:
 - name: diurvan/solmar-backend-authservice
   newName: diurvan/solmar-backend-authservice
-  newTag: a89203a
+  newTag: bca6b22
 - name: diurvan/solmar-backend-catalogservice
   newName: diurvan/solmar-backend-catalogservice
-  newTag: a89203a
+  newTag: bca6b22
 - name: diurvan/solmar-backend-finanzasservice
   newName: diurvan/solmar-backend-finanzasservice
-  newTag: a89203a
-- name: diurvan/solmar-backend-membershipsservice
-  newName: diurvan/solmar-backend-membershipsservice
-  newTag: a89203a
-- name: diurvan/solmar-backend-notificationsservice
-  newName: diurvan/solmar-backend-notificationsservice
-  newTag: a89203a
-- name: diurvan/solmar-backend-reservationsservice
-  newName: diurvan/solmar-backend-reservationsservice
-  newTag: a89203a
-- name: diurvan/solmar-backend-yarpproxy
-  newName: diurvan/solmar-backend-yarpproxy
-  newTag: a89203a
+  newTag: bca6b22
 - name: diurvan/solmar-backend-mediaservice
   newName: diurvan/solmar-backend-mediaservice
-  newTag: a89203a
+  newTag: bca6b22
+- name: diurvan/solmar-backend-membershipsservice
+  newName: diurvan/solmar-backend-membershipsservice
+  newTag: bca6b22
+- name: diurvan/solmar-backend-notificationsservice
+  newName: diurvan/solmar-backend-notificationsservice
+  newTag: bca6b22
+- name: diurvan/solmar-backend-reservationsservice
+  newName: diurvan/solmar-backend-reservationsservice
+  newTag: bca6b22
+- name: diurvan/solmar-backend-yarpproxy
+  newName: diurvan/solmar-backend-yarpproxy
+  newTag: bca6b22
