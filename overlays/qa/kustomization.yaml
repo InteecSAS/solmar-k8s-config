@@ -53,3 +53,6 @@ images:
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
   newTag: 953fc08
+- name: diurvan/solmar-backend-mediaservice
+  newName: diurvan/solmar-backend-mediaservice
+  newTag: 953fc08

@@ -50,3 +50,6 @@ images:
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
   newTag: ef3bba2
+- name: diurvan/solmar-backend-mediaservice
+  newName: diurvan/solmar-backend-mediaservice
+  newTag: ef3bba2
