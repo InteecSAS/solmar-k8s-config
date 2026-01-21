@@ -255,21 +255,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mediaservice
+  name: media-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mediaservice
+      app: media-service
   template:
     metadata:
       labels:
-        app: mediaservice
+        app: media-service
     spec:
       imagePullSecrets:
       - name: regcred
       containers:
-      - name: mediaservice
+      - name: media-service
         image: diurvan/solmar-backend-mediaservice # Tag will be added by Kustomize
         ports:
         - containerPort: 8080
@@ -278,10 +278,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mediaservice
+  name: media-service
 spec:
   selector:
-    app: mediaservice
+    app: media-service
   ports:
   - port: 8080
     targetPort: 8080
