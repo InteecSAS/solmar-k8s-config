@@ -55,3 +55,10 @@ metadata:
   name: mediaservice
 spec:
   replicas: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localizationservice
+spec:
+  replicas: 2

@@ -285,3 +285,37 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: localizationservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: localizationservice
+  template:
+    metadata:
+      labels:
+        app: localizationservice
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: localizationservice
+        image: diurvan/solmar-backend-localizationservice # Tag will be added by Kustomize
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: localizationservice
+spec:
+  selector:
+    app: localizationservice
+  ports:
+  - port: 8080
+    targetPort: 8080

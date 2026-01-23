@@ -56,3 +56,6 @@ images:
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
   newTag: cb74353
+- name: diurvan/solmar-backend-localizationservice
+  newName: diurvan/solmar-backend-localizationservice
+  newTag: cb74353

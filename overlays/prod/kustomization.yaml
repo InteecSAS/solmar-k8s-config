@@ -53,3 +53,6 @@ images:
 - name: diurvan/solmar-backend-mediaservice
   newName: diurvan/solmar-backend-mediaservice
   newTag: ef3bba2
+- name: diurvan/solmar-backend-localizationservice
+  newName: diurvan/solmar-backend-localizationservice
+  newTag: ef3bba2
