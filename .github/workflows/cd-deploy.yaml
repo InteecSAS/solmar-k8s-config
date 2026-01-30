@@ -34,6 +34,9 @@ jobs:
             exit 1
           }
           
+          echo "(imágenes):"
+          kubectl kustomize overlays/qa | Select-String "image:"
+
           echo "Desplegando a QA usando overlays/qa"
           kubectl apply -k overlays/qa --validate=false
 
