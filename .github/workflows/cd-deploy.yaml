@@ -40,6 +40,8 @@ jobs:
           echo "Desplegando a QA usando overlays/qa"
           kubectl apply -k overlays/qa --validate=false
 
+          kubectl get deployments -o name | ForEach-Object { kubectl rollout restart $_ }
+
   deploy-prod:
     if: github.ref == 'refs/heads/main'
     runs-on: self-hosted-prod # <-- USA EL RUNNER DE PRODUCCIÓN
@@ -66,5 +68,10 @@ jobs:
             exit 1
           }
           
+          echo "(imágenes):"
+          kubectl kustomize overlays/qa | Select-String "image:"
+
           echo "Desplegando a Producción usando overlays/prod"
           kubectl apply -k overlays/prod --validate=false
+
+          kubectl get deployments -o name | ForEach-Object { kubectl rollout restart $_ }

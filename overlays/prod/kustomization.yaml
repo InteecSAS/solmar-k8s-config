@@ -43,7 +43,7 @@ images:
   newTag: ef3bba2
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: ef3bba2
+  newTag: latest
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
   newTag: ef3bba2
