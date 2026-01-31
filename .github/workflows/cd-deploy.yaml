@@ -33,12 +33,42 @@ jobs:
             echo "ERROR: No se encontró el archivo de secretos en $sourcePath"
             exit 1
           }
-          
-          echo "(imágenes):"
-          kubectl kustomize overlays/qa | Select-String "image:"
 
-          echo "Desplegando a QA usando overlays/qa"
-          kubectl apply -k overlays/qa --validate=false
+          echo "--- Verificando versiones de kubectl y kustomize ---"
+          kubectl version --client
+          # Intentar obtener la versión de kustomize. Puede que no esté en el PATH directamente.
+          if (Get-Command kustomize -ErrorAction SilentlyContinue) {
+              kustomize version
+          } else {
+              echo "Kustomize no encontrado como binario independiente en el PATH."
+              echo "Intentando con kubectl kustomize --version"
+              kubectl kustomize --version
+          }
+
+          echo "--- Limpiando cualquier posible caché de kustomize (si aplica) ---"
+          # Rutas de caché comunes en Linux/WSL, pero en Windows pueden ser diferentes.
+          # Para Windows, la caché de Kustomize puede estar en %LOCALAPPDATA%\kustomize
+          Remove-Item -Path "$env:USERPROFILE\.kube\cache" -Recurse -Force -ErrorAction SilentlyContinue
+          Remove-Item -Path "$env:USERPROFILE\.kustomize\cache" -Recurse -Force -ErrorAction SilentlyContinue
+          Remove-Item -Path "$env:LOCALAPPDATA\kustomize" -Recurse -Force -ErrorAction SilentlyContinue
+          echo "Cachés de kustomize limpiadas (si existían)."
+
+          echo "--- Contenido de kustomization.yaml en disco (después de copiar secretos) ---"
+          cat overlays/qa/kustomization.yaml
+
+          echo "--- Ejecutando kustomize build para ver el YAML final ---"
+          # Generamos el YAML final en un archivo temporal
+          kubectl kustomize overlays/qa > kustomize-output.yaml
+          
+          echo "--- Contenido del YAML final generado por kustomize ---"
+          cat kustomize-output.yaml
+
+          echo "(imágenes del build):"
+          cat kustomize-output.yaml | Select-String "image:"
+
+          echo "Desplegando a QA usando el archivo YAML generado"
+          # Aplicamos el archivo que acabamos de generar y verificar
+          kubectl apply -f kustomize-output.yaml --validate=false
 
           kubectl get deployments -o name | ForEach-Object { kubectl rollout restart $_ }
 
