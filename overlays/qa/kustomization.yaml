@@ -14,11 +14,12 @@ secretGenerator:
   name: solmar-secrets-qa
 
 # Aplica los patches de imagen y réplicas
-patchesStrategicMerge:
-- replicas.yaml
+patches:
+- path: replicas.yaml
+  target:
+    kind: Deployment
 
 # Aplica el parche de variables de entorno a TODOS los Deployments
-patches:
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/envFrom
@@ -29,6 +30,29 @@ patches:
             name: solmar-secrets-qa
   target:
     kind: Deployment
+
+# Parche específico para notifications-service
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/volumeMounts
+      value:
+        - name: firebase-secret-volume
+          mountPath: "/etc/firebase"
+          readOnly: true
+    - op: add
+      path: /spec/template/spec/volumes
+      value:
+        - name: firebase-secret-volume
+          secret:
+            secretName: firebase-admin-sdk
+    - op: add
+      path: /spec/template/spec/containers/0/env
+      value:
+        - name: Firebase__ServiceAccountKeyPath
+          value: "/etc/firebase/firebase-adminsdk.json"
+  target:
+    kind: Deployment
+    name: notifications-service
 resources:
 - ../../base
 images:

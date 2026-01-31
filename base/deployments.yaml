@@ -158,20 +158,6 @@ spec:
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
-        envFrom:
-        - configMapRef:
-            name: solmar-env-vars
-        env:
-        - name: Firebase__ServiceAccountKeyPath
-          value: "/etc/firebase/firebase-adminsdk.json"
-        volumeMounts:
-        - name: firebase-secret-volume
-          mountPath: "/etc/firebase"
-          readOnly: true
-      volumes:
-      - name: firebase-secret-volume
-        secret:
-          secretName: firebase-admin-sdk
 ---
 apiVersion: v1
 kind: Service
