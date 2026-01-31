@@ -13,12 +13,12 @@ secretGenerator:
   - qa-secrets.env
   name: solmar-secrets-qa
 
-# Aplica los patches de imagen y réplicas
-patches:
-- path: replicas.yaml
-  target:
-    kind: Deployment
+# Aplica el parche de réplicas
+patchesStrategicMerge:
+- replicas.yaml
 
+# Aplica los parches JSON
+patches:
 # Aplica el parche de variables de entorno a TODOS los Deployments
 - patch: |-
     - op: add
