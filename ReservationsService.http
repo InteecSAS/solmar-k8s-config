@@ -1,34 +1,34 @@
-@baseUrl = https://apiqa.solmar.com
-### @baseUrl = http://localhost:30577
-@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI3YzI3Y2U2LTJhNmItNGFjYS1hMjg0LTg2YTM2YjUxYjk1MiIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiSlFHQjNNVFYySkFPRjVRSkxCTkRZSzRGNERMSVVJREEiLCJuYmYiOjE3Njg1NzU2MTUsImV4cCI6MTc2OTE4MDQxNSwiaWF0IjoxNzY4NTc1NjE1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.Os7Lgu46WJMzBZQhTmLDNMtd5oBYbhoFD3xvMyihM_bHFsl3I89cZmd4E6l-MYswfurvcc9EB2kHllt1EIyN-g
+###@baseUrl = https://apiqa.solmar.com
+@baseUrl = http://localhost:30577
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiICIsInN1YiI6IjM2ZmQwMDdiLTFkNGUtNDFlNS1iMDgyLWE5YzdjZjQ2MzE4OCIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiWjUzTDVZTlBEVk4yT1VYNUxGM1JQVjRLR1dETTQ1NVkiLCJyb2xlIjoiQWRtaW5pc3RyYWRvclNpc3RlbWEiLCJwZXJtaXNzaW9uIjpbInJlc2VydmFzOmxlZXIiLCJyZXNlcnZhczpjcmVhciIsInJlc2VydmFzOmNhbmNlbGFyIiwiZmluYW56YXM6dmVyX3JlcG9ydGVzIiwiYWRtaW46Z2VzdGlvbmFyX3VzdWFyaW9zIiwiYWRtaW46Z2VzdGlvbmFyX3JvbGVzIl0sIm5iZiI6MTc3MDIwNzE1OSwiZXhwIjoxNzcwODExOTU5LCJpYXQiOjE3NzAyMDcxNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.n0VGp5OROt1smwkOk6uvcrk443KadpSqvH1BQUCR4QnzCAFZwddPbQ2cbtZDsymVtqx_VPsodjVq1610PnQy8w
 ###
 # =====================================================
 # Reservations (/api/reservations)
 # =====================================================
 
 ### Get Reservation Detail By Id
-GET {{baseUrl}}/api/reservations/reservation/12
+GET {{baseUrl}}/api/reservations/reservation/3
 Authorization: {{admin_jwt}}
 Accept: application/json
 
 ### Get Reservation By Reservation Number
-GET {{baseUrl}}/api/reservations/reservation/lookup/RSV-9MD52H
+GET {{baseUrl}}/api/reservations/reservation/lookup/RSV-3Z23NE
 Authorization: {{admin_jwt}}
 Accept: application/json
 
 ### Change Reservation Status
-POST {{baseUrl}}/api/reservations/change-status
+POST {{baseUrl}}/api/reservations/reservation/change-status
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
-  "reservationId": 10,
-  "reservationNumber": "RSV-RZMCUQ",
+  "reservationId": 2,
+  "reservationNumber": "RSV-SX5QLQ",
   "reservationStatus": "Confirmed",
-  "personsToConfirm" : 2
+  "personsToConfirm" : 1
 }
 
 ### Update Reservation
-PUT {{baseUrl}}/api/reservations/12
+PUT {{baseUrl}}/api/reservations/reservation/12
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
@@ -45,7 +45,7 @@ Accept: application/json
 }
 
 ### Update Reservation Details (PATCH)
-PATCH {{baseUrl}}/api/reservations/6/details
+PATCH {{baseUrl}}/api/reservations/reservation/6/details
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
@@ -55,46 +55,58 @@ Accept: application/json
   "startTime": "18:30",
   "endTime": "20:00",
   "capacity": 3,
-  "notes": "Actualización de fecha y hora, 3 personas."
+  "employeeCode": "EMP123",
+  "notes": "Actualización de fecha y hora, 3 personas.",
+  "reservationDetailPersons": [
+      {
+        "name": "Juan Perez",
+        "age": 39,
+        "personType": "Adulto",
+        "personNumber": 2,
+        "personStatus": "Confirmado"
+      },
+      {
+        "name": "Ana Perez",
+        "age": 12,
+        "personType": "Niño",
+        "personNumber": 2,
+        "personStatus": "Confirmado"
+      }
+    ]
 }
 
 
 ### Get Hotel Reservation By ReservationNumber
-GET {{baseUrl}}/api/reservations/hotel/1280474
+GET {{baseUrl}}/api/reservations/reservation/hotel/1280474
 ### Get Hotel Reservation By Email and ReservationNumber diurvan1@gmail.com
-GET {{baseUrl}}/reservations/verify/diurvan1@gmail.com/1280474
+GET {{baseUrl}}/reservations/reservation/verify/diurvan1@gmail.com/1280474
 Authorization: {{admin_jwt}}
 Accept: application/json
 
 
 ### Get Reservations By Consumption Center And DateRange
-POST {{baseUrl}}/reservations/consumptioncenter/search
+POST {{baseUrl}}/api/reservations/reservation/consumptioncenter/search
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
-  "consumptionCenterId": 2,
-  "startDate": "2026-01-07",
-  "endDate": "2026-01-07"
+  "consumptionCenterId": 3,
+  "startDate": "2026-01-22",
+  "endDate": "2026-01-23"
 }
 
-### Get Reservations By Person And DateRange
-POST {{baseUrl}}/reservations/search/me
+### Get My Reservations By DateRange
+GET {{baseUrl}}/api/reservations/reservation/search/me?startDate=2025-12-01&endDate=2026-12-31
 Authorization: {{admin_jwt}}
-Content-Type: application/json
-{
-  "PersonId": "c2fb26cd-bb43-4237-bb1c-49928c5f261b",
-  "startDate": "2025-12-01",
-  "endDate": "2025-12-31"
-}
+Accept: application/json
 
 ### Create Reservation
-POST {{baseUrl}}/reservations
+POST {{baseUrl}}/api/reservations/reservation
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
+
 {
-  "personId": "c2fb26cd-bb43-4237-bb1c-49928c5f261b",
-  "consumptionCenterId": 2,
+  "consumptionCenterId": 3,
   "details": {
     "serviceDate": "2026-01-02",
     "startTime": "15:00",
@@ -102,16 +114,34 @@ Accept: application/json
     "capacity": 4,
     "notes": "Mesa en la terraza, por favor.",
     "createdBy": "Rick",
-    "availabilityId": 2
+    "availabilityId": 3,
+    "employeeCode": "EMP123",
+    "reservationDetailPersons": [
+      {
+        "name": "Juan Perez",
+        "age": 39,
+        "personType": "Adulto",
+        "personNumber": 2,
+        "personStatus": "Confirmado"
+      },
+      {
+        "name": "Ana Perez",
+        "age": 12,
+        "personType": "Niño",
+        "personNumber": 2,
+        "personStatus": "Confirmado"
+      }
+    ]
   }
 }
 
 ### Search Availability
-POST {{baseUrl}}/reservations/availability
+POST {{baseUrl}}/api/reservations/reservation/availability
 Content-Type: application/json
 Accept: application/json
+
 {
-  "consumptionCenterId": 2,
+  "consumptionCenterId": 3,
   "capacity": 4,
   "reservationDate": "2026-01-02"
 }
@@ -123,19 +153,32 @@ Accept: application/json
 
 # @name getAllIndicadores
 # Obtiene todos los indicadores de todos los hoteles.
-GET {{baseUrl}}/reservations/indicadores/2025
+GET {{baseUrl}}/api/reservations/reservation/indicadores/2025
 
 ###
 
 # @name getAllIndicadoresPeriod
 # Obtiene los indicadores para un hotel y mes específicos.
-GET {{baseUrl}}/reservations/indicators/HGSLE/01/2025
+GET {{baseUrl}}/api/reservations/reservation/indicators/HGSLE/01/2025
 
 ###
 
 # @name getIndicadores
 # Obtiene los indicadores para un hotel específico.
-GET {{baseUrl}}/reservations/indicadores/H1
+GET {{baseUrl}}/reservations/reservation/indicadores/H1
+
+
+###
+# =====================================================
+# Attributes
+# =====================================================
+
+### Get All Offer Attributes
+GET {{baseUrl}}/api/reservations/attributes/offers
+
+
+### Get All Offer Attributes grouped by Type
+GET {{baseUrl}}/api/reservations/attributes/offers/grouped
 
 ###
 # =====================================================
@@ -143,10 +186,15 @@ GET {{baseUrl}}/reservations/indicadores/H1
 # =====================================================
 
 ### Get All Consumption Centers
-GET {{baseUrl}}/api/reservations/consumptioncenter
+#GET {{baseUrl}}/api/reservations/reservation/consumptioncenter
 
 ### Get Consumption Center Detail By Id
-GET {{baseUrl}}/api/reservations/consumptioncenter/detail/2
+#GET {{baseUrl}}/api/reservations/reservation/consumptioncenter/detail/15
+
+### Get Offer By Consumption Center Id
+GET {{baseUrl}}/api/reservations/consumptioncenter/15/offers?attributeIds=20
+Accept-Language: en-US
+
 
 ### Get Consumption Centers Types
 GET {{baseUrl}}/api/reservations/consumptioncenter/types
@@ -161,7 +209,7 @@ GET {{baseUrl}}/api/reservations/consumptioncenter/group/6
 Accept: application/json
 
 ### Get Consumption Center By Type Id
-GET {{baseUrl}}/api/api/reservations/consumptioncenter/type/1
+GET {{baseUrl}}/api/reservations/consumptioncenter/type/1
 Accept: application/json
 
 ### Get Consumption Center Inventories
@@ -171,51 +219,98 @@ Accept: application/json
 
 ### Get Consumption Center By Hotel Group And Type
 ### GroupId and TypeId
-GET {{baseUrl}}/api/reservations/consumptioncenter/grouptype/1/1
+GET {{baseUrl}}/api/reservations/consumptioncenter/grouptype/1
+Authorization: {{admin_jwt}}
+Accept-Language: en-US
+Accept: application/json
+
+
+### Get Consumption Center By Hotel Group
+### GroupId
+GET {{baseUrl}}/api/reservations/consumptioncenter/bygroup/1
+Authorization: {{admin_jwt}}
+Accept-Language: en-US
+Accept: application/json
+
+### Get Consumption Center By Hotel Type
+### TypeId
+GET {{baseUrl}}/api/reservations/consumptioncenter/bytype/2
+Authorization: {{admin_jwt}}
+Accept-Language: en-US
+Accept: application/json
+
+
+
+
+### Get Consumption Center Attributes
+GET {{baseUrl}}/api/reservations/consumptioncenter/15/attributes
+Authorization: {{admin_jwt}}
+Accept-Language: en-US
+Accept: application/json
+
+### Add Attributes to Consumption Center
+POST {{baseUrl}}/api/reservations/consumptioncenter/15/attributes
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+[
+  {
+    "attributeId": 1,
+    "isKeyAttribute": true
+  },
+  {
+    "attributeId": 2,
+    "isKeyAttribute": false
+  }
+]
+
+### Remove Attribute from Consumption Center
+DELETE {{baseUrl}}/api/reservations/consumptioncenter/1/attributes/1
 Authorization: {{admin_jwt}}
 Accept: application/json
+
+### Get CC By Group And Type
+# POST {{baseUrl}}/reservations/reservation/consumptioncenter/search/group/type
+# Content-Type: application/json
+# {
+#   "groupId": 6,
+#   "typeId": 2
+# }
 
 ### Create Consumption Center Type
 POST {{baseUrl}}/api/reservations/consumptioncenter/types
 Content-Type: application/json
 {
   "name": "Restaurant",
-  "description": "Restaurant type"
+  "description": "Operational unit dedicated to offering curated restaurants, scheduled within defined dates, times, and capacity."
 }
 
 ### Create Consumption Center
-POST {{baseUrl}}/reservations/consumptioncenter
+POST {{baseUrl}}/api/reservations/consumptioncenter
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
-  "name": "Bacari",
-  "email": "bacari@solmar.com",
-  "phoneNumber": "+52 6241234567",
-  "latitude": 22.876556,
-  "longitude": -109.9035334,
-  "description": "Italian Restaurant",
-  "imagesUrls": [
-    "https://url.com/bacari1.jpg",
-    "https://url.com/bacari2.jpg"
-  ],
-  "capacity": 180,
-  "startTime": "12:00",
-  "endTime": "22:00",
-  "startDate": "2025-01-01",
-  "endDate": "2026-12-31",
-  "weekDays": "Thu,Fri,Sat,Sun",
-  "consumptionCenterTypeId": 1,
-  "consumptionCenterGroup": {
-    "externalId": 6,
-    "externalName": "Grand Solmar Pacific Dunes"
-  },
-  "attribute": {
-    "name": "Cuisine",
-    "tags": ["Italian","Seafood","Pasta"],
-    "attributeType":{
-      "name": "Cuisine"
+    "name": "Bacari",
+    "capacity": "800",
+    "email": "ivan.tapia@inteec.la",
+    "phoneNumber": "6241234567",
+    "startTime": "12:00",
+    "endTime": "22:00",
+    "startDate": "2026-01-21",
+    "endDate": "2027-01-21",
+    "weekDays": "Mon,Tue,Wed,Thu,Fri",
+    "description": "Restaurant Description",
+    "latitude": 22.87869,
+    "longitude": -109.91299,
+    "consumptionCenterGroupId": 6,
+    "consumptionCenterTypeId": 2,
+    "attribute": {
+        "name": "Cuisine",
+        "tags": [
+            "Italian",
+            "Seafood",
+            "Pasta"
+        ]
     }
-  }
 }
 
 ### Create Consumption Center Group
@@ -223,73 +318,31 @@ POST {{baseUrl}}/api/reservations/consumptioncenter/groups
 Content-Type: application/json
 {
   "externalId": 1,
-  "externalName": "Solmar Hotels & Resorts",
-  "consumptionCenterId": 1
+  "externalName": "Solmar Beach Club"
 }
 
 ### Create Consumption Center Offer
 POST {{baseUrl}}/api/reservations/consumptioncenter/offer
 Authorization: {{admin_jwt}}
 Content-Type: application/json
+
 {
-  "name": "Happy Hour 2x1 Bebidas",
-  "description": "Promoción válida en horario vespertino",
+  "name": "Sample Offer Name",
+  "description": "This is a sample offer description.",
   "isActive": true,
-  "startTime": "16:00:00",
-  "endTime": "19:00:00",
-  "startDate": "2025-01-01",
-  "endDate": "2025-12-31",
-  "weekDays": "Fri,Sat",
-  "consumptionCenterId": 1,
+  "startTime": "10:00:00",
+  "endTime": "22:00:00",
+  "startDate": "2026-01-28T00:00:00",
+  "endDate": "2026-12-31T00:00:00",
+  "weekDays": "Lunes,Martes,Miércoles,Jueves,Viernes",
+  "consumptionCenterId": 3,
   "offerItems": [
     {
-      "name": "Cerveza Nacional",
-      "description": "Cerveza clara u oscura",
-      "price": 80.00,
-      "cost": 35.00,
-      "specialInformation": "Aplica solo marcas seleccionadas",
-      "imagesUrls": [
-        "https://cdn.solmar.com/offers/beer1.jpg",
-        "https://cdn.solmar.com/offers/beer2.jpg"
-      ],
-      "items": [
-        {
-          "name": "Cerveza Corona",
-          "description": "Botella 355 ml",
-          "quantity": 2,
-          "unitOfMeasure": "Bottle",
-          "specifications": "Servida fría",
-          "keyItem": true
-        }
-      ]
-    },
-    {
-      "name": "Margarita Clásica",
-      "description": "Margarita tradicional con limón",
-      "price": 150.00,
-      "cost": 60.00,
-      "specialInformation": "No aplica sabores premium",
-      "imagesUrls": [
-        "https://cdn.solmar.com/offers/margarita.jpg"
-      ],
-      "items": [
-        {
-          "name": "Tequila Blanco",
-          "description": "Tequila 100% agave",
-          "quantity": 60,
-          "unitOfMeasure": "ml",
-          "specifications": "Marca estándar",
-          "keyItem": true
-        },
-        {
-          "name": "Jugo de Limón",
-          "description": "Jugo natural",
-          "quantity": 30,
-          "unitOfMeasure": "ml",
-          "specifications": "Recién exprimido",
-          "keyItem": false
-        }
-      ]
+      "name": "Offer Item 1",
+      "description": "Description for offer item 1",
+      "price": 100.50,
+      "cost": 50.25,
+      "specialInformation": "Special info for item 1"
     }
   ]
 }
@@ -304,43 +357,51 @@ GET {{baseUrl}}/api/reservations/inventory/types
 Authorization: {{admin_jwt}}
 Accept: application/json
 
+### Create Inventory Type
+POST {{baseUrl}}/api/reservations/inventory/type
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "name": "Table",
+  "description": "Table available for seating and reservations."
+}
+
 ### Get Inventory Attributes
 GET {{baseUrl}}/api/reservations/inventory/attributes
 Authorization: {{admin_jwt}}
 Accept: application/json
+
+### Create Inventory Attributes
+POST {{baseUrl}}/api/reservations/inventory/attribute
+Authorization: {{admin_jwt}}
+Content-Type: application/json
+{
+  "name": "Mesa Interior",
+  "description": "Mesa en area interior del restaurante",
+  "capacity": 6,
+  "specialInformation": "Cerca de la ventana",
+  "attribute": {
+    "name": "Interior",
+    "tags": ["Interior","Window"],
+    "attributeType": {
+      "name": "Location"
+    }
+  }
+}
 
 ### Create Consumption Center Inventory
 POST {{baseUrl}}/api/reservations/consumptioncenter/inventory
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 {
-  "consumptionCenterId": 2, 
-  "name": "Mesa Seis",
-  "capacity": 6,
-  "minCapacity": 3,
-  "maxCapacity": 6,
-  "startTime": "12:00",
-  "endTime": "21:00",
-  "price": 0,
-  "imagesUrls": ["https://url.com/mesa1.jpg"],
-  "inventoryAttribute": {
-    "name": "Mesa Interior",
-    "description": "Mesa en area interior del restaurante",
-    "capacity": 6,
-    "specialInformation": "Cerca de la ventana",
-    "attribute": {
-      "name": "Interior",
-      "usageCount": 0,
-      "tags": ["Interior","Window"],
-      "attributeType": {
-        "name": "Location"
-      }
-    }
-  },
-  "inventoryType": {
-    "name": "Table",
-    "description": "Table Inventory Type"
-  }
+  "name": "A-E4",
+  "minCapacity": 2,
+  "maxCapacity": 8,
+  "startTime": "7:00",
+  "endTime": "22:00",
+  "price": 50,
+  "inventoryTypeId": 1,
+  "consumptionCenterId": 3
 }
 
 ###
@@ -349,7 +410,7 @@ Content-Type: application/json
 # =====================================================
 
 ### Get Offer By Id
-GET {{baseUrl}}/api/reservations/consumptioncenter/offer/1
+GET {{baseUrl}}/api/reservations/consumptioncenter/3/offers
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -357,6 +418,7 @@ Accept: application/json
 POST {{baseUrl}}/reservations/consumptioncenter/offers
 Authorization: {{admin_jwt}}
 Content-Type: application/json
+
 {
   "startDate": "2025-12-01",
   "endDate": "2025-12-31"

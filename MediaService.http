@@ -5,11 +5,12 @@
 # In a local development environment, this might be: http://localhost:5000 (or whatever port it runs on)
 # When deployed behind YARP, it would be: http://localhost:5000/api/media (or the YARP public endpoint)
 # For testing directly, you might need to adjust the port.
-@mediaService_host = http://localhost:30577
+# @baseUrl = http://localhost:30577
+@baseUrl = https://apiqa.solmar.com
 
 ### Upload a new media file
 # @name UploadMedia
-POST {{mediaService_host}}/api/media/upload
+POST {{baseUrl}}/api/media/upload
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
@@ -33,12 +34,20 @@ Content-Disposition: form-data; name="resourceCatalogId"
 
 ### Get media by ID
 # @name GetMediaById
-GET {{mediaService_host}}/api/media/1
+GET {{baseUrl}}/api/media/1
 
 ### Get all media for a specific resource
 # @name GetAllMediaForResource
-GET {{mediaService_host}}/api/media/resource/Reservation/1
+GET {{baseUrl}}/api/media/resource/Reservation/1
 
 ### Delete media by ID
 # @name DeleteMedia
-DELETE {{mediaService_host}}/api/media/1
+DELETE {{baseUrl}}/api/media/1
+
+
+
+### Para Medias de ConsumptionOffer
+curl -X POST "http://localhost:30577/api/media/upload" -F "file=@C:\Users\diurv\Downloads\Logo1.jpg" -F "mediaType=Image" -F "description=ConsumptionCenter->Offer"  -F "resourceCatalog=Offer" -F "resourceCatalogId=2"  -w "\nHTTP Status: %{http_code}\n"
+curl -X POST "https://api.solmar.com/api/media/upload" -F "file=@C:\Users\diurv\Downloads\Logo1.jpg" -F "mediaType=Image" -F "description=ConsumptionCenter->Offer"  -F "resourceCatalog=Offer" -F "resourceCatalogId=2"  -w "\nHTTP Status: %{http_code}\n"
+
+### para Medias de ConsumptionOffer

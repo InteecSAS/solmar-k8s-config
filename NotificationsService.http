@@ -1,33 +1,39 @@
 @baseUrl = http://localhost:30577
-# @baseUrl = https://apiqa.solmar.com
+###@baseUrl = https://apiqa.solmar.com
 
-@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI3YzI3Y2U2LTJhNmItNGFjYS1hMjg0LTg2YTM2YjUxYjk1MiIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiSlFHQjNNVFYySkFPRjVRSkxCTkRZSzRGNERMSVVJREEiLCJuYmYiOjE3Njg5MzI2MDMsImV4cCI6MTc2OTUzNzQwMywiaWF0IjoxNzY4OTMyNjAzLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.a030XE1rTtmO1f3u9MGCpnr2dXJ2n2UP3wip3XDIz5zK4zxJvY6pobYXhDFA9LVU9qQdAGdGFbmi2XYbQ1YmMQ
+@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJOdWV2byBVc3VhcmlvIiwic3ViIjoiY2Q2YjNhNjQtYTk1OC00NTMxLTkwMDgtYzMzMDI5N2M1OTZlIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJQQkRRQ09CVEdRNk40T05OSktJUjJVSEpCSE1SQzRPRiIsInJvbGUiOiJDbGllbnRlIiwibmJmIjoxNzY5NzEwNDMxLCJleHAiOjE3NzAzMTUyMzEsImlhdCI6MTc2OTcxMDQzMSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.aSSelqOt9pebadKjC7mtGcW2yXibReccRA8wC2uwzCxG254uCtW3Tf4Pr2tpb7H8hxZBffwiFWz467akAnNAyg
 
 ###
 # @name getCategories
 # Obtiene todas las categorías de notificaciones.
-GET {{baseUrl}}/api/notifications/categories
+GET {{baseUrl}}/api/notifications/notifications/categories
+Authorization: {{cliente_jwt}}
+
+###
+# @name getActions
+# Obtiene todas las actions por categoria
+GET {{baseUrl}}/api/notifications/notifications/category/1/actions
 Authorization: {{cliente_jwt}}
 
 ###
 
 # @name getMyInAppNotifications
 # Obtiene las notificaciones In-App del usuario autenticado.
-GET {{baseUrl}}/api/notifications/me/in-app
+GET {{baseUrl}}/api/notifications/notifications/me/in-app
 Authorization: {{cliente_jwt}}
 
 ###
 
 # @name getMyInAppNotificationsByCategory
 # Obtiene las notificaciones In-App del usuario, filtradas por categoría.
-GET {{baseUrl}}/api/notifications/me/in-app?categoryId=1
+GET {{baseUrl}}/api/notifications/notifications/me/in-app?categoryId=1
 Authorization: {{cliente_jwt}}
 
 ###
 
 # @name markAsRead
 # Marca una notificación In-App como leída.
-POST {{baseUrl}}/api/notifications/{{notificationId}}/mark-as-read
+POST {{baseUrl}}/api/notifications/notifications/{{notificationId}}/mark-as-read
 Authorization: {{cliente_jwt}}
 
 ###
@@ -35,7 +41,7 @@ Authorization: {{cliente_jwt}}
 # @name createInAppNotification
 # Crea una notificación In-App para un usuario.
 # Roles permitidos: AdministradorSistema
-POST {{baseUrl}}/api/notifications/in-app
+POST {{baseUrl}}/api/notifications/notifications/in-app
 Content-Type: application/json
 Authorization: {{admin_jwt}}
 
@@ -51,7 +57,7 @@ Authorization: {{admin_jwt}}
 # ruta que el YARP Proxy está enviando al servicio (sin el prefijo /api/).
 #
 # Estructura de la URL:
-# {{baseUrl}}/api/notifications/{endpoint}
+# {{baseUrl}}/api/notifications/notifications/{endpoint}
 # =================================================================
 
 @pushNotificationId = AQUÍ_VA_UN_ID_DE_PUSH_NOTIFICACION
@@ -66,7 +72,7 @@ Authorization: {{admin_jwt}}
 # Roles permitidos: AdministradorSistema, GerenteHotel
 #  // templateName: PaymentProcessed, Promotion
 # // subject: Opcional
-POST {{baseUrl}}/api/notifications/send-templated-email
+POST {{baseUrl}}/api/notifications/notifications/send-templated-email
 Content-Type: application/json
 Authorization: {{admin_jwt}}
 
@@ -81,6 +87,22 @@ Authorization: {{admin_jwt}}
 }
 
 ###
+
+POST {{baseUrl}}/api/notifications/notifications/send-business-email
+Content-Type: application/json
+Authorization: {{cliente_jwt}}
+
+{
+  "emailType": "MemberRequest",
+  "templateName": "MemberRequest",
+  "subject": "Solicitud para Member",
+  "data": {
+    "type": "email",
+    "value": "diurvan1@gmail.com"
+  }
+}
+
+###
 # =====================================================
 # Push Notifications
 # =====================================================
@@ -88,7 +110,7 @@ Authorization: {{admin_jwt}}
 # @name sendPushNotification
 # Crea y envía una notificación push.
 # Roles permitidos: AdministradorSistema, GerenteHotel
-POST {{baseUrl}}/api/notifications/send-push
+POST {{baseUrl}}/api/notifications/notifications/send-push
 Content-Type: application/json
 Authorization: {{admin_jwt}}
 
@@ -106,35 +128,35 @@ Authorization: {{admin_jwt}}
 
 # @name getMyPushNotifications
 # Obtiene todas las notificaciones push del usuario autenticado.
-GET {{baseUrl}}/api/notifications/me/push
+GET {{baseUrl}}/api/notifications/notifications/me/push
 Authorization: {{cliente_jwt}}
 
 ###
 
 # @name getMyUnreadPushNotifications
 # Obtiene las notificaciones push no leídas del usuario autenticado.
-GET {{baseUrl}}/api/notifications/me/push/unread
+GET {{baseUrl}}/api/notifications/notifications/me/push/unread
 Authorization: {{cliente_jwt}}
 
 ###
 
 # @name markPushNotificationAsRead
 # Marca una notificación push como leída.
-POST {{baseUrl}}/api/notifications/push/{{pushNotificationId}}/mark-as-read
+POST {{baseUrl}}/api/notifications/notifications/push/{{pushNotificationId}}/mark-as-read
 Authorization: {{cliente_jwt}}
 
 ###
 
 # @name markPushNotificationAsPinned
 # Marca una notificación push como anclada.
-POST {{baseUrl}}/api/notifications/push/{{pushNotificationId}}/mark-as-pinned
+POST {{baseUrl}}/api/notifications/notifications/push/{{pushNotificationId}}/mark-as-pinned
 Authorization: {{cliente_jwt}}
 
 ###
 
 # @name unmarkPushNotificationAsPinned
 # Desmarca una notificación push como anclada.
-POST {{baseUrl}}/api/notifications/push/{{pushNotificationId}}/mark-as-pinned?pin=false
+POST {{baseUrl}}/api/notifications/notifications/push/{{pushNotificationId}}/mark-as-pinned?pin=false
 Authorization: {{cliente_jwt}}
 
 ###
@@ -149,7 +171,7 @@ POST {{baseUrl}}/api/notifications/dispatch
 Content-Type: application/json
 
 {
-  "eventName": "PasswordResetCodeRequested",
+  "eventName": "PromotionPush",
   "payload": {
     "UserId": "36fd007b-1d4e-41e5-b082-a9c7cf463188",
     "UserEmail": "diurvan1@gmail.com",
@@ -158,3 +180,9 @@ Content-Type: application/json
 }
 
 ###
+
+
+##
+# Devuelve conteo de notificaciones sin leer de un Usuario
+GET {{baseUrl}}/api/notifications/notifications/me/count
+Authorization: {{cliente_jwt}}
