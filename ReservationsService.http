@@ -1,13 +1,13 @@
-###@baseUrl = https://apiqa.solmar.com
-@baseUrl = http://localhost:30577
-@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHNvbG1hci5jb20iLCJnaXZlbl9uYW1lIjoiICIsInN1YiI6IjM2ZmQwMDdiLTFkNGUtNDFlNS1iMDgyLWE5YzdjZjQ2MzE4OCIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiWjUzTDVZTlBEVk4yT1VYNUxGM1JQVjRLR1dETTQ1NVkiLCJyb2xlIjoiQWRtaW5pc3RyYWRvclNpc3RlbWEiLCJwZXJtaXNzaW9uIjpbInJlc2VydmFzOmxlZXIiLCJyZXNlcnZhczpjcmVhciIsInJlc2VydmFzOmNhbmNlbGFyIiwiZmluYW56YXM6dmVyX3JlcG9ydGVzIiwiYWRtaW46Z2VzdGlvbmFyX3VzdWFyaW9zIiwiYWRtaW46Z2VzdGlvbmFyX3JvbGVzIl0sIm5iZiI6MTc3MDIwNzE1OSwiZXhwIjoxNzcwODExOTU5LCJpYXQiOjE3NzAyMDcxNTksImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.n0VGp5OROt1smwkOk6uvcrk443KadpSqvH1BQUCR4QnzCAFZwddPbQ2cbtZDsymVtqx_VPsodjVq1610PnQy8w
+@baseUrl = https://apiqa.solmar.com
+#@baseUrl = http://localhost:30577
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imthcm9sLnJ1Ymlhbm9Ac29sbWFyLmNvbSIsImdpdmVuX25hbWUiOiJLYXJvbCBSdWJpYW5vIiwic3ViIjoiNGE4NTU1NmEtMjhmMS00NDAyLWFkMTYtNjA0ZDc0NWUxZGMzIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJCS0JUR0pNN0dYMkxWTlRHVk9MN0o3SzM3WFNMRTRTNyIsInJvbGUiOiJDbGllbnRlIiwibmJmIjoxNzcwOTM4Mzk2LCJleHAiOjE3NzE1NDMxOTYsImlhdCI6MTc3MDkzODM5NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.OXGfSIecKI9tBRRR0YbHYTXu5eMCk4Dt_OAjaqYJZ9dxRJhKHrmfdeoN-UcNNdf7l381ERfCSJyiuFTnmRzfWQ
 ###
 # =====================================================
 # Reservations (/api/reservations)
 # =====================================================
 
 ### Get Reservation Detail By Id
-GET {{baseUrl}}/api/reservations/reservation/3
+GET {{baseUrl}}/api/reservations/reservation/32
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -28,33 +28,37 @@ Content-Type: application/json
 }
 
 ### Update Reservation
-PUT {{baseUrl}}/api/reservations/reservation/12
+PUT {{baseUrl}}/api/reservations/reservation/96
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
 
 {
-  "reservationId": 12,
+  "reservationId": 96,
   "details": {
-    "serviceDate": "2026-01-03",
-    "availabilityId": 5,
+    "serviceDate": "2026-02-18",
+    "availabilityId": 13,
     "capacity": 6,
     "notes": "Cambiar a mesa interior, por favor",
-    "cleaningTime": "00:15:00"
+    "cleaningTime": "00:15:00",
+    "startTime": "08:00",
+    "endTime": "09:00",
+    "allergenIds": [1, 2]
   }
 }
 
+##
 ### Update Reservation Details (PATCH)
-PATCH {{baseUrl}}/api/reservations/reservation/6/details
+PATCH {{baseUrl}}/api/reservations/reservation/71/details
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
 
 {
-  "serviceDate": "2026-01-04",
-  "startTime": "18:30",
-  "endTime": "20:00",
-  "capacity": 3,
+  "serviceDate": "2026-01-18",
+  "startTime": "08:00",
+  "endTime": "08:30",
+  "capacity": 1,
   "employeeCode": "EMP123",
   "notes": "Actualización de fecha y hora, 3 personas.",
   "reservationDetailPersons": [
@@ -64,15 +68,9 @@ Accept: application/json
         "personType": "Adulto",
         "personNumber": 2,
         "personStatus": "Confirmado"
-      },
-      {
-        "name": "Ana Perez",
-        "age": 12,
-        "personType": "Niño",
-        "personNumber": 2,
-        "personStatus": "Confirmado"
       }
-    ]
+    ],
+    "allergenIds": [1, 2]
 }
 
 
@@ -95,7 +93,7 @@ Content-Type: application/json
 }
 
 ### Get My Reservations By DateRange
-GET {{baseUrl}}/api/reservations/reservation/search/me?startDate=2025-12-01&endDate=2026-12-31
+GET {{baseUrl}}/api/reservations/reservation/search/me?startDate=2025-01-01&endDate=2026-02-28
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -131,7 +129,8 @@ Accept: application/json
         "personNumber": 2,
         "personStatus": "Confirmado"
       }
-    ]
+    ],
+    "allergenIds": [1, 2]
   }
 }
 
@@ -173,12 +172,16 @@ GET {{baseUrl}}/reservations/reservation/indicadores/H1
 # Attributes
 # =====================================================
 
+### Get All Offer Attributes by AttributeType
+GET {{baseUrl}}/api/reservations/attributes?attributeTypeId=22
+
 ### Get All Offer Attributes
 GET {{baseUrl}}/api/reservations/attributes/offers
 
 
 ### Get All Offer Attributes grouped by Type
 GET {{baseUrl}}/api/reservations/attributes/offers/grouped
+Accept-Language: en-US
 
 ###
 # =====================================================
@@ -189,10 +192,11 @@ GET {{baseUrl}}/api/reservations/attributes/offers/grouped
 #GET {{baseUrl}}/api/reservations/reservation/consumptioncenter
 
 ### Get Consumption Center Detail By Id
-#GET {{baseUrl}}/api/reservations/reservation/consumptioncenter/detail/15
+GET {{baseUrl}}/api/reservations/consumptioncenter/detail/3
+Accept-Language: en-US
 
 ### Get Offer By Consumption Center Id
-GET {{baseUrl}}/api/reservations/consumptioncenter/15/offers?attributeIds=20
+GET {{baseUrl}}/api/reservations/consumptioncenter/1/offers?attributeIds=50&attributeIds=52
 Accept-Language: en-US
 
 
@@ -219,7 +223,7 @@ Accept: application/json
 
 ### Get Consumption Center By Hotel Group And Type
 ### GroupId and TypeId
-GET {{baseUrl}}/api/reservations/consumptioncenter/grouptype/1
+GET {{baseUrl}}/api/reservations/consumptioncenter/grouptype/2/1
 Authorization: {{admin_jwt}}
 Accept-Language: en-US
 Accept: application/json
@@ -234,7 +238,7 @@ Accept: application/json
 
 ### Get Consumption Center By Hotel Type
 ### TypeId
-GET {{baseUrl}}/api/reservations/consumptioncenter/bytype/2
+GET {{baseUrl}}/api/reservations/consumptioncenter/bytype/1
 Authorization: {{admin_jwt}}
 Accept-Language: en-US
 Accept: application/json
@@ -352,6 +356,11 @@ Content-Type: application/json
 # Inventories
 # =====================================================
 
+### Get Inventory Availability
+GET {{baseUrl}}/api/reservations/inventory/13/availability?serviceDate=2026-02-06&capacity=4
+Authorization: {{admin_jwt}}
+Accept: application/json
+
 ### Get Inventory Types
 GET {{baseUrl}}/api/reservations/inventory/types
 Authorization: {{admin_jwt}}
@@ -410,8 +419,13 @@ Content-Type: application/json
 # =====================================================
 
 ### Get Offer By Id
-GET {{baseUrl}}/api/reservations/consumptioncenter/3/offers
+GET {{baseUrl}}/api/reservations/consumptioncenter/7/offers
 Authorization: {{admin_jwt}}
+Accept: application/json
+
+
+### Get Offer By Id Grouped
+GET {{baseUrl}}/api/reservations/consumptioncenter/2/offersgrouped
 Accept: application/json
 
 ### Get Offers By Date Range

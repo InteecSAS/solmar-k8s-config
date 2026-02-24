@@ -1,5 +1,5 @@
-@baseUrl = http://localhost:30577
-###@baseUrl = https://apiqa.solmar.com
+#@baseUrl = http://localhost:30577
+@baseUrl = https://apiqa.solmar.com
 ###
 # =====================================================
 # Memberships (/memberships)
@@ -12,3 +12,105 @@ Accept: application/json
 ### GetContractByEmailContractNumber
 GET {{baseUrl}}/api/memberships/verify/pavdaddy@neo.rr.com/76349
 Accept: application/json
+
+###
+## GetContractByContractNumber
+GET {{baseUrl}}/api/memberships/personexternalid/1371875/details
+Accept: application/json
+
+###
+## GetCoMembersByPersonExternalId
+GET {{baseUrl}}/api/memberships/comembers/1371875
+Accept: application/json
+
+###
+# =====================================================
+# Membership Features (/api/memberships/features)
+# =====================================================
+
+###
+# Create a new Co-Member Invitation
+POST {{baseUrl}}/api/memberships/features/comember-invitations
+Content-Type: application/json
+
+{
+  "contractId": "C-12345",
+  "personId": 1371875,
+  "coMemberPersonId": 1371876,
+  "email": "comember@example.com",
+  "phoneNumber": "555-123-4567"
+}
+
+###
+# Update a Co-Member Invitation's status
+PUT {{baseUrl}}/api/memberships/features/comember-invitations/1
+Content-Type: application/json
+
+{
+  "status": "Accepted"
+}
+
+###
+# Create a new Guest
+POST {{baseUrl}}/api/memberships/features/guests
+Content-Type: application/json
+
+{
+  "contractId": "C-12345",
+  "personId": 1371875,
+  "fullName": "John Doe",
+  "email": "johndoe@example.com",
+  "phoneNumber": "555-987-6543",
+  "address": "123 Main St, Anytown, USA",
+  "relationship": "Friend",
+  "useReservationInAbsence": true
+}
+
+###
+# Update a Guest
+PUT {{baseUrl}}/api/memberships/features/guests/1
+Content-Type: application/json
+
+{
+  "fullName": "John A. Doe",
+  "status": "Inactive"
+}
+
+###
+# Create a new Companion
+POST {{baseUrl}}/api/memberships/features/companions
+Content-Type: application/json
+
+{
+  "contractId": "C-12345",
+  "personId": 1371875,
+  "fullName": "Jane Smith",
+  "email": "janesmith@example.com",
+  "phoneNumber": "555-555-5555"
+}
+
+###
+# Update a Companion
+PUT {{baseUrl}}/api/memberships/features/companions/1
+Content-Type: application/json
+
+{
+  "email": "jane.smith.new@example.com"
+}
+
+###
+# Send a Vacation Exchange Notification
+POST {{baseUrl}}/api/memberships/features/vacation-exchange-notification
+Content-Type: application/json
+
+{
+  "contractId": "C-12345",
+  "personId": 1371875,
+  "intervalMembershipId": "INT-98765",
+  "exchangeType": "Intercambio de crucero",
+  "depositYear": "2025",
+  "accelerationYear": "2026",
+  "unitType": "Suite de 1 recámara",
+  "unitNumber": "A-201",
+  "weekNumber": 32
+}
