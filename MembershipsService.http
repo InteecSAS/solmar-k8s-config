@@ -1,5 +1,6 @@
 #@baseUrl = http://localhost:30577
 @baseUrl = https://apiqa.solmar.com
+@jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Iml2YW4udGFwaWFAc29sbWFyLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI2NmEzMTNkLTJlOGMtNGM4Ny1iNDg5LTFmYWUzMTFjM2ZhMCIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiNTNEWlZDSVlaV1VBTTZVQ0pOMlZEQkhLWDZYTERHNUEiLCJQZXJzb25JZCI6IjE4Iiwicm9sZSI6IkNsaWVudGUiLCJuYmYiOjE3NzIwMjY4OTksImV4cCI6MTc3MjYzMTY5OSwiaWF0IjoxNzcyMDI2ODk5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.F5os7dMXoDL14VA36tgMvb_yn_5_ztVdP-k5gqPLLZu0nHcTeeBPYF4ETZgeyGaEppbmDksstpE5ZKIw7omQGw
 ###
 # =====================================================
 # Memberships (/memberships)
@@ -32,19 +33,27 @@ Accept: application/json
 # Create a new Co-Member Invitation
 POST {{baseUrl}}/api/memberships/features/comember-invitations
 Content-Type: application/json
+Authorization: {{jwt}}
 
 {
   "contractId": "C-12345",
-  "personId": 1371875,
   "coMemberPersonId": 1371876,
   "email": "comember@example.com",
   "phoneNumber": "555-123-4567"
 }
 
 ###
+# Get a Co-Member Invitation
+GET {{baseUrl}}/api/memberships/features/comember-invitations
+Content-Type: application/json
+Authorization: {{jwt}}
+
+
+###
 # Update a Co-Member Invitation's status
 PUT {{baseUrl}}/api/memberships/features/comember-invitations/1
 Content-Type: application/json
+Authorization: {{jwt}}
 
 {
   "status": "Accepted"
@@ -54,7 +63,7 @@ Content-Type: application/json
 # Create a new Guest
 POST {{baseUrl}}/api/memberships/features/guests
 Content-Type: application/json
-
+Authorization: {{jwt}}
 {
   "contractId": "C-12345",
   "personId": 1371875,
@@ -77,9 +86,17 @@ Content-Type: application/json
 }
 
 ###
+# Get a Guests Invitation
+GET {{baseUrl}}/api/memberships/features/guests
+Content-Type: application/json
+Authorization: {{jwt}}
+
+
+###
 # Create a new Companion
 POST {{baseUrl}}/api/memberships/features/companions
 Content-Type: application/json
+Authorization: {{jwt}}
 
 {
   "contractId": "C-12345",
@@ -93,10 +110,18 @@ Content-Type: application/json
 # Update a Companion
 PUT {{baseUrl}}/api/memberships/features/companions/1
 Content-Type: application/json
+Authorization: {{jwt}}
 
 {
   "email": "jane.smith.new@example.com"
 }
+
+###
+# Get a Companion Invitation
+GET {{baseUrl}}/api/memberships/features/companions
+Content-Type: application/json
+Authorization: {{jwt}}
+
 
 ###
 # Send a Vacation Exchange Notification
