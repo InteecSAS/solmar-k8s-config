@@ -38,8 +38,8 @@ Authorization: {{jwt}}
 {
   "contractId": "C-12345",
   "coMemberPersonId": 1371876,
-  "email": "comember@example.com",
-  "phoneNumber": "555-123-4567"
+  "email": "diurvan1@gmail.com",
+  "phoneNumber": "955478664"
 }
 
 ###
@@ -64,16 +64,18 @@ Authorization: {{jwt}}
 POST {{baseUrl}}/api/memberships/features/guests
 Content-Type: application/json
 Authorization: {{jwt}}
-{
-  "contractId": "C-12345",
-  "personId": 1371875,
-  "fullName": "John Doe",
-  "email": "johndoe@example.com",
-  "phoneNumber": "555-987-6543",
-  "address": "123 Main St, Anytown, USA",
-  "relationship": "Friend",
-  "useReservationInAbsence": true
-}
+
+[
+  {
+    "contractId": "C-12345",
+    "fullName": "John Doe",
+    "email": "diurvan1@gmail.com",
+    "phoneNumber": "555-987-6543",
+    "address": "123 Main St, Anytown, USA",
+    "relationship": "Friend",
+    "useReservationInAbsence": true
+  }
+]
 
 ###
 # Update a Guest
@@ -98,13 +100,14 @@ POST {{baseUrl}}/api/memberships/features/companions
 Content-Type: application/json
 Authorization: {{jwt}}
 
-{
-  "contractId": "C-12345",
-  "personId": 1371875,
-  "fullName": "Jane Smith",
-  "email": "janesmith@example.com",
-  "phoneNumber": "555-555-5555"
-}
+[
+  {
+    "contractId": "C-12345",
+    "fullName": "Jane Smith",
+    "email": "diurvan1@gmail.com",
+    "phoneNumber": "555-555-5555"
+  }
+]
 
 ###
 # Update a Companion
@@ -123,19 +126,25 @@ Content-Type: application/json
 Authorization: {{jwt}}
 
 
+
 ###
-# Send a Vacation Exchange Notification
+# Send Vacation Exchange Notification
+# vacationExchange: 0 for RCI, 1 for Interval, 3 for Thrid Home
 POST {{baseUrl}}/api/memberships/features/vacation-exchange-notification
 Content-Type: application/json
+Authorization: {{jwt}}
 
 {
+  "vacationExchange": 0,
+  "memberName": "John Doe",
+  "memberEmail": "diurvan1@gmail.com",
+  "memberContactNumber": "955478664",
   "contractId": "C-12345",
-  "personId": 1371875,
-  "intervalMembershipId": "INT-98765",
-  "exchangeType": "Intercambio de crucero",
-  "depositYear": "2025",
-  "accelerationYear": "2026",
-  "unitType": "Suite de 1 recámara",
-  "unitNumber": "A-201",
-  "weekNumber": 32
+  "membershipId": "M-12345",
+  "exchangeType": "RCI",
+  "usageYear": "2024",
+  "accelerationYear": "2025",
+  "unitType": "Villa",
+  "unitNumber": "V-123",
+  "weekNumber": 23
 }
