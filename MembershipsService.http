@@ -37,7 +37,7 @@ Authorization: {{jwt}}
 
 {
   "contractId": "C-12345",
-  "coMemberPersonId": 1371876,
+  "coMemberPersonId": 56138,
   "email": "diurvan1@gmail.com",
   "phoneNumber": "955478664"
 }
@@ -51,12 +51,14 @@ Authorization: {{jwt}}
 
 ###
 # Update a Co-Member Invitation's status
+# This endpoint allows you to update the status of a co-member invitation. You can accept or reject the invitation by setting the "status" field accordingly.
+# For example, to accept the invitation, set "status" to "ACCEPTED". To reject, set it to "REJECTED".
 PUT {{baseUrl}}/api/memberships/features/comember-invitations/1
 Content-Type: application/json
 Authorization: {{jwt}}
 
 {
-  "status": "Accepted"
+  "status": "ACCEPTED"
 }
 
 ###
@@ -68,6 +70,7 @@ Authorization: {{jwt}}
 [
   {
     "contractId": "C-12345",
+    "reservationNumber": "R-12345",
     "fullName": "John Doe",
     "email": "diurvan1@gmail.com",
     "phoneNumber": "555-987-6543",
@@ -103,6 +106,7 @@ Authorization: {{jwt}}
 [
   {
     "contractId": "C-12345",
+    "reservationNumber": "R-12345",
     "fullName": "Jane Smith",
     "email": "diurvan1@gmail.com",
     "phoneNumber": "555-555-5555"
@@ -138,7 +142,7 @@ Authorization: {{jwt}}
   "vacationExchange": 0,
   "memberName": "John Doe",
   "memberEmail": "diurvan1@gmail.com",
-  "memberContactNumber": "955478664",
+  "memberContactNumber": "",
   "contractId": "C-12345",
   "membershipId": "M-12345",
   "exchangeType": "RCI",
