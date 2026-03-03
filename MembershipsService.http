@@ -39,7 +39,8 @@ Authorization: {{jwt}}
   "contractId": "C-12345",
   "coMemberPersonId": 56138,
   "email": "diurvan1@gmail.com",
-  "phoneNumber": "955478664"
+  "phoneNumber": "955478664",
+  "fullName": "Nombre comember"
 }
 
 ###
@@ -69,13 +70,13 @@ Authorization: {{jwt}}
 
 [
   {
-    "contractId": "C-12345",
-    "reservationNumber": "R-12345",
-    "fullName": "John Doe",
-    "email": "diurvan1@gmail.com",
-    "phoneNumber": "555-987-6543",
-    "address": "123 Main St, Anytown, USA",
-    "relationship": "Friend",
+    "contractId": "104581",
+    "reservationNumber": "1344414",
+    "fullName": "asdasdasd",
+    "email": "asdasd@asdasd.com",
+    "phoneNumber": "1212121212",
+    "address": "asdasdasd",
+    "relationship": "Parent",
     "useReservationInAbsence": true
   }
 ]
