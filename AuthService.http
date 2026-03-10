@@ -1,6 +1,6 @@
-@baseUrl = http://localhost:30577
-### @baseUrl = https://apiqa.solmar.com
-@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRpdXJ2YW4xQGdtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI3YzI3Y2U2LTJhNmItNGFjYS1hMjg0LTg2YTM2YjUxYjk1MiIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiSlFHQjNNVFYySkFPRjVRSkxCTkRZSzRGNERMSVVJREEiLCJuYmYiOjE3Njg5MzI1MzQsImV4cCI6MTc2OTUzNzMzNCwiaWF0IjoxNzY4OTMyNTM0LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.H8N7O-7PG4iVskjC6eOxT3DPW2Ahse0G_nD9NkpQiAuPwUphLO8hSvJlJ0zmbvSMJxFo__EZNGHtqEERnGwOBg
+###@baseUrl = http://localhost:30577
+@baseUrl = https://apiqa.solmar.com
+@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Iml2YW4udGFwaWFAaW50ZWVjLmxhIiwiZ2l2ZW5fbmFtZSI6Ikl2w6FuIFRhcGlhIiwic3ViIjoiN2Q3NmY1NDEtZWM1MS00MmNmLWJjNGQtOThkMTg1ZWU1ZmJiIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJFSUIzWVZTUjZGVDNTSjczWkJLNkhMN0tOS09IRlZLVCIsIlBlcnNvbklkIjoiMTkiLCJwaG9uZV9udW1iZXIiOiIrNTE5NTU0Nzg2NjQiLCJyb2xlIjoiQ2xpZW50ZSIsIm5iZiI6MTc3MzA2NjczMCwiZXhwIjoxNzczNjcxNTMwLCJpYXQiOjE3NzMwNjY3MzAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.MdYZCItU69ZM_Il969MqJtFjPlfGilA4zV0TdbPJlYl-cl_5wVbdk3G3HV4JlPHJbJUgK8VLDZgMnqi7KdVyFA
 
 ###
 # =====================================================
@@ -8,6 +8,11 @@
 # Endpoints públicos para autenticación y registro.
 # =====================================================
 
+##/api/auth-service/client/8321caef-cfca-4fe7-aa97-868cd36a4226
+GET {{baseUrl}}/api/auth-service/client/8321caef-cfca-4fe7-aa97-868cd36a4226
+Authorization: {{cliente_jwt}}
+
+###
 # @name initiateRegistration
 # Inicia el proceso de registro, validando códigos de reserva/membresía y enviando un código de verificación.
 # registrationType: "reservation", "membership", "direct
@@ -17,9 +22,11 @@ POST {{baseUrl}}/api/auth-service/initiate-registration
 Content-Type: application/json
 
 {
-  "email": "diurvan1@gmail.com",
-  "registrationType": "membership",
-  "reservationCode": "1280474"
+  "email": "ivan.tapia@inteec.la",
+  "registrationType": "reservation",
+  "reservationCode": "1351181",
+  "AcceptTerms": true,
+  "AcceptDataPolicy": true
 }
 
 ###
@@ -31,8 +38,8 @@ POST {{baseUrl}}/api/auth-service/verify-registration-code
 Content-Type: application/json
 
 {
-  "email": "diurvan1@gmail.com",
-  "code": "140408"
+  "email": "ivan.tapia@inteec.la",
+  "code": "564800"
 }
 
 ###
@@ -48,14 +55,16 @@ Content-Type: application/json
 {
   "firstName": "Iván",
   "lastName": "Tapia",
-  "email": "ivan.tapia@diurvanconsultores.com",
+  "email": "ivan.tapia@inteec.la",
   "password": "P@ssw0rd",
-  "birthDate" : "2025-12-01",
+  "birthDate" : "1976-12-01",
   "nationality" : "Mexico",
   "gender" : "Masculino",
   "phoneNumber" : "+51955478664",
   "registrationType": "direct",
-  "deviceToken": "1234567890abcdef"
+  "deviceToken": "device_token",
+  "AcceptTerms": true,
+  "AcceptDataPolicy": true
 }
 
 ###
@@ -70,13 +79,13 @@ Content-Type: application/json
 
 # @name login
 # Inicia sesión y obtiene un token JWT.
-# Guarda el token en la variable @admin_jwt o @cliente_jwt.
+# Guarda el token en la variable @cliente_jwt o @cliente_jwt.
 # deviceToken: Opcional. Token de registro del dispositivo para notificaciones push.
 POST {{baseUrl}}/api/auth-service/login
 Content-Type: application/json
 
 {
-  "email": "diurvan1@gmail.com",
+  "email": "ivan.tapia@inteec.la",
   "password": "P@ssw0rd",
   "deviceToken": "your_device_token_here_for_login"
 }
@@ -180,7 +189,7 @@ GET {{baseUrl}}/api/auth-service/internal/validate-security-stamp/{{userId}}/{{s
 # @name getUsers
 # Obtiene una lista de todos los usuarios.
 GET {{baseUrl}}/api/auth-service/users
-Authorization: {{admin_jwt}}
+Authorization: {{cliente_jwt}}
 
 # RESPONSE EXAMPLE:
 # HTTP/1.1 200 OK
@@ -201,7 +210,7 @@ Authorization: {{admin_jwt}}
 # @name getRoles
 # Obtiene una lista de todos los roles.
 GET {{baseUrl}}/api/auth-service/roles
-Authorization: {{admin_jwt}}
+Authorization: {{cliente_jwt}}
 
 # RESPONSE EXAMPLE:
 # HTTP/1.1 200 OK
@@ -222,7 +231,7 @@ Authorization: {{admin_jwt}}
 # Crea un nuevo rol de seguridad.
 POST {{baseUrl}}/api/auth-service/roles
 Content-Type: application/json
-Authorization: {{admin_jwt}}
+Authorization: {{cliente_jwt}}
 
 "NuevoRol"
 
@@ -237,7 +246,7 @@ Authorization: {{admin_jwt}}
 # @name getUserRoles
 # Obtiene los roles de un usuario específico.
 GET {{baseUrl}}/api/auth-service/users/{{userId}}/roles
-Authorization: {{admin_jwt}}
+Authorization: {{cliente_jwt}}
 
 # RESPONSE EXAMPLE:
 # HTTP/1.1 200 OK
@@ -253,7 +262,7 @@ Authorization: {{admin_jwt}}
 # Asigna un rol a un usuario.
 POST {{baseUrl}}/api/auth-service/users/{{userId}}/roles
 Content-Type: application/json
-Authorization: {{admin_jwt}}
+Authorization: {{cliente_jwt}}
 
 "Cliente"
 
@@ -269,7 +278,7 @@ Authorization: {{admin_jwt}}
 # Remueve un rol de un usuario.
 DELETE {{baseUrl}}/api/auth-service/users/{{userId}}/roles
 Content-Type: application/json
-Authorization: {{admin_jwt}}
+Authorization: {{cliente_jwt}}
 
 "Cliente"
 
@@ -284,7 +293,7 @@ Authorization: {{admin_jwt}}
 # @name invalidateUserSessions
 # Invalida todas las sesiones de un usuario, forzándolo a iniciar sesión de nuevo.
 POST {{baseUrl}}/api/auth-service/users/{{userId}}/invalidate-sessions
-Authorization: {{admin_jwt}}
+Authorization: {{cliente_jwt}}
 
 # RESPONSE EXAMPLE:
 # HTTP/1.1 200 OK
@@ -299,10 +308,10 @@ Authorization: {{admin_jwt}}
 # =====================================================
 ###
 
-# @name getMyPreferences
-# Obtiene las preferencias del usuario actual.
-GET {{baseUrl}}/api/auth-service/preferences/me
-Authorization: {{cliente_jwt}}
+# # @name getMyPreferences
+# # Obtiene las preferencias del usuario actual.
+# GET {{baseUrl}}/api/auth-service/preferences/me
+# Authorization: {{cliente_jwt}}
 
 ###
 
@@ -368,3 +377,9 @@ Content-Type: application/json
 # Ejemplo:
 # {{baseUrl}}/reservation/indicadores -> (YARP) -> ReservationService/indicadores
 # =================================================================
+###
+
+## @name getProfile
+# Obtiene Profile information del usuario autenticado
+GET {{baseUrl}}/api/auth-service/user/profile
+Authorization: {{cliente_jwt}}
