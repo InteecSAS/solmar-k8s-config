@@ -1,6 +1,6 @@
 #@baseUrl = http://localhost:30577
 @baseUrl = https://apiqa.solmar.com
-@jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Iml2YW4udGFwaWFAc29sbWFyLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI2NmEzMTNkLTJlOGMtNGM4Ny1iNDg5LTFmYWUzMTFjM2ZhMCIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiNTNEWlZDSVlaV1VBTTZVQ0pOMlZEQkhLWDZYTERHNUEiLCJQZXJzb25JZCI6IjE4Iiwicm9sZSI6IkNsaWVudGUiLCJuYmYiOjE3NzIwMjY4OTksImV4cCI6MTc3MjYzMTY5OSwiaWF0IjoxNzcyMDI2ODk5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.F5os7dMXoDL14VA36tgMvb_yn_5_ztVdP-k5gqPLLZu0nHcTeeBPYF4ETZgeyGaEppbmDksstpE5ZKIw7omQGw
+@jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Iml2YW4udGFwaWFAc29sbWFyLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI2NmEzMTNkLTJlOGMtNGM4Ny1iNDg5LTFmYWUzMTFjM2ZhMCIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiNTNEWlZDSVlaV1VBTTZVQ0pOMlZEQkhLWDZYTERHNUEiLCJQZXJzb25JZCI6IjE4IiwicGhvbmVfbnVtYmVyIjoiKzUxOTU1NDc4NjY0Iiwicm9sZSI6IkNsaWVudGUiLCJuYmYiOjE3NzMwNTUxMzUsImV4cCI6MTc3MzY1OTkzNSwiaWF0IjoxNzczMDU1MTM1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.aj4O-IEvQw8Vp_nfodPnNXWfeyj6dZESKZLVgROJcWvnkhFuInnD-SW_9wTY4Ell0kS0FsBi517Zzmz7ZHasug
 ###
 # =====================================================
 # Memberships (/memberships)
@@ -78,6 +78,16 @@ Authorization: {{jwt}}
     "address": "asdasdasd",
     "relationship": "Parent",
     "useReservationInAbsence": true
+  },
+  {
+    "contractId": "104581-2",
+    "reservationNumber": "1344414-2",
+    "fullName": "asdasdasd-2",
+    "email": "asdasd@asdasd.com-2",
+    "phoneNumber": "1212121212-2",
+    "address": "asdasdasd-2",
+    "relationship": "Parent-2",
+    "useReservationInAbsence": false
   }
 ]
 
@@ -167,4 +177,31 @@ Authorization: {{jwt}}
   "contactType": "Email",
   "ContactDate": "01/01/2024",
   "ContactTime": "07:00AM"
+}
+
+
+###
+# Send Membership Request Notification
+# contactType: "Email", "Phone"
+POST {{baseUrl}}/api/memberships/features/membership-request-notification
+Content-Type: application/json
+Authorization: {{jwt}}
+
+{
+  "contactType": "Email",
+  "memberEmail": "pepe@pepe.com",
+  "memberPhoneNumber": "9999999"
+}
+
+###
+# Send Group Request Notification
+# contactType: "Email", "Call" and "Lobby"
+POST {{baseUrl}}/api/memberships/features/group-request-notification
+Content-Type: application/json
+Authorization: {{jwt}}
+
+{
+  "consumptionCenterGroupId": "1",
+  "restaurant": "Restaurante",
+  "quantity": "10"
 }
