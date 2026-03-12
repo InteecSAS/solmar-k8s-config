@@ -45,6 +45,13 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: memberships-service
+spec:
+  replicas: 3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: mediaservice
 spec:
   replicas: 3

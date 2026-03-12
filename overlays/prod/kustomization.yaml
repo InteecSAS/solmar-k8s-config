@@ -40,7 +40,16 @@ images:
   newTag: ef3bba2
 - name: diurvan/solmar-backend-finanzasservice
   newName: diurvan/solmar-backend-finanzasservice
+  newTag: ef3bba2  
+- name: diurvan/solmar-backend-localizationservice
+  newName: diurvan/solmar-backend-localizationservice
   newTag: ef3bba2
+- name: diurvan/solmar-backend-mediaservice
+  newName: diurvan/solmar-backend-mediaservice
+  newTag: ef3bba2
+- name: diurvan/solmar-backend-membershipsservice
+  newName: diurvan/solmar-backend-membershipsservice
+  newTag: adb79dc
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
   newTag: latest
@@ -50,9 +59,4 @@ images:
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
   newTag: ef3bba2
-- name: diurvan/solmar-backend-mediaservice
-  newName: diurvan/solmar-backend-mediaservice
-  newTag: ef3bba2
-- name: diurvan/solmar-backend-localizationservice
-  newName: diurvan/solmar-backend-localizationservice
-  newTag: ef3bba2
+  
