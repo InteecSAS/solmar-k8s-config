@@ -97,11 +97,18 @@ jobs:
             echo "ERROR: No se encontró el archivo de secretos en $sourcePath"
             exit 1
           }
-          
-          echo "(imágenes):"
-          kubectl kustomize overlays/qa | Select-String "image:"
 
-          echo "Desplegando a Producción usando overlays/prod"
-          kubectl apply -k overlays/prod --validate=false
+          echo "--- Verificando versiones de kubectl ---"
+          kubectl version --client
+
+          echo "--- Ejecutando kustomize build para generar YAML final de PROD ---"
+          # Generamos el YAML final de PROD como se hace en QA
+          kubectl kustomize overlays/prod > kustomize-prod-output.yaml
+
+          echo "(imágenes detectadas en PROD):"
+          cat kustomize-prod-output.yaml | Select-String "image:"
+
+          echo "Desplegando a Producción usando el archivo generado"
+          kubectl apply -f kustomize-prod-output.yaml --validate=false
 
           kubectl get deployments -o name | ForEach-Object { kubectl rollout restart $_ }
