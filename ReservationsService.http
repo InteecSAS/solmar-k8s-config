@@ -1,18 +1,18 @@
 @baseUrl = https://apiqa.solmar.com
 #@baseUrl = http://localhost:30577
-@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imthcm9sLnJ1Ymlhbm9Ac29sbWFyLmNvbSIsImdpdmVuX25hbWUiOiJLYXJvbCBSdWJpYW5vIiwic3ViIjoiNGE4NTU1NmEtMjhmMS00NDAyLWFkMTYtNjA0ZDc0NWUxZGMzIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJCS0JUR0pNN0dYMkxWTlRHVk9MN0o3SzM3WFNMRTRTNyIsInJvbGUiOiJDbGllbnRlIiwibmJmIjoxNzcwOTM4Mzk2LCJleHAiOjE3NzE1NDMxOTYsImlhdCI6MTc3MDkzODM5NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEifQ.OXGfSIecKI9tBRRR0YbHYTXu5eMCk4Dt_OAjaqYJZ9dxRJhKHrmfdeoN-UcNNdf7l381ERfCSJyiuFTnmRzfWQ
+@admin_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Iml2YW4udGFwaWFAc29sbWFyLmNvbSIsImdpdmVuX25hbWUiOiJJdsOhbiBUYXBpYSIsInN1YiI6IjI2NmEzMTNkLTJlOGMtNGM4Ny1iNDg5LTFmYWUzMTFjM2ZhMCIsIkFzcE5ldC5JZGVudGl0eS5TZWN1cml0eVN0YW1wIjoiRkVFUFBQU1VTNkNWT01ET0dNSVpRWTNCWjZTMlYyRFAiLCJQZXJzb25JZCI6IjE4IiwicGhvbmVfbnVtYmVyIjoiKzUxOTU1NDc4NjY0Iiwicm9sZSI6IkNsaWVudGUiLCJuYmYiOjE3NzM0NDUzNDAsImV4cCI6MTc3NDA1MDE0MCwiaWF0IjoxNzczNDQ1MzQwLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAwMSJ9.KM6g0pr_-ILT36lMYdT0s4Ue3ZKw0s_ACTmiKrOGdhUjHfZvBZMKI7cok_QD8lLffSsfpIAE4rCM696ZbIAHrg
 ###
 # =====================================================
 # Reservations (/api/reservations)
 # =====================================================
 
 ### Get Reservation Detail By Id
-GET {{baseUrl}}/api/reservations/reservation/32
+GET {{baseUrl}}/api/reservations/reservation/10
 Authorization: {{admin_jwt}}
 Accept: application/json
 
 ### Get Reservation By Reservation Number
-GET {{baseUrl}}/api/reservations/reservation/lookup/RSV-3Z23NE
+GET {{baseUrl}}/api/reservations/reservation/lookup/RSV-27QWG7
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -49,15 +49,15 @@ Accept: application/json
 
 ##
 ### Update Reservation Details (PATCH)
-PATCH {{baseUrl}}/api/reservations/reservation/71/details
+PATCH {{baseUrl}}/api/reservations/reservation/236/details
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
 
 {
-  "serviceDate": "2026-01-18",
-  "startTime": "08:00",
-  "endTime": "08:30",
+  "serviceDate": "2026-02-18",
+  "startTime": "09:00",
+  "endTime": "10:00",
   "capacity": 1,
   "employeeCode": "EMP123",
   "notes": "Actualización de fecha y hora, 3 personas.",
@@ -70,14 +70,15 @@ Accept: application/json
         "personStatus": "Confirmado"
       }
     ],
-    "allergenIds": [1, 2]
+    "availabilityIds": [41,42]
 }
 
 
 ### Get Hotel Reservation By ReservationNumber
-GET {{baseUrl}}/api/reservations/reservation/hotel/1280474
+# GET {{baseUrl}}/api/reservations/reservation/hotel/1280474
+
 ### Get Hotel Reservation By Email and ReservationNumber diurvan1@gmail.com
-GET {{baseUrl}}/reservations/reservation/verify/diurvan1@gmail.com/1280474
+GET {{baseUrl}}/api/reservations/reservation/verify/diurvan1@gmail.com/1280474
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -86,14 +87,15 @@ Accept: application/json
 POST {{baseUrl}}/api/reservations/reservation/consumptioncenter/search
 Authorization: {{admin_jwt}}
 Content-Type: application/json
+
 {
-  "consumptionCenterId": 3,
-  "startDate": "2026-01-22",
-  "endDate": "2026-01-23"
+  "consumptionCenterId": 1,
+  "startDate": "2026-03-10",
+  "endDate": "2026-03-27"
 }
 
 ### Get My Reservations By DateRange
-GET {{baseUrl}}/api/reservations/reservation/search/me?startDate=2025-01-01&endDate=2026-02-28
+GET {{baseUrl}}/api/reservations/reservation/search/me?startDate=2025-01-01&endDate=2026-03-15
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -130,7 +132,7 @@ Accept: application/json
         "personStatus": "Confirmado"
       }
     ],
-    "allergenIds": [1, 2]
+    "allergenIds": [51, 52]
   }
 }
 
@@ -140,9 +142,9 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "consumptionCenterId": 3,
+  "consumptionCenterId": 1,
   "capacity": 4,
-  "reservationDate": "2026-01-02"
+  "reservationDate": "2026-04-02"
 }
 
 ###
@@ -192,7 +194,7 @@ Accept-Language: en-US
 #GET {{baseUrl}}/api/reservations/reservation/consumptioncenter
 
 ### Get Consumption Center Detail By Id
-GET {{baseUrl}}/api/reservations/consumptioncenter/detail/3
+GET {{baseUrl}}/api/reservations/consumptioncenter/detail/1
 Accept-Language: en-US
 
 ### Get Offer By Consumption Center Id
@@ -217,7 +219,7 @@ GET {{baseUrl}}/api/reservations/consumptioncenter/type/1
 Accept: application/json
 
 ### Get Consumption Center Inventories
-GET {{baseUrl}}/api/reservations/consumptioncenter/2/inventories
+GET {{baseUrl}}/api/reservations/consumptioncenter/1/inventories
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -240,20 +242,19 @@ Accept: application/json
 ### TypeId
 GET {{baseUrl}}/api/reservations/consumptioncenter/bytype/1
 Authorization: {{admin_jwt}}
-Accept-Language: en-US
 Accept: application/json
 
 
 
 
 ### Get Consumption Center Attributes
-GET {{baseUrl}}/api/reservations/consumptioncenter/15/attributes
+GET {{baseUrl}}/api/reservations/consumptioncenter/1/attributes
 Authorization: {{admin_jwt}}
 Accept-Language: en-US
 Accept: application/json
 
 ### Add Attributes to Consumption Center
-POST {{baseUrl}}/api/reservations/consumptioncenter/15/attributes
+POST {{baseUrl}}/api/reservations/consumptioncenter/1/attributes
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 [
@@ -357,7 +358,7 @@ Content-Type: application/json
 # =====================================================
 
 ### Get Inventory Availability
-GET {{baseUrl}}/api/reservations/inventory/13/availability?serviceDate=2026-02-06&capacity=4
+GET {{baseUrl}}/api/reservations/inventory/33/availability?serviceDate=2026-04-06&capacity=4
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -398,19 +399,41 @@ Content-Type: application/json
   }
 }
 
-### Create Consumption Center Inventory
-POST {{baseUrl}}/api/reservations/consumptioncenter/inventory
-Authorization: {{admin_jwt}}
+# ### Create Consumption Center Inventory
+# POST {{baseUrl}}/api/reservations/consumptioncenter/inventory
+# Authorization: {{admin_jwt}}
+# Content-Type: application/json
+# {
+#   "name": "A-E4",
+#   "minCapacity": 2,
+#   "maxCapacity": 8,
+#   "startTime": "7:00",
+#   "endTime": "22:00",
+#   "price": 50,
+#   "inventoryTypeId": 1,
+#   "consumptionCenterId": 3
+# }
+
+### 2. Crear Inventario VIP con Slots Automáticos
+# Esto generará slots de 30m cada uno, más un slot de cleaning de 15m después de cada uno.
+POST {{baseUrl}}/api/reservations/inventory
 Content-Type: application/json
+
 {
-  "name": "A-E4",
+  "name": "Mesa VIP - Terraza 2",
   "minCapacity": 2,
-  "maxCapacity": 8,
-  "startTime": "7:00",
-  "endTime": "22:00",
-  "price": 50,
+  "maxCapacity": 6,
+  "startTime": "14:00:00",
+  "endTime": "22:00:00",
+  "dateTerm": "2026-04-13T00:00:00Z",
+  "price": 20.00,
+  "weekDays": "0,0,0,0,0,1,1",
+  "slotInterval": 30,
+  "slotAdditional": 0,
+  "slotAdditionalInterval": 0,
   "inventoryTypeId": 1,
-  "consumptionCenterId": 3
+  "consumptionCenterId": 1,
+  "status": 0
 }
 
 ###
