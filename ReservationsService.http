@@ -20,10 +20,11 @@ Accept: application/json
 POST {{baseUrl}}/api/reservations/reservation/change-status
 Authorization: {{admin_jwt}}
 Content-Type: application/json
+
 {
-  "reservationId": 2,
-  "reservationNumber": "RSV-SX5QLQ",
-  "reservationStatus": "Confirmed",
+  "reservationId": 237,
+  "reservationNumber": "RSV-EAKPVU",
+  "reservationStatus": "CurrentEntrada",
   "personsToConfirm" : 1
 }
 
@@ -99,40 +100,71 @@ GET {{baseUrl}}/api/reservations/reservation/search/me?startDate=2025-01-01&endD
 Authorization: {{admin_jwt}}
 Accept: application/json
 
-### Create Reservation
+# ### Create Reservation
+# POST {{baseUrl}}/api/reservations/reservation
+# Authorization: {{admin_jwt}}
+# Content-Type: application/json
+# Accept: application/json
+
+# {
+#   "consumptionCenterId": 3,
+#   "details": {
+#     "serviceDate": "2026-01-02",
+#     "startTime": "15:00",
+#     "endTime": "16:00",
+#     "capacity": 4,
+#     "notes": "Mesa en la terraza, por favor.",
+#     "createdBy": "Rick",
+#     "availabilityId": 3,
+#     "employeeCode": "EMP123",
+#     "reservationDetailPersons": [
+#       {
+#         "name": "Juan Perez",
+#         "age": 39,
+#         "personType": "Adulto",
+#         "personNumber": 2,
+#         "personStatus": "Confirmado"
+#       },
+#       {
+#         "name": "Ana Perez",
+#         "age": 12,
+#         "personType": "Niño",
+#         "personNumber": 2,
+#         "personStatus": "Confirmado"
+#       }
+#     ],
+#     "allergenIds": [51, 52]
+#   }
+# }
+### 4. Crear una Reserva Capturando varios Slots
+# Aquí simulamos capturar un slot de reserva (ID 1) y su cleaning (ID 2).
+# Debes obtener IDs reales del paso anterior.
 POST {{baseUrl}}/api/reservations/reservation
-Authorization: {{admin_jwt}}
 Content-Type: application/json
-Accept: application/json
+Authorization: {{admin_jwt}}
 
 {
-  "consumptionCenterId": 3,
+  "consumptionCenterId": 1,
   "details": {
-    "serviceDate": "2026-01-02",
-    "startTime": "15:00",
-    "endTime": "16:00",
-    "capacity": 4,
-    "notes": "Mesa en la terraza, por favor.",
-    "createdBy": "Rick",
-    "availabilityId": 3,
-    "employeeCode": "EMP123",
+    "capacity": 2,
+    "notes": "Prueba de reserva con slots físicos",
+    "createdBy": "Sistema",
+    "availabilityIds": [1217,1218,1219],
+    "employeeCode": "EMP001",
     "reservationDetailPersons": [
       {
-        "name": "Juan Perez",
-        "age": 39,
+        "name": "Juan Pérez",
+        "age": 30,
         "personType": "Adulto",
-        "personNumber": 2,
-        "personStatus": "Confirmado"
+        "personNumber": 1
       },
       {
-        "name": "Ana Perez",
-        "age": 12,
-        "personType": "Niño",
-        "personNumber": 2,
-        "personStatus": "Confirmado"
+        "name": "Eva Perez",
+        "age": 25,
+        "personType": "Adulto",
+        "personNumber": 1
       }
-    ],
-    "allergenIds": [51, 52]
+    ]
   }
 }
 
@@ -414,26 +446,97 @@ Content-Type: application/json
 #   "consumptionCenterId": 3
 # }
 
-### 2. Crear Inventario VIP con Slots Automáticos
-# Esto generará slots de 30m cada uno, más un slot de cleaning de 15m después de cada uno.
+### 2. Crear Inventario con Configuración de Slots Dinámicos
 POST {{baseUrl}}/api/reservations/inventory
 Content-Type: application/json
 
 {
-  "name": "Mesa VIP - Terraza 2",
+  "name": "Mesa VIP - Terraza Dinámica",
   "minCapacity": 2,
   "maxCapacity": 6,
   "startTime": "14:00:00",
   "endTime": "22:00:00",
   "dateTerm": "2026-04-13T00:00:00Z",
   "price": 20.00,
-  "weekDays": "0,0,0,0,0,1,1",
+  "weekDays": "1,1,1,1,1,0,0",
   "slotInterval": 30,
-  "slotAdditional": 0,
-  "slotAdditionalInterval": 0,
   "inventoryTypeId": 1,
   "consumptionCenterId": 1,
-  "status": 0
+  "status": 0,
+  "generateSlots": false,
+  "slotConfigs": [
+    {
+      "availabilityType": 1, 
+      "durationMinutes": 15,
+      "order": 1
+    },
+    {
+      "availabilityType": 2,
+      "durationMinutes": 10,
+      "order": 2
+    }
+  ]
+}
+
+###
+POST {{baseUrl}}/api/reservations/inventory
+Content-Type: application/json
+
+{
+  "name": "Mesa VIP - Terraza Fiesta",
+  "minCapacity": 2,
+  "maxCapacity": 8,
+  "startTime": "08:00:00",
+  "endTime": "12:00:00",
+  "dateTerm": "2026-05-13T00:00:00Z",
+  "price": 20.00,
+  "weekDays": "1,0,1,0,1,0,1",
+  "slotInterval": 30,
+  "inventoryTypeId": 1,
+  "consumptionCenterId": 1,
+  "status": 0,
+  "generateSlots": false,
+  "slotConfigs": [
+    {
+      "availabilityType": 1, 
+      "durationMinutes": 20,
+      "order": 1
+    },
+    {
+      "availabilityType": 2,
+      "durationMinutes": 10,
+      "order": 2
+    }
+  ]
+}
+
+###
+POST {{baseUrl}}/api/reservations/inventory
+Content-Type: application/json
+
+{
+  "name": "Mesa Normal - Terraza",
+  "minCapacity": 2,
+  "maxCapacity": 8,
+  "startTime": "17:00:00",
+  "endTime": "20:00:00",
+  "dateTerm": "2026-05-13T00:00:00Z",
+  "price": 15.00,
+  "weekDays": "1,1,1,1,1,0,0",
+  "slotInterval": 30,
+  "inventoryTypeId": 1,
+  "consumptionCenterId": 1,
+  "status": 0,
+  "generateSlots": false
+}
+
+### 2.5. Sincronizar/Generar Slots (Motor Inteligente)
+# startDate y endDate son opcionales. Si no se envían, el sistema generará slots para las fechas startTime y endTime del inventario, aplicando la configuración de días de semana y duración de slots definida en el inventario.
+POST {{baseUrl}}/api/reservations/inventory/generate-slots
+Content-Type: application/json
+
+{
+  "inventoryId": 36
 }
 
 ###
