@@ -7,12 +7,12 @@
 # =====================================================
 
 ### Get Reservation Detail By Id
-GET {{baseUrl}}/api/reservations/reservation/10
+GET {{baseUrl}}/api/reservations/reservation/257
 Authorization: {{admin_jwt}}
 Accept: application/json
 
 ### Get Reservation By Reservation Number
-GET {{baseUrl}}/api/reservations/reservation/lookup/RSV-27QWG7
+GET {{baseUrl}}/api/reservations/reservation/lookup/RSV-74EULX
 Authorization: {{admin_jwt}}
 Accept: application/json
 
@@ -50,15 +50,12 @@ Accept: application/json
 
 ##
 ### Update Reservation Details (PATCH)
-PATCH {{baseUrl}}/api/reservations/reservation/236/details
+PATCH {{baseUrl}}/api/reservations/reservation/259/details
 Authorization: {{admin_jwt}}
 Content-Type: application/json
 Accept: application/json
 
 {
-  "serviceDate": "2026-02-18",
-  "startTime": "09:00",
-  "endTime": "10:00",
   "capacity": 1,
   "employeeCode": "EMP123",
   "notes": "Actualización de fecha y hora, 3 personas.",
@@ -71,7 +68,7 @@ Accept: application/json
         "personStatus": "Confirmado"
       }
     ],
-    "availabilityIds": [41,42]
+    "availabilityIds": [2465]
 }
 
 
@@ -92,7 +89,7 @@ Content-Type: application/json
 {
   "consumptionCenterId": 1,
   "startDate": "2026-03-10",
-  "endDate": "2026-03-27"
+  "endDate": "2026-03-20"
 }
 
 ### Get My Reservations By DateRange
@@ -146,10 +143,10 @@ Authorization: {{admin_jwt}}
 {
   "consumptionCenterId": 1,
   "details": {
-    "capacity": 2,
+    "capacity": 4,
     "notes": "Prueba de reserva con slots físicos",
     "createdBy": "Sistema",
-    "availabilityIds": [1217,1218,1219],
+    "availabilityIds": [2207],
     "employeeCode": "EMP001",
     "reservationDetailPersons": [
       {
@@ -176,7 +173,7 @@ Accept: application/json
 {
   "consumptionCenterId": 1,
   "capacity": 4,
-  "reservationDate": "2026-04-02"
+  "reservationDate": "2026-03-16"
 }
 
 ###
@@ -451,29 +448,24 @@ POST {{baseUrl}}/api/reservations/inventory
 Content-Type: application/json
 
 {
-  "name": "Mesa VIP - Terraza Dinámica",
+  "name": "Mesa Marzo",
   "minCapacity": 2,
   "maxCapacity": 6,
-  "startTime": "14:00:00",
-  "endTime": "22:00:00",
-  "dateTerm": "2026-04-13T00:00:00Z",
-  "price": 20.00,
-  "weekDays": "1,1,1,1,1,0,0",
-  "slotInterval": 30,
+  "startTime": "08:00:00",
+  "endTime": "09:00:00",
+  "dateTerm": "2026-03-31T00:00:00Z",
+  "price": 99.00,
+  "weekDays": "1,0,1,0,1,0,0",
+  "slotInterval": 60,
   "inventoryTypeId": 1,
   "consumptionCenterId": 1,
   "status": 0,
-  "generateSlots": false,
+  "generateSlots": true,
   "slotConfigs": [
     {
       "availabilityType": 1, 
-      "durationMinutes": 15,
+      "durationMinutes": 30,
       "order": 1
-    },
-    {
-      "availabilityType": 2,
-      "durationMinutes": 10,
-      "order": 2
     }
   ]
 }
@@ -527,7 +519,7 @@ Content-Type: application/json
   "inventoryTypeId": 1,
   "consumptionCenterId": 1,
   "status": 0,
-  "generateSlots": false
+  "generateSlots": true
 }
 
 ### 2.5. Sincronizar/Generar Slots (Motor Inteligente)
@@ -536,7 +528,7 @@ POST {{baseUrl}}/api/reservations/inventory/generate-slots
 Content-Type: application/json
 
 {
-  "inventoryId": 36
+  "inventoryId": 38
 }
 
 ###
