@@ -118,7 +118,8 @@ Authorization: {{jwt}}
   {
     "contractId": "C-12345",
     "reservationNumber": "R-12345",
-    "fullName": "Jane Smith",
+    "givenName": "Jane",
+    "surnName": "Smith",
     "email": "diurvan1@gmail.com",
     "phoneNumber": "555-555-5555"
   }
