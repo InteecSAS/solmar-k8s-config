@@ -1,0 +1,581 @@
+{
+  "Errors": [
+    {
+      "ErrorCodeId": "SOL-00001",
+      "Messages": {
+        "es-MX": "Ocurrió un error inesperado.",
+        "en-US": "An unexpected error occurred."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-001",
+      "Messages": {
+        "es-MX": "El usuario o la contraseña son incorrectos.",
+        "en-US": "Invalid username or password."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-002",
+      "Messages": {
+        "es-MX": "Debe completar el reseteo de su contraseña antes de poder iniciar sesión.",
+        "en-US": "You must complete your password reset before logging in."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-003",
+      "Messages": {
+        "es-MX": "Token de autenticación inválido.",
+        "en-US": "Invalid authentication token."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-004",
+      "Messages": {
+        "es-MX": "Token de autenticación expirado.",
+        "en-US": "Authentication token expired."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-005",
+      "Messages": {
+        "es-MX": "El usuario solicitado no fue encontrado.",
+        "en-US": "The requested user was not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-005",
+      "Messages": {
+        "es-MX": "Opción de la preferencia no existe.",
+        "en-US": "Preference option with ID {optionId} does not exist."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-006",
+      "Messages": {
+        "es-MX": "Ya existe un usuario con este correo electrónico.",
+        "en-US": "There is already a user with this email address."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-007",
+      "Messages": {
+        "es-MX": "Debe aceptar los términos y la política de privacidad.",
+        "en-US": "You must accept the terms and privacy policy"
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-008",
+      "Messages": {
+        "es-MX": "El correo electrónico no ha sido verificado o la verificación ha caducado.",
+        "en-US": "The email address has not been verified or the verification has expired."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-009",
+      "Messages": {
+        "es-MX": "La contraseña no cumple con los requisitos de seguridad: Mínimo 8 caracteres, al menos una mayúscula, una minúscula, un número y un carácter especial.",
+        "en-US": "The password does not meet the security requirements: Minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-010",
+      "Messages": {
+        "es-MX": "Los datos ingresados no son válidos o no se encontraron.",
+        "en-US": "The entered data is not valid or was not found."
+      },
+      "HttpStatusCode": 401
+    },
+
+    {
+      "ErrorCodeId": "SOL-CAT-001",
+      "Messages": {
+        "es-MX": "Catálogo no encontrado o vacío.",
+        "en-US": "Catalog not found or is empty."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-FIN-001",
+      "Messages": {
+        "es-MX": "Tipo de reporte no válido.",
+        "en-US": "Invalid report type."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-MEM-001",
+      "Messages": {
+        "es-MX": "Perfil de cliente no encontrado.",
+        "en-US": "Customer profile not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-MEM-002",
+      "Messages": {
+        "es-MX": "Miembro no encontrado por número de contrato.",
+        "en-US": "Member not found by contract number."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-MEM-003",
+      "Messages": {
+        "es-MX": "Miembro no encontrado por email y número de contrato.",
+        "en-US": "Member not found by email and contract number."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-MEM-004",
+      "Messages": {
+        "es-MX": "Número de reservación no encontrado en el contrato.",
+        "en-US": "Reservation number not found in contract."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-MEM-005",
+      "Messages": {
+        "es-MX": "No se pueden registrar más acompañantes para esta reserva.",
+        "en-US": "You cannot register more companions for this reservation."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-001",
+      "Messages": {
+        "es-MX": "Usuario no autorizado.",
+        "en-US": "Unauthorized user."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-002",
+      "Messages": {
+        "es-MX": "Notificación no encontrada.",
+        "en-US": "Notification not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-003",
+      "Messages": {
+        "es-MX": "Permiso denegado para modificar esta notificación.",
+        "en-US": "Permission denied to modify this notification."
+      },
+      "HttpStatusCode": 403
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-004",
+      "Messages": {
+        "es-MX": "Categoría de notificación no existe.",
+        "en-US": "Notification category does not exist."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-005",
+      "Messages": {
+        "es-MX": "Error al enviar el correo electrónico con plantilla.",
+        "en-US": "Error sending templated email."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-006",
+      "Messages": {
+        "es-MX": "Error al crear o enviar la notificación push.",
+        "en-US": "Error creating or sending push notification."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-007",
+      "Messages": {
+        "es-MX": "Notificación push no encontrada.",
+        "en-US": "Push notification not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-008",
+      "Messages": {
+        "es-MX": "Permiso denegado para modificar esta notificación push.",
+        "en-US": "Permission denied to modify this push notification."
+      },
+      "HttpStatusCode": 403
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-009",
+      "Messages": {
+        "es-MX": "DeviceToken no puede ser nulo o vacío.",
+        "en-US": "DeviceToken cannot be null or empty."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-NOT-010",
+      "Messages": {
+        "es-MX": "La categoría de notificación con ID {id} no existe.",
+        "en-US": "Notification category with ID {id} does not exist."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-001",
+      "Messages": {
+        "es-MX": "La reservación no fue encontrada.",
+        "en-US": "The reservation was not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-002",
+      "Messages": {
+        "es-MX": "Parámetros de búsqueda de reservación inválidos.",
+        "en-US": "Invalid reservation search parameters."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-003",
+      "Messages": {
+        "es-MX": "Email no encontrado en el token.",
+        "en-US": "Email not found in token."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-RES-004",
+      "Messages": {
+        "es-MX": "Centro de consumo no encontrado.",
+        "en-US": "Consumption center not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-005",
+      "Messages": {
+        "es-MX": "La reserva no puede ser modificada si está cancelada o completada.",
+        "en-US": "This reservation cannot be modified as it is cancelled or completed."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-006",
+      "Messages": {
+        "es-MX": "Grupo de centro de consumo no encontrado.",
+        "en-US": "Consumption center group not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-007",
+      "Messages": {
+        "es-MX": "Inventario no encontrado.",
+        "en-US": "Inventory not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-008",
+      "Messages": {
+        "es-MX": "Parámetros de centro de consumo inválidos.",
+        "en-US": "Invalid consumption center parameters."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-009",
+      "Messages": {
+        "es-MX": "Parámetros de tipo de centro de consumo inválidos.",
+        "en-US": "Invalid consumption center type parameters."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-010",
+      "Messages": {
+        "es-MX": "Parámetros de grupo de centro de consumo inválidos.",
+        "en-US": "Invalid consumption center group parameters."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-011",
+      "Messages": {
+        "es-MX": "Parámetros de inventario inválidos.",
+        "en-US": "Invalid inventory parameters."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-012",
+      "Messages": {
+        "es-MX": "Reserva no encontrada para la persona especificada.",
+        "en-US": "No reservations found for the specified person."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-013",
+      "Messages": {
+        "es-MX": "Ofertas no encontradas para el centro de consumo especificado.",
+        "en-US": "Offers not found for the specified consumption center."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-013",
+      "Messages": {
+        "es-MX": "Detalle de reservación no encontrado.",
+        "en-US": "Reservation detail not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-014",
+      "Messages": {
+        "es-MX": "Archivo requerido para la carga de medios.",
+        "en-US": "File required for media upload."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-015",
+      "Messages": {
+        "es-MX": "Error al cargar medios.",
+        "en-US": "Error uploading media."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "SOL-RES-016",
+      "Messages": {
+        "es-MX": "Medio no encontrado para el detalle de reservación.",
+        "en-US": "Media not found for reservation detail."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-017",
+      "Messages": {
+        "es-MX": "No se encontraron medios para el detalle de reservación.",
+        "en-US": "No media found for reservation detail."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-018",
+      "Messages": {
+        "es-MX": "Error al eliminar medios.",
+        "en-US": "Error deleting media."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "SOL-RES-019",
+      "Messages": {
+        "es-MX": "Estado de reserva inválido.",
+        "en-US": "Invalid reservation status."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "SOL-RES-020",
+      "Messages": {
+        "es-MX": "No se encontró información de huésped para esta habitación en el sitio especificado.",
+        "en-US": "No guest information found for this room in the specified site."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-021",
+      "Messages": {
+        "es-MX": "No existen reservas para ti.",
+        "en-US": "Doesn't have reservations for you."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-022",
+      "Messages": {
+        "es-MX": "Formato de número de reservación inválido.",
+        "en-US": "Invalid reservation number format."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-023",
+      "Messages": {
+        "es-MX": "El horario seleccionado ya no está disponible.",
+        "en-US": "The selected time slot is no longer available."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-024",
+      "Messages": {
+        "es-MX": "El horario seleccionado inválido.",
+        "en-US": "Invalid availability id."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-025",
+      "Messages": {
+        "es-MX": "Reserva no encontrada.",
+        "en-US": "Reservation not found."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-026",
+      "Messages": {
+        "es-MX": "Esta Reserva no puede ser modificada.",
+        "en-US": "This reservation cannot be modified."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-027",
+      "Messages": {
+        "es-MX": "Error al crear un ID de persona Externa.",
+        "en-US": "Error creating external person."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-028",
+      "Messages": {
+        "es-MX": "Otros errores en la creación de reserva.",
+        "en-US": "Other errors in creating a reservation."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-029",
+      "Messages": {
+        "es-MX": "Otros errores en la modificación de reserva.",
+        "en-US": "Other errors in updating a reservation."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-030",
+      "Messages": {
+        "es-MX": "Otros errores en el cambio de estado de reserva.",
+        "en-US": "Other errors in change status a reservation."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "MEDIA-001",
+      "Messages": {
+        "es-MX": "No existen archivos cargados.",
+        "en-US": "No file uploaded."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-002",
+      "Messages": {
+        "es-MX": "Tipo del archivo no especificado.",
+        "en-US": "Media type not specified."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-003",
+      "Messages": {
+        "es-MX": "Catálogo de recurso no especificado.",
+        "en-US": "Resource catalog not specified."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-004",
+      "Messages": {
+        "es-MX": "ID de Catálogo del recurso no especificado o inválido.",
+        "en-US": "Resource catalog ID not specified or invalid."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-005",
+      "Messages": {
+        "es-MX": "Falló la carga al almacenamiento.",
+        "en-US": "Failed to upload file to storage."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-006",
+      "Messages": {
+        "es-MX": "Error cargando archivo.",
+        "en-US": "Error uploading file."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-007",
+      "Messages": {
+        "es-MX": "Error obteniendo media por ID.",
+        "en-US": "Error getting media by ID."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-008",
+      "Messages": {
+        "es-MX": "Error obteniendo media por Recurso.",
+        "en-US": "Error getting media for resource."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-009",
+      "Messages": {
+        "es-MX": "ID del archivo no encontrado.",
+        "en-US": "Media with ID not found."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-010",
+      "Messages": {
+        "es-MX": "Error borrando archivo.",
+        "en-US": "Error deleting media."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-011",
+      "Messages": {
+        "es-MX": "Excepción en MediaController.",
+        "en-US": "Throw excepcion on MediaController."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "MEDIA-012",
+      "Messages": {
+        "es-MX": "Excepción en MediaController.",
+        "en-US": "Throw excepcion on MediaController."
+      },
+      "HttpStatusCode": 500
+    }
+  ]
+}
