@@ -16,9 +16,7 @@ secretGenerator:
 # Aplica el parche de réplicas
 patchesStrategicMerge:
 - replicas.yaml
-
-# Aplica los parches JSON
-# Aplica el parche de variables de entorno a TODOS los Deployments
+- common-env-patch.yaml
 
 # Parche específico para notifications-service
 patches:
@@ -32,6 +30,7 @@ patches:
             name: solmar-secrets-qa
   target:
     kind: Deployment
+    name: notifications-service
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/volumeMounts

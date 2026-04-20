@@ -2,14 +2,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: not-important # Kustomize ignora esto y usa el nombre del recurso base
+  name: reservations-service
 spec:
   template:
     spec:
       containers:
-      - name: not-important # Kustomize ignora esto y usa el nombre del contenedor base
+      - name: reservations-service
         envFrom:
         - configMapRef:
-            name: solmar-config-qa # Nombre que le daremos a nuestro ConfigMap de QA
+            name: solmar-config-qa
         - secretRef:
-            name: solmar-secrets-qa # Nombre que le daremos a nuestro Secret de QA
+            name: solmar-secrets-qa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memberships-service
+spec:
+  template:
+    spec:
+      containers:
+      - name: memberships-service
+        envFrom:
+        - configMapRef:
+            name: solmar-config-qa
+        - secretRef:
+            name: solmar-secrets-qa

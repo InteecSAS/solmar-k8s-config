@@ -154,6 +154,14 @@
       "HttpStatusCode": 404
     },
     {
+      "ErrorCodeId": "SOL-MEM-006",
+      "Messages": {
+        "es-MX": "Debe actualizar su información. Contacte con MEMBER SERVICES para que lo ayude en esta gestión.",
+        "en-US": "You must update your information. Please contact MEMBER SERVICES to assist you with this process."
+      },
+      "HttpStatusCode": 404
+    },
+    {
       "ErrorCodeId": "SOL-NOT-001",
       "Messages": {
         "es-MX": "Usuario no autorizado.",
@@ -478,6 +486,46 @@
       "Messages": {
         "es-MX": "Otros errores en el cambio de estado de reserva.",
         "en-US": "Other errors in change status a reservation."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-031",
+      "Messages": {
+        "es-MX": "Hubieron errores al obtener Horarios CC.",
+        "en-US": "There were errors while fetching CC schedules."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-032",
+      "Messages": {
+        "es-MX": "Hubieron errores al crear Horarios CC.",
+        "en-US": "There were errors while creating CC schedules."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-033",
+      "Messages": {
+        "es-MX": "Hubieron errores al actualizar Horarios CC.",
+        "en-US": "There were errors while updating CC schedules."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-034",
+      "Messages": {
+        "es-MX": "Hubieron errores al eliminar Horarios CC.",
+        "en-US": "There were errors while deleting CC schedules."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-035",
+      "Messages": {
+        "es-MX": "Límite de aforo operativo alcanzado para este horario.",
+        "en-US": "Operational capacity limit reached for this time slot."
       },
       "HttpStatusCode": 400
     },
