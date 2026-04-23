@@ -96,6 +96,22 @@
       },
       "HttpStatusCode": 401
     },
+    {
+      "ErrorCodeId": "SOL-AUTH-011",
+      "Messages": {
+        "es-MX": "Código de verificación inválido, caducado o ya utilizado.",
+        "en-US": "Invalid, expired or already used verification code."
+      },
+      "HttpStatusCode": 401
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-012",
+      "Messages": {
+        "es-MX": "Errores en la verificación del código.",
+        "en-US": "Errors in verification code validation."
+      },
+      "HttpStatusCode": 401
+    },
 
     {
       "ErrorCodeId": "SOL-CAT-001",
@@ -526,6 +542,14 @@
       "Messages": {
         "es-MX": "Límite de aforo operativo alcanzado para este horario.",
         "en-US": "Operational capacity limit reached for this time slot."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-036",
+      "Messages": {
+        "es-MX": "Otros errores en la modificación de centro de consumo.",
+        "en-US": "Other errors in updating a Consumption Center."
       },
       "HttpStatusCode": 400
     },
