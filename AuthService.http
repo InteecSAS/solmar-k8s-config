@@ -1,6 +1,7 @@
 ###@baseUrl = http://localhost:30577
-@baseUrl = https://apiqa.solmar.com
-@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Iml2YW4udGFwaWFAaW50ZWVjLmxhIiwiZ2l2ZW5fbmFtZSI6Ikl2w6FuIFRhcGlhIiwic3ViIjoiN2Q3NmY1NDEtZWM1MS00MmNmLWJjNGQtOThkMTg1ZWU1ZmJiIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJFSUIzWVZTUjZGVDNTSjczWkJLNkhMN0tOS09IRlZLVCIsIlBlcnNvbklkIjoiMTkiLCJwaG9uZV9udW1iZXIiOiIrNTE5NTU0Nzg2NjQiLCJyb2xlIjoiQ2xpZW50ZSIsIm5iZiI6MTc3MzA2NjczMCwiZXhwIjoxNzczNjcxNTMwLCJpYXQiOjE3NzMwNjY3MzAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.MdYZCItU69ZM_Il969MqJtFjPlfGilA4zV0TdbPJlYl-cl_5wVbdk3G3HV4JlPHJbJUgK8VLDZgMnqi7KdVyFA
+@baseUrl = https://api.solmar.com
+@x-api-key = sol_qa_app_2026_m_01
+@cliente_jwt = Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imp1YW4uY2FyZG9uYUBzb2xtYXIuY29tIiwiZ2l2ZW5fbmFtZSI6Ikp1YW5UZXN0IENhcmRvbmFUZXN0Iiwic3ViIjoiNzA0Y2IwZDMtYzdmYS00NjA0LTk5ZGYtYzg4MzIzZWRhM2E1IiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJTRk9RVU03WU9PQ0ZIMlNKVk9ERkNOU1lQREhLNDdNWiIsIlBlcnNvbklkIjoiMTIzIiwib3JpZ2luX2FwcCI6IkFwcC1Tb2xtYXItUUEiLCJwaG9uZV9udW1iZXIiOiIrNTI2MjQyMzk2NjkxIiwicm9sZSI6WyJDbGllbnRlIiwiRXF1aXBvTUlTIl0sIm5iZiI6MTc3Njc5Njg2MywiZXhwIjoxNzc3NDAxNjYzLCJpYXQiOjE3NzY3OTY4NjMsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMDEiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MDAxIn0.Tuv_X3XynxWQTG4e5a3dpOnmEn5JQWozHcYO8DvvI3WznD3X7CbdzWdhM3BWtwgcf_6m-WDQdh4HJWZnRNSNgw
 
 ###
 # =====================================================
@@ -20,11 +21,12 @@ Authorization: {{cliente_jwt}}
 # reservationCode: Required if registrationType is "reservation"
 POST {{baseUrl}}/api/auth-service/initiate-registration
 Content-Type: application/json
+Accept-Language: en-US
 
 {
-  "email": "ivan.tapia@inteec.la",
-  "registrationType": "reservation",
-  "reservationCode": "1351181",
+  "email": "angelicasl@hotmail.com",
+  "registrationType": "membership",
+  "reservationCode": "72270",
   "AcceptTerms": true,
   "AcceptDataPolicy": true
 }
@@ -78,25 +80,18 @@ Content-Type: application/json
 
 
 # @name login
-# Inicia sesión y obtiene un token JWT.
-# Guarda el token en la variable @cliente_jwt o @cliente_jwt.
-# deviceToken: Opcional. Token de registro del dispositivo para notificaciones push.
+# Inicia sesión y obtiene un par de tokens (Access Token + Refresh Token).
+# accessToken (Token): Corta duración (e.g. 15 min). Para peticiones diarias.
+# refreshToken: Larga duración (e.g. 7 días). Para renovar el Access Token.
 POST {{baseUrl}}/api/auth-service/login
 Content-Type: application/json
+X-Api-Key: {{x-api-key}}
 
 {
-  "email": "ivan.tapia@inteec.la",
+  "email": "juan.cardona@solmar.com",
   "password": "P@ssw0rd",
   "deviceToken": "your_device_token_here_for_login"
 }
-
-
-###
-# @name login
-# Refresh token caducado
-POST {{baseUrl}}/api/auth-service/refresh-token
-Content-Type: application/json
-Authorization: {{cliente_jwt}}
 
 ###
 # RESPONSE EXAMPLE:
@@ -104,7 +99,32 @@ Authorization: {{cliente_jwt}}
 # Content-Type: application/json; charset=utf-8
 #
 # {
-#   "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9..."
+#   "token": "eyJhbGciOiJIUzUxMiI...",
+#   "refreshToken": "9a12b-34cd-56ef...",
+#   "user": { "id": "...", "email": "..." },
+#   "customerProfile": null
+# }
+
+###
+
+# @name refreshToken
+# Obtiene un nuevo par de tokens usando un Refresh Token válido.
+# Este endpoint implementa "Token Rotation" (el refresh token enviado queda invalidado).
+POST {{baseUrl}}/api/auth-service/refresh-token
+Content-Type: application/json
+X-Api-Key: {{x-api-key}}
+
+{
+  "refreshToken": "9a12b-34cd-56ef..."
+}
+
+###
+# RESPONSE EXAMPLE:
+# HTTP/1.1 200 OK
+#
+# {
+#   "token": "NUEVO_ACCESS_TOKEN",
+#   "refreshToken": "NUEVO_REFRESH_TOKEN"
 # }
 
 
@@ -166,7 +186,7 @@ Content-Type: application/json
 # @name validateSecurityStamp
 # [USO INTERNO] Valida el security stamp de un usuario.
 # Usado por el API Gateway para verificar si un token sigue siendo válido.
-GET {{baseUrl}}/api/auth-service/internal/validate-security-stamp/{{userId}}/{{securityStamp}}
+GET {{baseUrl}}/api/auth-service/internal/validate-security-stamp/1/2027-01-01T00:00:00Z
 
 # RESPONSE EXAMPLE (VALID):
 # HTTP/1.1 200 OK
@@ -233,85 +253,6 @@ POST {{baseUrl}}/api/auth-service/roles
 Content-Type: application/json
 Authorization: {{cliente_jwt}}
 
-"NuevoRol"
-
-# RESPONSE EXAMPLE:
-# HTTP/1.1 200 OK
-# Content-Type: text/plain; charset=utf-8
-#
-# Rol 'NuevoRol' creado exitosamente.
-
-###
-
-# @name getUserRoles
-# Obtiene los roles de un usuario específico.
-GET {{baseUrl}}/api/auth-service/users/{{userId}}/roles
-Authorization: {{cliente_jwt}}
-
-# RESPONSE EXAMPLE:
-# HTTP/1.1 200 OK
-# Content-Type: application/json; charset=utf-8
-#
-# [
-#   "Cliente"
-# ]
-
-###
-
-# @name addUserToRole
-# Asigna un rol a un usuario.
-POST {{baseUrl}}/api/auth-service/users/{{userId}}/roles
-Content-Type: application/json
-Authorization: {{cliente_jwt}}
-
-"Cliente"
-
-# RESPONSE EXAMPLE:
-# HTTP/1.1 200 OK
-# Content-Type: text/plain; charset=utf-8
-#
-# Usuario 'cliente@solmar.com' añadido al rol 'Cliente' exitosamente.
-
-###
-
-# @name removeUserFromRole
-# Remueve un rol de un usuario.
-DELETE {{baseUrl}}/api/auth-service/users/{{userId}}/roles
-Content-Type: application/json
-Authorization: {{cliente_jwt}}
-
-"Cliente"
-
-# RESPONSE EXAMPLE:
-# HTTP/1.1 200 OK
-# Content-Type: text/plain; charset=utf-8
-#
-# Usuario 'cliente@solmar.com' eliminado del rol 'Cliente' exitosamente.
-
-###
-
-# @name invalidateUserSessions
-# Invalida todas las sesiones de un usuario, forzándolo a iniciar sesión de nuevo.
-POST {{baseUrl}}/api/auth-service/users/{{userId}}/invalidate-sessions
-Authorization: {{cliente_jwt}}
-
-# RESPONSE EXAMPLE:
-# HTTP/1.1 200 OK
-# Content-Type: text/plain; charset=utf-8
-#
-# Todas las sesiones del usuario 'cliente@solmar.com' han sido invalidadas. Deberá volver a iniciar sesión.
-
-
-# =====================================================
-# Preferences Controller
-# Requiere un token JWT para la mayoría de los endpoints.
-# =====================================================
-###
-
-# # @name getMyPreferences
-# # Obtiene las preferencias del usuario actual.
-# GET {{baseUrl}}/api/auth-service/preferences/me
-# Authorization: {{cliente_jwt}}
 
 ###
 
@@ -322,7 +263,6 @@ Authorization: {{cliente_jwt}}
 Content-Type: application/json
 
 {
-  "applicationUserId": "{{userId}}",
   "receiveEmailNotifications": true,
   "allowAnalyticsCookies": true,
   "preferredLanguage": "es-MX"
@@ -334,7 +274,7 @@ Content-Type: application/json
 # Obtiene todas las categorías de preferencias disponibles con sus opciones, traducidas según el idioma solicitado.
 GET {{baseUrl}}/api/auth-service/preferences/categories
 Authorization: {{cliente_jwt}}
-Accept-Language: es-MX # o en-US, etc.
+Accept-Language: en-US
 
 ###
 
@@ -350,6 +290,14 @@ Accept-Language: en-US
 # Obtiene las preferencias detalladas seleccionadas por el usuario actual.
 GET {{baseUrl}}/api/auth-service/preferences/me/selections
 Authorization: {{cliente_jwt}}
+Accept-Language: en-US
+
+###
+# @name getUserPreferenceSelections
+# Obtiene las preferencias detalladas seleccionadas por el usuario.
+GET {{baseUrl}}/api/auth-service/preferences/user/selections/78341668-c8a5-4fe2-80b4-148d482ab6da
+Authorization: {{cliente_jwt}}
+
 
 ###
 
@@ -383,3 +331,4 @@ Content-Type: application/json
 # Obtiene Profile information del usuario autenticado
 GET {{baseUrl}}/api/auth-service/user/profile
 Authorization: {{cliente_jwt}}
+X-Api-Key: {{x-api-key}}
