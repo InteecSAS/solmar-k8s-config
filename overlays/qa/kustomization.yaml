@@ -53,6 +53,20 @@ patches:
   target:
     kind: Deployment
     name: notifications-service
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: Jwt__ExpirationInMinutes
+        value: "1"
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: Jwt__RefreshTokenExpirationInMinutes
+        value: "5"
+  target:
+    kind: Deployment
+    name: auth-service
 resources:
 - ../../base
 images:

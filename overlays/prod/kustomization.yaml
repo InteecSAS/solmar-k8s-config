@@ -29,6 +29,20 @@ patches:
             name: solmar-secrets-prod
   target:
     kind: Deployment
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: Jwt__ExpirationInMinutes
+        value: "15"
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: Jwt__RefreshTokenExpirationInMinutes
+        value: "10080"
+  target:
+    kind: Deployment
+    name: auth-service
 resources:
 - ../../base
 images:
