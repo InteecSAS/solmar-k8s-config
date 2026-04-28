@@ -13,15 +13,9 @@ secretGenerator:
   - qa-secrets.env
   name: solmar-secrets-qa
 
-# Aplica el parche de réplicas
-patchesStrategicMerge:
-- replicas.yaml
-
-# Aplica los parches JSON
-# Aplica el parche de variables de entorno a TODOS los Deployments
-
-# Parche específico para notifications-service
+# Aplica los parches
 patches:
+- path: replicas.yaml
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/envFrom
@@ -55,15 +49,12 @@ patches:
     name: notifications-service
 - patch: |-
     - op: add
-      path: /spec/template/spec/containers/0/env/-
+      path: /spec/template/spec/containers/0/env
       value:
-        name: Jwt__ExpirationInMinutes
-        value: "1"
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: Jwt__RefreshTokenExpirationInMinutes
-        value: "5"
+        - name: Jwt__ExpirationInMinutes
+          value: "15"
+        - name: Jwt__RefreshTokenExpirationInMinutes
+          value: "10080"
   target:
     kind: Deployment
     name: auth-service
