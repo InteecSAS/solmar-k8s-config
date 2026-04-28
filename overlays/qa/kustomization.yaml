@@ -13,13 +13,9 @@ secretGenerator:
   - qa-secrets.env
   name: solmar-secrets-qa
 
-# Aplica el parche de réplicas
-patchesStrategicMerge:
-- replicas.yaml
-- common-env-patch.yaml
-
-# Parche específico para notifications-service
+# Aplica los parches
 patches:
+- path: replicas.yaml
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/envFrom
@@ -52,33 +48,44 @@ patches:
   target:
     kind: Deployment
     name: notifications-service
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env
+      value:
+        - name: Jwt__ExpirationInMinutes
+          value: "15"
+        - name: Jwt__RefreshTokenExpirationInMinutes
+          value: "10080"
+  target:
+    kind: Deployment
+    name: auth-service
 resources:
 - ../../base
 images:
 - name: diurvan/solmar-backend-authservice
   newName: diurvan/solmar-backend-authservice
-  newTag: 936f63f
+  newTag: 2c1394b
 - name: diurvan/solmar-backend-catalogservice
   newName: diurvan/solmar-backend-catalogservice
-  newTag: 936f63f
+  newTag: 2c1394b
 - name: diurvan/solmar-backend-finanzasservice
   newName: diurvan/solmar-backend-finanzasservice
-  newTag: 936f63f
+  newTag: 2c1394b
 - name: diurvan/solmar-backend-localizationservice
   newName: diurvan/solmar-backend-localizationservice
-  newTag: 936f63f
+  newTag: 2c1394b
 - name: diurvan/solmar-backend-mediaservice
   newName: diurvan/solmar-backend-mediaservice
-  newTag: 936f63f
+  newTag: 2c1394b
 - name: diurvan/solmar-backend-membershipsservice
   newName: diurvan/solmar-backend-membershipsservice
-  newTag: 936f63f
+  newTag: 2c1394b
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: 936f63f
+  newTag: 2c1394b
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
-  newTag: 936f63f
+  newTag: 2c1394b
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
-  newTag: 936f63f
+  newTag: 2c1394b

@@ -19,7 +19,55 @@ patchesStrategicMerge:
 - common-env-patch.yaml
 
 # Aplica el parche de variables de entorno a TODOS los Deployments
-# Se ha movido a common-env-patch.yaml para mayor confiabilidad con hashes de ConfigMap
+patches:
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/envFrom
+      value:
+        - configMapRef:
+            name: solmar-config-prod
+        - secretRef:
+            name: solmar-secrets-prod
+  target:
+    kind: Deployment
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: Jwt__ExpirationInMinutes
+        value: "15"
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: Jwt__RefreshTokenExpirationInMinutes
+        value: "10080"
+  target:
+    kind: Deployment
+    name: auth-service
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: ReservationRules__CapacityBypass__AllowedRoles__0
+        value: "ADMIN"
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: ReservationRules__CapacityBypass__AllowedRoles__1
+        value: "GERENTE"
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: ReservationRules__CapacityBypass__AllowedRoles__2
+        value: "CONCIERGE"
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: ReservationRules__CapacityBypass__AllowedApiKeys__0
+        value: "sol_prod_admin_dashboard_2026"
+  target:
+    kind: Deployment
+    name: reservations-service
 resources:
 - ../../base
 images:
