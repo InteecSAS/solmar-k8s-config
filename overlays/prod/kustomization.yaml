@@ -12,13 +12,10 @@ secretGenerator:
 - envs:
   - prod-secrets.env
   name: solmar-secrets-prod
-
-# Aplica los patches de imagen y réplicas
-patchesStrategicMerge:
-- replicas.yaml
-
-# Aplica el parche de variables de entorno a TODOS los Deployments
+# Aplica los patches
 patches:
+- path: replicas.yaml
+- path: common-env-patch.yaml
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/envFrom
@@ -31,39 +28,27 @@ patches:
     kind: Deployment
 - patch: |-
     - op: add
-      path: /spec/template/spec/containers/0/env/-
+      path: /spec/template/spec/containers/0/env
       value:
-        name: Jwt__ExpirationInMinutes
-        value: "15"
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: Jwt__RefreshTokenExpirationInMinutes
-        value: "10080"
+        - name: Jwt__ExpirationInMinutes
+          value: "15"
+        - name: Jwt__RefreshTokenExpirationInMinutes
+          value: "10080"
   target:
     kind: Deployment
     name: auth-service
 - patch: |-
     - op: add
-      path: /spec/template/spec/containers/0/env/-
+      path: /spec/template/spec/containers/0/env
       value:
-        name: ReservationRules__CapacityBypass__AllowedRoles__0
-        value: "ADMIN"
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: ReservationRules__CapacityBypass__AllowedRoles__1
-        value: "GERENTE"
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: ReservationRules__CapacityBypass__AllowedRoles__2
-        value: "CONCIERGE"
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: ReservationRules__CapacityBypass__AllowedApiKeys__0
-        value: "sol_prod_admin_dashboard_2026"
+        - name: ReservationRules__CapacityBypass__AllowedRoles__0
+          value: "ADMIN"
+        - name: ReservationRules__CapacityBypass__AllowedRoles__1
+          value: "GERENTE"
+        - name: ReservationRules__CapacityBypass__AllowedRoles__2
+          value: "CONCIERGE"
+        - name: ReservationRules__CapacityBypass__AllowedApiKeys__0
+          value: "sol_prod_admin_dashboard_2026"
   target:
     kind: Deployment
     name: reservations-service
