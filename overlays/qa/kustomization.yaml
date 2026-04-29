@@ -49,6 +49,13 @@ patches:
     name: notifications-service
 - patch: |-
     - op: add
+      path: /spec/template/spec/containers/0/envFrom
+      value:
+        - configMapRef:
+            name: solmar-config-qa
+        - secretRef:
+            name: solmar-secrets-qa
+    - op: add
       path: /spec/template/spec/containers/0/env
       value:
         - name: Jwt__ExpirationInMinutes

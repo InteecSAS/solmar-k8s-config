@@ -28,6 +28,13 @@ patches:
     kind: Deployment
 - patch: |-
     - op: add
+      path: /spec/template/spec/containers/0/envFrom
+      value:
+        - configMapRef:
+            name: solmar-config-prod
+        - secretRef:
+            name: solmar-secrets-prod
+    - op: add
       path: /spec/template/spec/containers/0/env
       value:
         - name: Jwt__ExpirationInMinutes
@@ -72,10 +79,10 @@ images:
   newTag: ef3bba2
 - name: diurvan/solmar-backend-membershipsservice
   newName: diurvan/solmar-backend-membershipsservice
-  newTag: adb79dc
+  newTag: ef3bba2
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: latest
+  newTag: ef3bba2
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
   newTag: ef3bba2
