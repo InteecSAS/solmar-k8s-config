@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 configMapGenerator:
-- files:
+- envs:
   - qa-config.properties
   name: solmar-config-qa
 
@@ -50,10 +50,17 @@ patches:
     name: notifications-service
 - patch: |-
     - op: add
+      path: /spec/template/spec/containers/0/envFrom
+      value:
+        - configMapRef:
+            name: solmar-config-qa
+        - secretRef:
+            name: solmar-secrets-qa
+    - op: add
       path: /spec/template/spec/containers/0/env
       value:
         - name: Jwt__ExpirationInMinutes
-          value: "15"
+          value: "1"
         - name: Jwt__RefreshTokenExpirationInMinutes
           value: "10080"
   target:
@@ -64,28 +71,28 @@ resources:
 images:
 - name: diurvan/solmar-backend-authservice
   newName: diurvan/solmar-backend-authservice
-  newTag: bd02e33
+  newTag: 3f2505f
 - name: diurvan/solmar-backend-catalogservice
   newName: diurvan/solmar-backend-catalogservice
-  newTag: bd02e33
+  newTag: 3f2505f
 - name: diurvan/solmar-backend-finanzasservice
   newName: diurvan/solmar-backend-finanzasservice
-  newTag: bd02e33
+  newTag: 3f2505f
 - name: diurvan/solmar-backend-localizationservice
   newName: diurvan/solmar-backend-localizationservice
-  newTag: bd02e33
+  newTag: 3f2505f
 - name: diurvan/solmar-backend-mediaservice
   newName: diurvan/solmar-backend-mediaservice
-  newTag: bd02e33
+  newTag: 3f2505f
 - name: diurvan/solmar-backend-membershipsservice
   newName: diurvan/solmar-backend-membershipsservice
-  newTag: bd02e33
+  newTag: 3f2505f
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: bd02e33
+  newTag: 3f2505f
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
-  newTag: bd02e33
+  newTag: 3f2505f
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
-  newTag: bd02e33
+  newTag: 3f2505f

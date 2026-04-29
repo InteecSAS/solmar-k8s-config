@@ -3,7 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 configMapGenerator:
-- files:
+- envs:
   - prod-config.properties
   name: solmar-config-prod
 
@@ -27,6 +27,13 @@ patches:
   target:
     kind: Deployment
 - patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/envFrom
+      value:
+        - configMapRef:
+            name: solmar-config-prod
+        - secretRef:
+            name: solmar-secrets-prod
     - op: add
       path: /spec/template/spec/containers/0/env
       value:
@@ -72,10 +79,10 @@ images:
   newTag: bd02e33
 - name: diurvan/solmar-backend-membershipsservice
   newName: diurvan/solmar-backend-membershipsservice
-  newTag: bd02e33
+  newTag: ef3bba2
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: bd02e33
+  newTag: ef3bba2
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
   newTag: bd02e33
