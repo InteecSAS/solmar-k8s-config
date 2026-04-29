@@ -59,7 +59,7 @@ patches:
       path: /spec/template/spec/containers/0/env
       value:
         - name: Jwt__ExpirationInMinutes
-          value: "15"
+          value: "1"
         - name: Jwt__RefreshTokenExpirationInMinutes
           value: "10080"
   target:
