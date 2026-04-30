@@ -112,7 +112,38 @@
       },
       "HttpStatusCode": 401
     },
-
+    {
+      "ErrorCodeId": "SOL-AUTH-013",
+      "Messages": {
+        "es-MX": "El usuario especificado no existe.",
+        "en-US": "The specified user was not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-014",
+      "Messages": {
+        "es-MX": "Uno o más permisos especificados no existen.",
+        "en-US": "One or more of the specified permissions were not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-015",
+      "Messages": {
+        "es-MX": "El rol especificado no existe.",
+        "en-US": "The specified role was not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-016",
+      "Messages": {
+        "es-MX": "No se pudo asignar el rol al usuario.",
+        "en-US": "Failed to assign the role to the user."
+      },
+      "HttpStatusCode": 400
+    },
     {
       "ErrorCodeId": "SOL-CAT-001",
       "Messages": {
@@ -552,6 +583,30 @@
         "en-US": "Other errors in updating a Consumption Center."
       },
       "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-037",
+      "Messages": {
+        "es-MX": "La capacidad física de las mesas seleccionadas es inferior a la solicitada.",
+        "en-US": "The physical capacity of the selected tables is lower than requested."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-038",
+      "Messages": {
+        "es-MX": "Uno o más de los horarios seleccionados ya no están disponibles.",
+        "en-US": "One or more of the selected time slots are no longer available."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-039",
+      "Messages": {
+        "es-MX": "No tienes permisos para realizar asignaciones manuales de mesas.",
+        "en-US": "You do not have permissions to perform manual table assignments."
+      },
+      "HttpStatusCode": 403
     },
     {
       "ErrorCodeId": "MEDIA-001",
