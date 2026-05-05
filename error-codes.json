@@ -609,6 +609,78 @@
       "HttpStatusCode": 403
     },
     {
+      "ErrorCodeId": "SOL-RES-050",
+      "Messages": {
+        "es-MX": "Mozo no encontrado o inactivo.",
+        "en-US": "Waiter not found or inactive."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-051",
+      "Messages": {
+        "es-MX": "Reserva no encontrada.",
+        "en-US": "Reservation not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-052",
+      "Messages": {
+        "es-MX": "El mozo no pertenece al centro de consumo de la reserva.",
+        "en-US": "The waiter does not belong to the reservation's consumption center."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-053",
+      "Messages": {
+        "es-MX": "El mozo ya está asignado a la reserva.",
+        "en-US": "The waiter is already assigned to the reservation."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-054",
+      "Messages": {
+        "es-MX": "Asignación no encontrada.",
+        "en-US": "Assignment not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-055",
+      "Messages": {
+        "es-MX": "Error al crear el mozo.",
+        "en-US": "Error creating the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-056",
+      "Messages": {
+        "es-MX": "Error al actualizar el mozo.",
+        "en-US": "Error updating the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-057",
+      "Messages": {
+        "es-MX": "Error al eliminar el mozo.",
+        "en-US": "Error deleting the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-058",
+      "Messages": {
+        "es-MX": "Error al asignar/liberar el mozo.",
+        "en-US": "Error assigning/releasing the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
       "ErrorCodeId": "MEDIA-001",
       "Messages": {
         "es-MX": "No existen archivos cargados.",
