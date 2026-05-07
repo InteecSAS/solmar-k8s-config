@@ -95,3 +95,6 @@ images:
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
   newTag: d3a0087
+- name: diurvan/solmar-backend-staffservice
+  newName: diurvan/solmar-backend-staffservice
+  newTag: d3a0087

@@ -62,3 +62,10 @@ metadata:
   name: localizationservice
 spec:
   replicas: 3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: staff-service
+spec:
+  replicas: 3
