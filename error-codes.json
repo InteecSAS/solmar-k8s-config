@@ -681,6 +681,46 @@
       "HttpStatusCode": 400
     },
     {
+      "ErrorCodeId": "SOL-RES-059",
+      "Messages": {
+        "es-MX": "Error al crear la programación de mesa para el mozo.",
+        "en-US": "Error creating table schedule for the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-060",
+      "Messages": {
+        "es-MX": "Programación de mesa no encontrada.",
+        "en-US": "Table schedule not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-061",
+      "Messages": {
+        "es-MX": "Error al eliminar la programación de mesa.",
+        "en-US": "Error deleting table schedule."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-062",
+      "Messages": {
+        "es-MX": "Error al obtener la programación de la zona.",
+        "en-US": "Error fetching zone schedules."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-999",
+      "Messages": {
+        "es-MX": "La URL de confirmación de reserva no está configurada.",
+        "en-US": "Reservation confirmation URL is not configured."
+      },
+      "HttpStatusCode": 500
+    },
+    {
       "ErrorCodeId": "MEDIA-001",
       "Messages": {
         "es-MX": "No existen archivos cargados.",
