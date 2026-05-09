@@ -70,31 +70,31 @@ resources:
 images:
 - name: diurvan/solmar-backend-authservice
   newName: diurvan/solmar-backend-authservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-catalogservice
   newName: diurvan/solmar-backend-catalogservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-finanzasservice
   newName: diurvan/solmar-backend-finanzasservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-localizationservice
   newName: diurvan/solmar-backend-localizationservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-mediaservice
   newName: diurvan/solmar-backend-mediaservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-membershipsservice
   newName: diurvan/solmar-backend-membershipsservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-staffservice
   newName: diurvan/solmar-backend-staffservice
-  newTag: baa324d
+  newTag: ccd1f3e
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
-  newTag: baa324d
+  newTag: ccd1f3e
