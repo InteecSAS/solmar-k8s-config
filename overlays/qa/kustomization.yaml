@@ -70,31 +70,31 @@ resources:
 images:
 - name: diurvan/solmar-backend-authservice
   newName: diurvan/solmar-backend-authservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-catalogservice
   newName: diurvan/solmar-backend-catalogservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-finanzasservice
   newName: diurvan/solmar-backend-finanzasservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-localizationservice
   newName: diurvan/solmar-backend-localizationservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-mediaservice
   newName: diurvan/solmar-backend-mediaservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-membershipsservice
   newName: diurvan/solmar-backend-membershipsservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-staffservice
   newName: diurvan/solmar-backend-staffservice
-  newTag: fdcb982
+  newTag: 7b49c32
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
-  newTag: fdcb982
+  newTag: 7b49c32
