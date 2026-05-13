@@ -713,6 +713,54 @@
       "HttpStatusCode": 400
     },
     {
+      "ErrorCodeId": "SOL-RES-063",
+      "Messages": {
+        "es-MX": "Debe especificar al menos un ID de diseño de zona.",
+        "en-US": "At least one zone layout ID must be specified."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-064",
+      "Messages": {
+        "es-MX": "No se encontró ZoneInventoryLayout para la combinación de Inventario y Zona especificada.",
+        "en-US": "ZoneInventoryLayout not found for the specified Inventory and Zone combination."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-065",
+      "Messages": {
+        "es-MX": "El mozo ya está asignado al centro de consumo.",
+        "en-US": "The waiter is already assigned to the consumption center."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-066",
+      "Messages": {
+        "es-MX": "Las IDs de inventario proporcionadas no pertenecen a la misma zona.",
+        "en-US": "All InventoryIds must implicitly belong to the same Zone to create a schedule."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-067",
+      "Messages": {
+        "es-MX": "No se pudo determinar un ZoneId común para las IDs de inventario proporcionadas.",
+        "en-US": "Could not determine a common ZoneId for the provided InventoryIds."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-068",
+      "Messages": {
+        "es-MX": "Error al eliminar el inventario.",
+        "en-US": "Error deleting inventory."
+      },
+      "HttpStatusCode": 400
+    },
+    {
       "ErrorCodeId": "SOL-RES-999",
       "Messages": {
         "es-MX": "La URL de confirmación de reserva no está configurada.",
