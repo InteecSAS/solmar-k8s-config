@@ -112,7 +112,38 @@
       },
       "HttpStatusCode": 401
     },
-
+    {
+      "ErrorCodeId": "SOL-AUTH-013",
+      "Messages": {
+        "es-MX": "El usuario especificado no existe.",
+        "en-US": "The specified user was not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-014",
+      "Messages": {
+        "es-MX": "Uno o más permisos especificados no existen.",
+        "en-US": "One or more of the specified permissions were not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-015",
+      "Messages": {
+        "es-MX": "El rol especificado no existe.",
+        "en-US": "The specified role was not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-016",
+      "Messages": {
+        "es-MX": "No se pudo asignar el rol al usuario.",
+        "en-US": "Failed to assign the role to the user."
+      },
+      "HttpStatusCode": 400
+    },
     {
       "ErrorCodeId": "SOL-CAT-001",
       "Messages": {
@@ -552,6 +583,190 @@
         "en-US": "Other errors in updating a Consumption Center."
       },
       "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-037",
+      "Messages": {
+        "es-MX": "La capacidad física de las mesas seleccionadas es inferior a la solicitada.",
+        "en-US": "The physical capacity of the selected tables is lower than requested."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-038",
+      "Messages": {
+        "es-MX": "Uno o más de los horarios seleccionados ya no están disponibles.",
+        "en-US": "One or more of the selected time slots are no longer available."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-039",
+      "Messages": {
+        "es-MX": "No tienes permisos para realizar asignaciones manuales de mesas.",
+        "en-US": "You do not have permissions to perform manual table assignments."
+      },
+      "HttpStatusCode": 403
+    },
+    {
+      "ErrorCodeId": "SOL-RES-050",
+      "Messages": {
+        "es-MX": "Mozo no encontrado o inactivo.",
+        "en-US": "Waiter not found or inactive."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-051",
+      "Messages": {
+        "es-MX": "Reserva no encontrada.",
+        "en-US": "Reservation not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-052",
+      "Messages": {
+        "es-MX": "El mozo no pertenece al centro de consumo de la reserva.",
+        "en-US": "The waiter does not belong to the reservation's consumption center."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-053",
+      "Messages": {
+        "es-MX": "El mozo ya está asignado a la reserva.",
+        "en-US": "The waiter is already assigned to the reservation."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-054",
+      "Messages": {
+        "es-MX": "Asignación no encontrada.",
+        "en-US": "Assignment not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-055",
+      "Messages": {
+        "es-MX": "Error al crear el mozo.",
+        "en-US": "Error creating the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-056",
+      "Messages": {
+        "es-MX": "Error al actualizar el mozo.",
+        "en-US": "Error updating the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-057",
+      "Messages": {
+        "es-MX": "Error al eliminar el mozo.",
+        "en-US": "Error deleting the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-058",
+      "Messages": {
+        "es-MX": "Error al asignar/liberar el mozo.",
+        "en-US": "Error assigning/releasing the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-059",
+      "Messages": {
+        "es-MX": "Error al crear la programación de mesa para el mozo.",
+        "en-US": "Error creating table schedule for the waiter."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-060",
+      "Messages": {
+        "es-MX": "Programación de mesa no encontrada.",
+        "en-US": "Table schedule not found."
+      },
+      "HttpStatusCode": 404
+    },
+    {
+      "ErrorCodeId": "SOL-RES-061",
+      "Messages": {
+        "es-MX": "Error al eliminar la programación de mesa.",
+        "en-US": "Error deleting table schedule."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-062",
+      "Messages": {
+        "es-MX": "Error al obtener la programación de la zona.",
+        "en-US": "Error fetching zone schedules."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-063",
+      "Messages": {
+        "es-MX": "Debe especificar al menos un ID de diseño de zona.",
+        "en-US": "At least one zone layout ID must be specified."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-064",
+      "Messages": {
+        "es-MX": "No se encontró ZoneInventoryLayout para la combinación de Inventario y Zona especificada.",
+        "en-US": "ZoneInventoryLayout not found for the specified Inventory and Zone combination."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-065",
+      "Messages": {
+        "es-MX": "El mozo ya está asignado al centro de consumo.",
+        "en-US": "The waiter is already assigned to the consumption center."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-066",
+      "Messages": {
+        "es-MX": "Las IDs de inventario proporcionadas no pertenecen a la misma zona.",
+        "en-US": "All InventoryIds must implicitly belong to the same Zone to create a schedule."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-067",
+      "Messages": {
+        "es-MX": "No se pudo determinar un ZoneId común para las IDs de inventario proporcionadas.",
+        "en-US": "Could not determine a common ZoneId for the provided InventoryIds."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-068",
+      "Messages": {
+        "es-MX": "Error al eliminar el inventario.",
+        "en-US": "Error deleting inventory."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-RES-999",
+      "Messages": {
+        "es-MX": "La URL de confirmación de reserva no está configurada.",
+        "en-US": "Reservation confirmation URL is not configured."
+      },
+      "HttpStatusCode": 500
     },
     {
       "ErrorCodeId": "MEDIA-001",

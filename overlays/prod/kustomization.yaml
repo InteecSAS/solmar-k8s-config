@@ -44,21 +44,6 @@ patches:
   target:
     kind: Deployment
     name: auth-service
-- patch: |-
-    - op: add
-      path: /spec/template/spec/containers/0/env
-      value:
-        - name: ReservationRules__CapacityBypass__AllowedRoles__0
-          value: "ADMIN"
-        - name: ReservationRules__CapacityBypass__AllowedRoles__1
-          value: "GERENTE"
-        - name: ReservationRules__CapacityBypass__AllowedRoles__2
-          value: "CONCIERGE"
-        - name: ReservationRules__CapacityBypass__AllowedApiKeys__0
-          value: "sol_prod_admin_dashboard_2026"
-  target:
-    kind: Deployment
-    name: reservations-service
 resources:
 - ../../base
 images:
@@ -91,4 +76,8 @@ images:
   newTag: 32961f6
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
-  newTag: 32961f6
+  newTag: ef3bba2
+- name: diurvan/solmar-backend-staffservice
+  newName: diurvan/solmar-backend-staffservice
+  newTag: ef3bba2
+  

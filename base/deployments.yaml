@@ -305,3 +305,37 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: staff-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staff-service
+  template:
+    metadata:
+      labels:
+        app: staff-service
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: staff-service
+        image: diurvan/solmar-backend-staffservice
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: staff-service
+spec:
+  selector:
+    app: staff-service
+  ports:
+  - port: 8080
+    targetPort: 8080
