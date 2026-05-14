@@ -77,4 +77,3 @@ images:
 - name: diurvan/solmar-backend-staffservice
   newName: diurvan/solmar-backend-staffservice
   newTag: ef3bba2
-  
