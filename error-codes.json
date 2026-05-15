@@ -145,6 +145,38 @@
       "HttpStatusCode": 400
     },
     {
+      "ErrorCodeId": "SOL-AUTH-017",
+      "Messages": {
+        "es-MX": "Si el usuario es externo (LDAP), al menos uno de los roles seleccionados debe tener un proveedor de autenticación configurado.",
+        "en-US": "If the user is external (LDAP), at least one of the selected roles must have an authentication provider configured."
+      },
+      "HttpStatusCode": 400
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-018",
+      "Messages": {
+        "es-MX": "Error al crear el perfil de persona para el staff.",
+        "en-US": "Error creating person profile for staff."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-019",
+      "Messages": {
+        "es-MX": "Error al crear el usuario en el sistema de identidad.",
+        "en-US": "Error creating user in the identity system."
+      },
+      "HttpStatusCode": 500
+    },
+    {
+      "ErrorCodeId": "SOL-AUTH-020",
+      "Messages": {
+        "es-MX": "Error al sincronizar el empleado con el servicio de personal.",
+        "en-US": "Error synchronizing employee with the staff service."
+      },
+      "HttpStatusCode": 500
+    },
+    {
       "ErrorCodeId": "SOL-CAT-001",
       "Messages": {
         "es-MX": "Catálogo no encontrado o vacío.",
