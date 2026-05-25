@@ -70,31 +70,31 @@ resources:
 images:
 - name: diurvan/solmar-backend-authservice
   newName: diurvan/solmar-backend-authservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-catalogservice
   newName: diurvan/solmar-backend-catalogservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-finanzasservice
   newName: diurvan/solmar-backend-finanzasservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-localizationservice
   newName: diurvan/solmar-backend-localizationservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-mediaservice
   newName: diurvan/solmar-backend-mediaservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-membershipsservice
   newName: diurvan/solmar-backend-membershipsservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-notificationsservice
   newName: diurvan/solmar-backend-notificationsservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-reservationsservice
   newName: diurvan/solmar-backend-reservationsservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-staffservice
   newName: diurvan/solmar-backend-staffservice
-  newTag: eb0a992
+  newTag: 93fd206
 - name: diurvan/solmar-backend-yarpproxy
   newName: diurvan/solmar-backend-yarpproxy
-  newTag: eb0a992
+  newTag: 93fd206
